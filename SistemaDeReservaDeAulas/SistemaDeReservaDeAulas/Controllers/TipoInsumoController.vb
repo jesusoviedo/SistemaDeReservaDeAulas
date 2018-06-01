@@ -2,14 +2,14 @@
 Imports ModeloDeNegocio
 
 Namespace Controllers
-    Public Class EstadoReservaController
+    Public Class TipoInsumoController
         Inherits Controller
 
         <HttpGet()>
         Function Index() As ActionResult
-            Dim dtEstadoReserva As New DataTable
-            dtEstadoReserva = EstadoReserva.RecuperarEstadoReserva()
-            ViewData("EstadosReservas") = dtEstadoReserva.AsEnumerable
+            Dim dtTipoInsumo As New DataTable
+            dtTipoInsumo = TipoInsumo.RecuperarTipoInsumo()
+            ViewData("TiposInsumos") = dtTipoInsumo.AsEnumerable
             Return View()
         End Function
 
@@ -20,38 +20,38 @@ Namespace Controllers
 
         <HttpPost()>
         Function Create(form As FormCollection) As ActionResult
-            Dim vEstadoReserva As New EstadoReserva
-            With vEstadoReserva
+            Dim vTipoInsumo As New TipoInsumo
+            With vTipoInsumo
                 .pDescripcion = form("txtDescripcion")
-                .InsertarEstadoReserva()
+                .InsertarTipoInsumo()
             End With
             Return RedirectToAction("Index")
         End Function
 
         <HttpGet()>
         Function Edit(id As Integer) As ActionResult
-            Dim vEstadoReserva As New EstadoReserva
-            vEstadoReserva = vEstadoReserva.RecuperarEstadoReserva(id)
-            Return View(vEstadoReserva)
+            Dim vTipoInsumo As New TipoInsumo
+            vTipoInsumo = vTipoInsumo.RecuperarTipoInsumo(id)
+            Return View(vTipoInsumo)
         End Function
 
         <HttpPost()>
         Function Edit(form As FormCollection) As ActionResult
-            Dim vEstadoReserva As New EstadoReserva
-            With vEstadoReserva
-                .pId_estado_reserva = form("txtId_estado_reserva")
+            Dim vTipoInsumo As New TipoInsumo
+            With vTipoInsumo
+                .pId_tip_insumo = form("txtId_tip_insumo")
                 .pDescripcion = form("txtDescripcion")
-                .ActualizarEstadoReserva()
+                .ActualizarTipoInsumo()
             End With
             Return RedirectToAction("Index")
         End Function
 
         <HttpGet()>
         Function Delete(id As Integer) As ActionResult
-            Dim vEstadoReserva As New EstadoReserva
-            With vEstadoReserva
-                .pId_estado_reserva = id
-                .EliminarEstadoReserva()
+            Dim vTipoInsumo As New TipoInsumo
+            With vTipoInsumo
+                .pId_tip_insumo = id
+                .EliminarTipoInsumo()
             End With
             Return RedirectToAction("Index")
         End Function

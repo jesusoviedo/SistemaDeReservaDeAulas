@@ -161,6 +161,11 @@
     <Compile Include="App_Start\RouteConfig.vb" />
     <Compile Include="Controllers\EstadoReservaController.vb" />
     <Compile Include="Controllers\HomeController.vb" />
+    <Compile Include="Controllers\PisoController.vb" />
+    <Compile Include="Controllers\TipoAulaController.vb" />
+    <Compile Include="Controllers\TipoDocumentoController.vb" />
+    <Compile Include="Controllers\TipoInsumoController.vb" />
+    <Compile Include="Controllers\TurnoController.vb" />
     <Compile Include="Global.asax.vb">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -231,6 +236,11 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\Piso\" />
+    <Folder Include="Views\TipoAula\" />
+    <Folder Include="Views\TipoDocumento\" />
+    <Folder Include="Views\TipoInsumo\" />
+    <Folder Include="Views\Turno\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ModeloDeNegocio\ModeloDeNegocio.vbproj">

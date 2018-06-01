@@ -2,14 +2,14 @@
 Imports ModeloDeNegocio
 
 Namespace Controllers
-    Public Class EstadoReservaController
+    Public Class PisoController
         Inherits Controller
 
         <HttpGet()>
         Function Index() As ActionResult
-            Dim dtEstadoReserva As New DataTable
-            dtEstadoReserva = EstadoReserva.RecuperarEstadoReserva()
-            ViewData("EstadosReservas") = dtEstadoReserva.AsEnumerable
+            Dim dtPiso As New DataTable
+            dtPiso = Piso.RecuperarPiso()
+            ViewData("Pisos") = dtPiso.AsEnumerable
             Return View()
         End Function
 
@@ -20,41 +20,40 @@ Namespace Controllers
 
         <HttpPost()>
         Function Create(form As FormCollection) As ActionResult
-            Dim vEstadoReserva As New EstadoReserva
-            With vEstadoReserva
+            Dim vPiso As New Piso
+            With vPiso
                 .pDescripcion = form("txtDescripcion")
-                .InsertarEstadoReserva()
+                .InsertarPiso()
             End With
             Return RedirectToAction("Index")
         End Function
 
         <HttpGet()>
         Function Edit(id As Integer) As ActionResult
-            Dim vEstadoReserva As New EstadoReserva
-            vEstadoReserva = vEstadoReserva.RecuperarEstadoReserva(id)
-            Return View(vEstadoReserva)
+            Dim vPiso As New Piso
+            vPiso = vPiso.RecuperarPiso(id)
+            Return View(vPiso)
         End Function
 
         <HttpPost()>
         Function Edit(form As FormCollection) As ActionResult
-            Dim vEstadoReserva As New EstadoReserva
-            With vEstadoReserva
-                .pId_estado_reserva = form("txtId_estado_reserva")
+            Dim vPiso As New Piso
+            With vPiso
+                .pId_piso = form("txtId_piso")
                 .pDescripcion = form("txtDescripcion")
-                .ActualizarEstadoReserva()
+                .ActualizarPiso()
             End With
             Return RedirectToAction("Index")
         End Function
 
         <HttpGet()>
         Function Delete(id As Integer) As ActionResult
-            Dim vEstadoReserva As New EstadoReserva
-            With vEstadoReserva
-                .pId_estado_reserva = id
-                .EliminarEstadoReserva()
+            Dim vPiso As New Piso
+            With vPiso
+                .pId_piso = id
+                .EliminarPiso()
             End With
             Return RedirectToAction("Index")
         End Function
-
     End Class
 End Namespace
