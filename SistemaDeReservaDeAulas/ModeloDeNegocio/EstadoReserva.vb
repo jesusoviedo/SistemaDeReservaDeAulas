@@ -59,10 +59,10 @@ Public Class EstadoReserva
         End Try
     End Function
 
-    Public Function RecuperarEstadoReserva(vid_estado_reserva As Integer) As EstadoReserva
+    Public Function RecuperarEstadoReserva(vId_estado_reserva As Integer) As EstadoReserva
         Try
             Dim dtEstadoReserva As New DataTable
-            dtEstadoReserva = gDatos.TraerDataTable("SpConsultarEstadoReserva", vid_estado_reserva)
+            dtEstadoReserva = gDatos.TraerDataTable("SpConsultarEstadoReserva", vId_estado_reserva)
             If dtEstadoReserva.Rows.Count > 0 Then
                 Dim vEstadoReserva As New EstadoReserva
                 With vEstadoReserva
