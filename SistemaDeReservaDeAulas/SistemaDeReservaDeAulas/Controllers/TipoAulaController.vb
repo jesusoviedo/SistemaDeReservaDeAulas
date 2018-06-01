@@ -2,14 +2,14 @@
 Imports ModeloDeNegocio
 
 Namespace Controllers
-    Public Class EstadoReservaController
+    Public Class TipoAulaController
         Inherits Controller
 
         <HttpGet()>
         Function Index() As ActionResult
-            Dim dtEstadoReserva As New DataTable
-            dtEstadoReserva = EstadoReserva.RecuperarEstadoReserva()
-            ViewData("EstadosReservas") = dtEstadoReserva.AsEnumerable
+            Dim dtTipoAula As New DataTable
+            dtTipoAula = TipoAula.RecuperarTipoAula()
+            ViewData("TiposAulas") = dtTipoAula.AsEnumerable
             Return View()
         End Function
 
@@ -20,38 +20,38 @@ Namespace Controllers
 
         <HttpPost()>
         Function Create(form As FormCollection) As ActionResult
-            Dim vEstadoReserva As New EstadoReserva
-            With vEstadoReserva
+            Dim vTipoAula As New TipoAula
+            With vTipoAula
                 .pDescripcion = form("txtDescripcion")
-                .InsertarEstadoReserva()
+                .InsertarTipoAula()
             End With
             Return RedirectToAction("Index")
         End Function
 
         <HttpGet()>
         Function Edit(id As Integer) As ActionResult
-            Dim vEstadoReserva As New EstadoReserva
-            vEstadoReserva = vEstadoReserva.RecuperarEstadoReserva(id)
-            Return View(vEstadoReserva)
+            Dim vTipoAula As New TipoAula
+            vTipoAula = vTipoAula.RecuperarTipoAula(id)
+            Return View(vTipoAula)
         End Function
 
         <HttpPost()>
         Function Edit(form As FormCollection) As ActionResult
-            Dim vEstadoReserva As New EstadoReserva
-            With vEstadoReserva
-                .pId_estado_reserva = form("txtId_estado_reserva")
+            Dim vTipoAula As New TipoAula
+            With vTipoAula
+                .pId_tipo_aula = form("txtId_tipo_aula")
                 .pDescripcion = form("txtDescripcion")
-                .ActualizarEstadoReserva()
+                .ActualizarTipoAula()
             End With
             Return RedirectToAction("Index")
         End Function
 
         <HttpGet()>
         Function Delete(id As Integer) As ActionResult
-            Dim vEstadoReserva As New EstadoReserva
-            With vEstadoReserva
-                .pId_estado_reserva = id
-                .EliminarEstadoReserva()
+            Dim vTipoAula As New TipoAula
+            With vTipoAula
+                .pId_tipo_aula = id
+                .EliminarTipoAula()
             End With
             Return RedirectToAction("Index")
         End Function

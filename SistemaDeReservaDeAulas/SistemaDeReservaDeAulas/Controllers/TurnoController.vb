@@ -2,14 +2,14 @@
 Imports ModeloDeNegocio
 
 Namespace Controllers
-    Public Class EstadoReservaController
+    Public Class TurnoController
         Inherits Controller
 
         <HttpGet()>
         Function Index() As ActionResult
-            Dim dtEstadoReserva As New DataTable
-            dtEstadoReserva = EstadoReserva.RecuperarEstadoReserva()
-            ViewData("EstadosReservas") = dtEstadoReserva.AsEnumerable
+            Dim dtTurno As New DataTable
+            dtTurno = Turno.RecuperarTurno()
+            ViewData("Turnos") = dtTurno.AsEnumerable
             Return View()
         End Function
 
@@ -20,38 +20,42 @@ Namespace Controllers
 
         <HttpPost()>
         Function Create(form As FormCollection) As ActionResult
-            Dim vEstadoReserva As New EstadoReserva
-            With vEstadoReserva
+            Dim vTurno As New Turno
+            With vTurno
                 .pDescripcion = form("txtDescripcion")
-                .InsertarEstadoReserva()
+                .pHora_inicio = form("txtHora_inicio")
+                .pHora_fin = form("txtHora_fin")
+                .InsertarTurno()
             End With
             Return RedirectToAction("Index")
         End Function
 
         <HttpGet()>
         Function Edit(id As Integer) As ActionResult
-            Dim vEstadoReserva As New EstadoReserva
-            vEstadoReserva = vEstadoReserva.RecuperarEstadoReserva(id)
-            Return View(vEstadoReserva)
+            Dim vTurno As New Turno
+            vTurno = vTurno.RecuperarTurno(id)
+            Return View(vTurno)
         End Function
 
         <HttpPost()>
         Function Edit(form As FormCollection) As ActionResult
-            Dim vEstadoReserva As New EstadoReserva
-            With vEstadoReserva
-                .pId_estado_reserva = form("txtId_estado_reserva")
+            Dim vTurno As New Turno
+            With vTurno
+                .pId_turno = form("txtId_turno")
                 .pDescripcion = form("txtDescripcion")
-                .ActualizarEstadoReserva()
+                .pHora_inicio = form("txtHora_inicio")
+                .pHora_fin = form("txtHora_fin")
+                .ActualizarTurno()
             End With
             Return RedirectToAction("Index")
         End Function
 
         <HttpGet()>
         Function Delete(id As Integer) As ActionResult
-            Dim vEstadoReserva As New EstadoReserva
-            With vEstadoReserva
-                .pId_estado_reserva = id
-                .EliminarEstadoReserva()
+            Dim vTurno As New Turno
+            With vTurno
+                .pId_turno = id
+                .EliminarTurno()
             End With
             Return RedirectToAction("Index")
         End Function

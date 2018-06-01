@@ -5,7 +5,7 @@ Public Class EstadoReserva
     Private id_estado_reserva As Integer
     Private descripcion As String
 
-    'propiedates 
+    'propiedades 
     Public Property pId_estado_reserva As Integer
         Get
             Return id_estado_reserva
@@ -77,5 +77,4 @@ Public Class EstadoReserva
             Throw ex
         End Try
     End Function
-
 End Class

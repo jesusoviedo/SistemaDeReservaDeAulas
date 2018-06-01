@@ -79,6 +79,11 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Piso.vb" />
+    <Compile Include="TipoAula.vb" />
+    <Compile Include="Turno.vb" />
+    <Compile Include="TipoDocumento.vb" />
+    <Compile Include="TipoInsumo.vb" />
     <Compile Include="Util.vb" />
   </ItemGroup>
   <ItemGroup>

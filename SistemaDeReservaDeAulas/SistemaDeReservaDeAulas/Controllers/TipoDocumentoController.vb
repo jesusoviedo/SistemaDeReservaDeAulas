@@ -2,14 +2,14 @@
 Imports ModeloDeNegocio
 
 Namespace Controllers
-    Public Class EstadoReservaController
+    Public Class TipoDocumentoController
         Inherits Controller
 
         <HttpGet()>
         Function Index() As ActionResult
-            Dim dtEstadoReserva As New DataTable
-            dtEstadoReserva = EstadoReserva.RecuperarEstadoReserva()
-            ViewData("EstadosReservas") = dtEstadoReserva.AsEnumerable
+            Dim dtTipoDocumento As New DataTable
+            dtTipoDocumento = TipoDocumento.RecuperarTipoDocumento()
+            ViewData("TiposDocumentos") = dtTipoDocumento.AsEnumerable
             Return View()
         End Function
 
@@ -20,38 +20,38 @@ Namespace Controllers
 
         <HttpPost()>
         Function Create(form As FormCollection) As ActionResult
-            Dim vEstadoReserva As New EstadoReserva
-            With vEstadoReserva
+            Dim vTipoDocumento As New TipoDocumento
+            With vTipoDocumento
                 .pDescripcion = form("txtDescripcion")
-                .InsertarEstadoReserva()
+                .InsertarTipoDocumento()
             End With
             Return RedirectToAction("Index")
         End Function
 
         <HttpGet()>
         Function Edit(id As Integer) As ActionResult
-            Dim vEstadoReserva As New EstadoReserva
-            vEstadoReserva = vEstadoReserva.RecuperarEstadoReserva(id)
-            Return View(vEstadoReserva)
+            Dim vTipoDocumento As New TipoDocumento
+            vTipoDocumento = vTipoDocumento.RecuperarTipoDocumento(id)
+            Return View(vTipoDocumento)
         End Function
 
         <HttpPost()>
         Function Edit(form As FormCollection) As ActionResult
-            Dim vEstadoReserva As New EstadoReserva
-            With vEstadoReserva
-                .pId_estado_reserva = form("txtId_estado_reserva")
+            Dim vTipoDocumento As New TipoDocumento
+            With vTipoDocumento
+                .pId_tipo_doc = form("txtId_tipo_doc")
                 .pDescripcion = form("txtDescripcion")
-                .ActualizarEstadoReserva()
+                .ActualizarTipoDocumento()
             End With
             Return RedirectToAction("Index")
         End Function
 
         <HttpGet()>
         Function Delete(id As Integer) As ActionResult
-            Dim vEstadoReserva As New EstadoReserva
-            With vEstadoReserva
-                .pId_estado_reserva = id
-                .EliminarEstadoReserva()
+            Dim vTipoDocumento As New TipoDocumento
+            With vTipoDocumento
+                .pId_tipo_doc = id
+                .EliminarTipoDocumento()
             End With
             Return RedirectToAction("Index")
         End Function
