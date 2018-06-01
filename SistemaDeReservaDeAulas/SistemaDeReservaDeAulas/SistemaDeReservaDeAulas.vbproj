@@ -159,6 +159,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.vb" />
+    <Compile Include="Controllers\AulaController.vb" />
     <Compile Include="Controllers\EstadoReservaController.vb" />
     <Compile Include="Controllers\HomeController.vb" />
     <Compile Include="Controllers\PisoController.vb" />
@@ -236,6 +237,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\Aula\" />
     <Folder Include="Views\Piso\" />
     <Folder Include="Views\TipoAula\" />
     <Folder Include="Views\TipoDocumento\" />
