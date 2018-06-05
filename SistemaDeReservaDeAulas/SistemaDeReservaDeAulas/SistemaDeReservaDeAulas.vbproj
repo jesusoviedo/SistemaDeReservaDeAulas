@@ -162,6 +162,7 @@
     <Compile Include="Controllers\AulaController.vb" />
     <Compile Include="Controllers\EstadoReservaController.vb" />
     <Compile Include="Controllers\HomeController.vb" />
+    <Compile Include="Controllers\InsumoController.vb" />
     <Compile Include="Controllers\PisoController.vb" />
     <Compile Include="Controllers\TipoAulaController.vb" />
     <Compile Include="Controllers\TipoDocumentoController.vb" />
@@ -238,6 +239,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Aula\" />
+    <Folder Include="Views\Insumo\" />
     <Folder Include="Views\Piso\" />
     <Folder Include="Views\TipoAula\" />
     <Folder Include="Views\TipoDocumento\" />
