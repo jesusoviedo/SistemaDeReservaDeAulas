@@ -15,6 +15,15 @@ Namespace Controllers
 
         <HttpGet()>
         Function Create() As ActionResult
+
+            Dim dtTipoAula As New DataTable
+            dtTipoAula = TipoAula.RecuperarTipoAula()
+            ViewData("TiposAulas") = dtTipoAula.AsEnumerable
+
+            Dim dtPiso As New DataTable
+            dtPiso = Piso.RecuperarPiso()
+            ViewData("Pisos") = dtPiso.AsEnumerable
+
             Return View()
         End Function
 
@@ -34,8 +43,18 @@ Namespace Controllers
 
         <HttpGet()>
         Function Edit(id As Integer) As ActionResult
+
+            Dim dtTipoAula As New DataTable
+            dtTipoAula = TipoAula.RecuperarTipoAula()
+            ViewData("TiposAulas") = dtTipoAula.AsEnumerable
+
+            Dim dtPiso As New DataTable
+            dtPiso = Piso.RecuperarPiso()
+            ViewData("Pisos") = dtPiso.AsEnumerable
+
             Dim vAula As New Aula
             vAula = vAula.RecuperarAula(id)
+
             Return View(vAula)
         End Function
 

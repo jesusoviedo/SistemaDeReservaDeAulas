@@ -1012,7 +1012,8 @@ GO
 
 --DROP PROCEDURE SpConsultarDetalleReserva
 CREATE PROCEDURE SpConsultarDetalleReserva
-	@id_reserva INT
+	@id_reserva INT,
+	@id_insumo INT
 AS
 BEGIN 
 	SELECT  
@@ -1022,7 +1023,7 @@ BEGIN
 	dr.cantidad
 	FROM DetalleReserva dr
 	INNER JOIN Insumo i on i.id_insumo=dr.id_insumo
-	WHERE dr.id_reserva=@id_reserva OR @id_reserva=0
+	WHERE (dr.id_reserva=@id_reserva AND dr.id_insumo=@id_insumo) OR (@id_reserva=0 AND @id_insumo=0)
 	ORDER BY dr.id_insumo
 END
 GO

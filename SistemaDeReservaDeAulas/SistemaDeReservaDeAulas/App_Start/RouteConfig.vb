@@ -14,5 +14,13 @@ Public Module RouteConfig
             url:="{controller}/{action}/{id}",
             defaults:=New With {.controller = "Home", .action = "Index", .id = UrlParameter.Optional}
         )
+
+        routes.MapRoute(
+            name:="DetalleReserva",
+            url:="DetalleReserva/Edit/{idReserva}/{idInsumo}",
+            defaults:=New With {.controller = "DetalleReserva", .action = "Edit", .idReserva = UrlParameter.Optional, .idInsumo = UrlParameter.Optional}
+        )
+
+
     End Sub
 End Module
