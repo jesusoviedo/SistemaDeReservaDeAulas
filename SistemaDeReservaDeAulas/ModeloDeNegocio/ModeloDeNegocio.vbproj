@@ -64,6 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Aula.vb" />
+    <Compile Include="DetalleReserva.vb" />
     <Compile Include="EstadoReserva.vb" />
     <Compile Include="Insumo.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
