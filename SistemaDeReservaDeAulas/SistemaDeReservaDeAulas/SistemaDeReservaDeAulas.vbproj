@@ -160,8 +160,11 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.vb" />
     <Compile Include="Controllers\AulaController.vb" />
+    <Compile Include="Controllers\CursoController.vb" />
+    <Compile Include="Controllers\DetalleCursoController.vb" />
     <Compile Include="Controllers\DetalleReservaController.vb" />
     <Compile Include="Controllers\DetalleRolController.vb" />
+    <Compile Include="Controllers\DiaController.vb" />
     <Compile Include="Controllers\EstadoReservaController.vb" />
     <Compile Include="Controllers\HomeController.vb" />
     <Compile Include="Controllers\InsumoController.vb" />
