@@ -34,13 +34,13 @@ Namespace Controllers
         End Function
 
         <HttpGet()>
-        Function Edit(idReserva As Integer, idInsumo As Integer) As ActionResult
+        Function Edit(id As Integer) As ActionResult
             Dim dtInsumo As New DataTable
             dtInsumo = Insumo.RecuperarInsumo()
             ViewData("Insumos") = dtInsumo.AsEnumerable
 
             Dim vDetalleReserva As New DetalleReserva
-            vDetalleReserva = vDetalleReserva.RecuperarDetalleReserva(idReserva, idInsumo)
+            vDetalleReserva = vDetalleReserva.RecuperarDetalleReserva(id)
             Return View(vDetalleReserva)
         End Function
 
@@ -57,11 +57,11 @@ Namespace Controllers
         End Function
 
         <HttpGet()>
-        Function Delete(id As Integer) As ActionResult
+        Function Delete(idReserva As Integer, idInsumo As Integer) As ActionResult
             Dim vDetalleReserva As New DetalleReserva
             With vDetalleReserva
-                .pId_reserva = id
-                .pId_insumo = id
+                .pId_reserva = idReserva
+                .pId_insumo = idInsumo
                 .EliminarDetalleReserva()
             End With
             Return RedirectToAction("Index")

@@ -61,17 +61,17 @@ Public Class DetalleReserva
     Public Shared Function RecuperarDetalleReserva() As DataTable
         Try
             Dim dtDetalleReserva As New DataTable
-            dtDetalleReserva = gDatos.TraerDataTable("SpConsultarDetalleReserva", 0, 0)
+            dtDetalleReserva = gDatos.TraerDataTable("SpConsultarDetalleReserva", 0)
             Return dtDetalleReserva
         Catch ex As Exception
             Throw ex
         End Try
     End Function
 
-    Public Function RecuperarDetalleReserva(vId_reserva As Integer, vId_insumo As Integer) As DetalleReserva
+    Public Function RecuperarDetalleReserva(vId_reserva As Integer) As DetalleReserva
         Try
             Dim dtDetalleReserva As New DataTable
-            dtDetalleReserva = gDatos.TraerDataTable("SpConsultarDetalleReserva", vId_reserva, vId_insumo)
+            dtDetalleReserva = gDatos.TraerDataTable("SpConsultarDetalleReserva", vId_reserva)
             If dtDetalleReserva.Rows.Count > 0 Then
                 Dim vDetalleReserva As New DetalleReserva
                 With vDetalleReserva
