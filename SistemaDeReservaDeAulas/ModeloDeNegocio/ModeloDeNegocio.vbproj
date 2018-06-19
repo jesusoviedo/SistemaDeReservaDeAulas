@@ -65,6 +65,7 @@
   <ItemGroup>
     <Compile Include="Aula.vb" />
     <Compile Include="DetalleReserva.vb" />
+    <Compile Include="DetalleRol.vb" />
     <Compile Include="EstadoReserva.vb" />
     <Compile Include="Insumo.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -82,7 +83,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Permiso.vb" />
     <Compile Include="Piso.vb" />
+    <Compile Include="Rol.vb" />
     <Compile Include="TipoAula.vb" />
     <Compile Include="Turno.vb" />
     <Compile Include="TipoDocumento.vb" />
