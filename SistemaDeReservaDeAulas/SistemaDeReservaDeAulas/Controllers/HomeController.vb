@@ -7,7 +7,7 @@ Namespace Controllers
 
         ' GET: Home
         Function Index() As ActionResult
-            Util.inicializaSesion("LAPTOP-F5VFQF4J\SQLEXPRESS", "ReservaDeAula", "sa", "jesus92")
+            Util.inicializaSesion(ConfigurationManager.AppSettings("datoServidor"), ConfigurationManager.AppSettings("datoBase"), ConfigurationManager.AppSettings("datoUsuario"), ConfigurationManager.AppSettings("datoContrasenha"))
             ''Util.inicializaSesion("reservaulas.database.windows.net", "ReservaDeAulas", "r3SeRv4", "R3s3rv4$l4")
             Return View()
         End Function
