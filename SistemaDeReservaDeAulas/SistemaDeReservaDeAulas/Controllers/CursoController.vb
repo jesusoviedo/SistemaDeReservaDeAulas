@@ -19,9 +19,8 @@ Namespace Controllers
             dtaula = Aula.RecuperarAula()
             ViewData("Aulas") = dtaula.AsEnumerable
 
-            '-----FALTA CLASE MATERIA-----
             Dim dtmateria As New DataTable
-            'dtaula = Materia.RecuperarMateria()
+            dtaula = Materia.RecuperarMateria()
             ViewData("Materias") = dtaula.AsEnumerable
 
             Dim dtturno As New DataTable
