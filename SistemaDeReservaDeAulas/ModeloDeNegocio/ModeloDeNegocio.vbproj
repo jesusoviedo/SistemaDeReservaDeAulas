@@ -65,12 +65,15 @@
   <ItemGroup>
     <Compile Include="Aula.vb" />
     <Compile Include="Curso.vb" />
+    <Compile Include="Departamento.vb" />
     <Compile Include="DetalleCurso.vb" />
     <Compile Include="DetalleReserva.vb" />
     <Compile Include="DetalleRol.vb" />
     <Compile Include="Dia.vb" />
     <Compile Include="EstadoReserva.vb" />
+    <Compile Include="Facultad.vb" />
     <Compile Include="Insumo.vb" />
+    <Compile Include="Materia.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
