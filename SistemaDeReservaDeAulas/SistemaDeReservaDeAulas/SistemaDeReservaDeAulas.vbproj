@@ -173,6 +173,7 @@
     <Compile Include="Controllers\MateriaController.vb" />
     <Compile Include="Controllers\PermisoController.vb" />
     <Compile Include="Controllers\PisoController.vb" />
+    <Compile Include="Controllers\ReservaController.vb" />
     <Compile Include="Controllers\RolController.vb" />
     <Compile Include="Controllers\TipoAulaController.vb" />
     <Compile Include="Controllers\TipoDocumentoController.vb" />
@@ -252,6 +253,7 @@
     <Folder Include="Views\DetalleReserva\" />
     <Folder Include="Views\Insumo\" />
     <Folder Include="Views\Piso\" />
+    <Folder Include="Views\Reserva\" />
     <Folder Include="Views\TipoAula\" />
     <Folder Include="Views\TipoDocumento\" />
     <Folder Include="Views\TipoInsumo\" />

@@ -91,6 +91,7 @@
     </Compile>
     <Compile Include="Permiso.vb" />
     <Compile Include="Piso.vb" />
+    <Compile Include="Reserva.vb" />
     <Compile Include="Rol.vb" />
     <Compile Include="TipoAula.vb" />
     <Compile Include="Turno.vb" />
