@@ -1,5 +1,6 @@
 ﻿Imports System.Web.Mvc
 Imports ModeloDeNegocio
+Imports Newtonsoft.Json
 
 Namespace Controllers
     Public Class TipoInsumoController
@@ -13,37 +14,32 @@ Namespace Controllers
             Return View()
         End Function
 
-        <HttpGet()>
-        Function Create() As ActionResult
-            Return View()
-        End Function
-
         <HttpPost()>
-        Function Create(form As FormCollection) As ActionResult
+        Function Create(descripcion As String) As JsonResult
             Dim vTipoInsumo As New TipoInsumo
             With vTipoInsumo
-                .pDescripcion = form("txtDescripcion")
+                .pDescripcion = descripcion
                 .InsertarTipoInsumo()
             End With
-            Return RedirectToAction("Index")
-        End Function
-
-        <HttpGet()>
-        Function Edit(id As Integer) As ActionResult
-            Dim vTipoInsumo As New TipoInsumo
-            vTipoInsumo = vTipoInsumo.RecuperarTipoInsumo(id)
-            Return View(vTipoInsumo)
+            Return Json("")
         End Function
 
         <HttpPost()>
-        Function Edit(form As FormCollection) As ActionResult
+        Function Consult(id As Integer) As JsonResult
+            Dim vTipoInsumo As New TipoInsumo
+            vTipoInsumo = vTipoInsumo.RecuperarTipoInsumo(id)
+            Return Json(JsonConvert.SerializeObject(vTipoInsumo))
+        End Function
+
+        <HttpPost()>
+        Function Edit(id_tip_insumo As Integer, descripcion As String) As JsonResult
             Dim vTipoInsumo As New TipoInsumo
             With vTipoInsumo
-                .pId_tip_insumo = form("txtId_tip_insumo")
-                .pDescripcion = form("txtDescripcion")
+                .pId_tip_insumo = id_tip_insumo
+                .pDescripcion = descripcion
                 .ActualizarTipoInsumo()
             End With
-            Return RedirectToAction("Index")
+            Return Json("")
         End Function
 
         <HttpGet()>

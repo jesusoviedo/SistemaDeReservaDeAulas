@@ -1,5 +1,6 @@
 ﻿Imports System.Web.Mvc
 Imports ModeloDeNegocio
+Imports Newtonsoft.Json
 
 Namespace Controllers
     Public Class InsumoController
@@ -10,50 +11,42 @@ Namespace Controllers
             Dim dtInsumo As New DataTable
             dtInsumo = Insumo.RecuperarInsumo()
             ViewData("Insumos") = dtInsumo.AsEnumerable
-            Return View()
-        End Function
 
-
-        <HttpGet()>
-        Function Create() As ActionResult
             Dim dtTipoInsumo As New DataTable
             dtTipoInsumo = TipoInsumo.RecuperarTipoInsumo()
             ViewData("TiposInsumos") = dtTipoInsumo.AsEnumerable
+
             Return View()
         End Function
 
         <HttpPost()>
-        Function Create(form As FormCollection) As ActionResult
+        Function Create(descripcion As String, id_tip_insumo As Integer) As JsonResult
             Dim vInsumo As New Insumo
             With vInsumo
-                .pDescripcion = form("txtDescripcion")
-                .pId_tip_insumo = form("txtId_tip_insumo")
+                .pDescripcion = descripcion
+                .pId_tip_insumo = id_tip_insumo
                 .InsertarInsumo()
             End With
-            Return RedirectToAction("Index")
-        End Function
-
-        <HttpGet()>
-        Function Edit(id As Integer) As ActionResult
-            Dim dtTipoInsumo As New DataTable
-            dtTipoInsumo = TipoInsumo.RecuperarTipoInsumo()
-            ViewData("TiposInsumos") = dtTipoInsumo.AsEnumerable
-
-            Dim vInsumo As New Insumo
-            vInsumo = vInsumo.RecuperarInsumo(id)
-            Return View(vInsumo)
+            Return Json("")
         End Function
 
         <HttpPost()>
-        Function Edit(form As FormCollection) As ActionResult
+        Function Consult(id As Integer) As JsonResult
+            Dim vInsumo As New Insumo
+            vInsumo = vInsumo.RecuperarInsumo(id)
+            Return Json(JsonConvert.SerializeObject(vInsumo))
+        End Function
+
+        <HttpPost()>
+        Function Edit(id_insumo As Integer, descripcion As String, id_tip_insumo As Integer) As JsonResult
             Dim vInsumo As New Insumo
             With vInsumo
-                .pId_insumo = form("txtId_insumo")
-                .pDescripcion = form("txtDescripcion")
-                .pId_tip_insumo = form("txtId_tip_insumo")
+                .pId_insumo = id_insumo
+                .pDescripcion = descripcion
+                .pId_tip_insumo = id_tip_insumo
                 .ActualizarInsumo()
             End With
-            Return RedirectToAction("Index")
+            Return Json("")
         End Function
 
         <HttpGet()>

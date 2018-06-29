@@ -77,6 +77,10 @@
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -145,16 +149,82 @@
     <Content Include="scripts\ai.0.22.9-build00167.js" />
     <Content Include="scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="scripts\css\bootstrap-grid.css" />
+    <Content Include="scripts\css\bootstrap-grid.css.map" />
     <Content Include="scripts\css\bootstrap-grid.min.css" />
+    <Content Include="scripts\css\bootstrap-grid.min.css.map" />
     <Content Include="scripts\css\bootstrap-reboot.css" />
+    <Content Include="scripts\css\bootstrap-reboot.css.map" />
     <Content Include="scripts\css\bootstrap-reboot.min.css" />
+    <Content Include="scripts\css\bootstrap-reboot.min.css.map" />
     <Content Include="scripts\css\bootstrap.css" />
+    <Content Include="scripts\css\bootstrap.css.map" />
     <Content Include="scripts\css\bootstrap.min.css" />
+    <Content Include="scripts\css\bootstrap.min.css.map" />
+    <Content Include="scripts\css\dataTables.bootstrap4.css" />
+    <Content Include="scripts\css\demo-page.css" />
+    <Content Include="scripts\css\examples.css" />
+    <Content Include="scripts\css\font-awesome.css" />
+    <Content Include="scripts\css\geochart.css" />
+    <Content Include="scripts\css\hover.css" />
+    <Content Include="scripts\css\magnific-popup.css" />
+    <Content Include="scripts\css\style.css" />
+    <Content Include="scripts\fonts\fontawesome-webfont.svg" />
+    <Content Include="scripts\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="scripts\images\1.jpg" />
+    <Content Include="scripts\images\404.png" />
+    <Content Include="scripts\images\b3.png" />
+    <Content Include="scripts\images\climate.jpg" />
+    <Content Include="scripts\images\close.png" />
+    <Content Include="scripts\images\ftr-icons.png" />
+    <Content Include="scripts\images\icon.png" />
+    <Content Include="scripts\images\login.jpg" />
+    <Content Include="scripts\images\mess.png" />
+    <Content Include="scripts\images\next.png" />
+    <Content Include="scripts\images\p1.png" />
+    <Content Include="scripts\images\p2.png" />
+    <Content Include="scripts\images\p3.png" />
+    <Content Include="scripts\images\p4.png" />
+    <Content Include="scripts\images\p5.png" />
+    <Content Include="scripts\images\p6.png" />
+    <Content Include="scripts\images\p7.png" />
+    <Content Include="scripts\images\p8.png" />
+    <Content Include="scripts\images\prev.png" />
+    <Content Include="scripts\images\pro1.jpg" />
+    <Content Include="scripts\images\pro10.jpg" />
+    <Content Include="scripts\images\pro12.jpg" />
+    <Content Include="scripts\images\pro2.jpg" />
+    <Content Include="scripts\images\pro3.jpg" />
+    <Content Include="scripts\images\pro4.jpg" />
+    <Content Include="scripts\images\pro5.jpg" />
+    <Content Include="scripts\images\pro6.jpg" />
+    <Content Include="scripts\images\pro7.jpg" />
+    <Content Include="scripts\images\pro8.jpg" />
+    <Content Include="scripts\images\pro9.jpg" />
+    <Content Include="scripts\images\reg.png" />
+    <Content Include="scripts\images\search.png" />
+    <Content Include="scripts\images\shoppy.jpg" />
+    <Content Include="scripts\images\tick.png" />
+    <Content Include="scripts\images\visit.png" />
+    <Content Include="scripts\js\bars.js" />
     <Content Include="scripts\js\bootstrap.bundle.js" />
+    <Content Include="scripts\js\bootstrap.bundle.js.map" />
     <Content Include="scripts\js\bootstrap.bundle.min.js" />
+    <Content Include="scripts\js\bootstrap.bundle.min.js.map" />
     <Content Include="scripts\js\bootstrap.js" />
+    <Content Include="scripts\js\bootstrap.js.map" />
     <Content Include="scripts\js\bootstrap.min.js" />
+    <Content Include="scripts\js\bootstrap.min.js.map" />
+    <Content Include="scripts\js\Chart.min.js" />
+    <Content Include="scripts\js\chartinator.js" />
+    <Content Include="scripts\js\gmaps.js" />
+    <Content Include="scripts\js\jquery-2.1.1.min.js" />
     <Content Include="scripts\js\jquery-3.3.1.min.js" />
+    <Content Include="scripts\js\jquery.magnific-popup.js" />
+    <Content Include="scripts\js\jquery.nicescroll.js" />
+    <Content Include="scripts\js\modernizr.min.js" />
+    <Content Include="scripts\js\nivo-lightbox.min.js" />
+    <Content Include="scripts\js\scripts.js" />
+    <Content Include="scripts\js\skycons.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -173,6 +243,7 @@
     <Compile Include="Controllers\MateriaController.vb" />
     <Compile Include="Controllers\PermisoController.vb" />
     <Compile Include="Controllers\PisoController.vb" />
+    <Compile Include="Controllers\ReservaController.vb" />
     <Compile Include="Controllers\RolController.vb" />
     <Compile Include="Controllers\TipoAulaController.vb" />
     <Compile Include="Controllers\TipoDocumentoController.vb" />
@@ -217,6 +288,7 @@
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
     </None>
+    <None Include="My Project\PublishProfiles\proyecto.pubxml" />
     <None Include="My Project\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <CustomToolNamespace>My</CustomToolNamespace>
@@ -226,18 +298,28 @@
     <Content Include="packages.config" />
     <Content Include="Views\Home\Index.vbhtml" />
     <Content Include="Views\EstadoReserva\Index.vbhtml" />
-    <Content Include="Views\EstadoReserva\Create.vbhtml" />
-    <Content Include="Views\EstadoReserva\Edit.vbhtml" />
-    <Content Include="scripts\css\bootstrap-grid.css.map" />
-    <Content Include="scripts\css\bootstrap-grid.min.css.map" />
-    <Content Include="scripts\css\bootstrap-reboot.css.map" />
-    <Content Include="scripts\css\bootstrap-reboot.min.css.map" />
-    <Content Include="scripts\css\bootstrap.css.map" />
-    <Content Include="scripts\css\bootstrap.min.css.map" />
-    <Content Include="scripts\js\bootstrap.bundle.js.map" />
-    <Content Include="scripts\js\bootstrap.bundle.min.js.map" />
-    <Content Include="scripts\js\bootstrap.js.map" />
-    <Content Include="scripts\js\bootstrap.min.js.map" />
+    <Content Include="scripts\fonts\fontawesome-webfont.eot" />
+    <Content Include="scripts\fonts\fontawesome-webfont.ttf" />
+    <Content Include="scripts\fonts\fontawesome-webfont.woff" />
+    <Content Include="scripts\fonts\fontawesome-webfont.woff2" />
+    <Content Include="scripts\fonts\FontAwesome.otf" />
+    <Content Include="scripts\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="scripts\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="scripts\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="scripts\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Views\Template\Basic.vbhtml" />
+    <Content Include="Views\Reserva\Index.vbhtml" />
+    <Content Include="Views\TipoAula\Index.vbhtml" />
+    <Content Include="Views\Reserva\Create.vbhtml" />
+    <Content Include="Views\Piso\Index.vbhtml" />
+    <Content Include="Views\TipoDocumento\Index.vbhtml" />
+    <Content Include="Views\TipoInsumo\Index.vbhtml" />
+    <Content Include="Views\Turno\Index.vbhtml" />
+    <Content Include="Views\Rol\Index.vbhtml" />
+    <Content Include="Views\Permiso\Index.vbhtml" />
+    <Content Include="Views\Dia\Index.vbhtml" />
+    <Content Include="Views\Insumo\Index.vbhtml" />
+    <Content Include="Views\Facultad\Index.vbhtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -250,12 +332,6 @@
     <Folder Include="Models\" />
     <Folder Include="Views\Aula\" />
     <Folder Include="Views\DetalleReserva\" />
-    <Folder Include="Views\Insumo\" />
-    <Folder Include="Views\Piso\" />
-    <Folder Include="Views\TipoAula\" />
-    <Folder Include="Views\TipoDocumento\" />
-    <Folder Include="Views\TipoInsumo\" />
-    <Folder Include="Views\Turno\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ModeloDeNegocio\ModeloDeNegocio.vbproj">

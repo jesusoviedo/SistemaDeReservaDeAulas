@@ -1,11 +1,12 @@
-﻿Imports ModeloDeNegocio.Util
+﻿Imports System.Timers
+Imports ModeloDeNegocio.Util
 
 Public Class Turno
 
     Private id_turno As Integer
     Private descripcion As String
-    Private hora_inicio As DateTime
-    Private hora_fin As DateTime
+    Private hora_inicio As TimeSpan
+    Private hora_fin As TimeSpan
 
     'propiedades 
     Public Property pId_turno As Integer
@@ -26,20 +27,20 @@ Public Class Turno
         End Set
     End Property
 
-    Public Property pHora_inicio As Date
+    Public Property pHora_inicio As TimeSpan
         Get
             Return hora_inicio
         End Get
-        Set(value As Date)
+        Set(value As TimeSpan)
             hora_inicio = value
         End Set
     End Property
 
-    Public Property pHora_fin As Date
+    Public Property pHora_fin As TimeSpan
         Get
             Return hora_fin
         End Get
-        Set(value As Date)
+        Set(value As TimeSpan)
             hora_fin = value
         End Set
     End Property

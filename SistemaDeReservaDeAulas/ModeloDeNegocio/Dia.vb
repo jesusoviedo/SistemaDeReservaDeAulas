@@ -43,8 +43,7 @@ Public Class Dia
 
     Public Sub ActualizarDia()
         Try
-            gDatos.Ejecutar("SpActualizarDia", Me.descripcion, Me.cod_dia,
-            Me.id_dia)
+            gDatos.Ejecutar("SpActualizarDia", Me.descripcion, Me.cod_dia, Me.id_dia)
         Catch ex As Exception
             Throw ex
         End Try

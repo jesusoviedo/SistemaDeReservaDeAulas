@@ -1,5 +1,6 @@
 ﻿Imports System.Web.Mvc
 Imports ModeloDeNegocio
+Imports Newtonsoft.Json
 
 Namespace Controllers
     Public Class PermisoController
@@ -13,38 +14,32 @@ Namespace Controllers
             Return View()
         End Function
 
-        <HttpGet()>
-        Function Create() As ActionResult
-            Return View()
-        End Function
-
         <HttpPost()>
-        Function Create(form As FormCollection) As ActionResult
+        Function Create(nombre_permiso As String) As JsonResult
             Dim vPermiso As New Permiso
             With vPermiso
-                .pNombre_permiso = form("txtNombre_permiso")
+                .pNombre_permiso = nombre_permiso
                 .InsertarPermiso()
             End With
-            Return RedirectToAction("Index")
-        End Function
-
-        <HttpGet()>
-        Function Edit(id As Integer) As ActionResult
-            Dim vPermiso As New Permiso
-            vPermiso = vPermiso.RecuperarPermiso(id)
-
-            Return View(vPermiso)
+            Return Json("")
         End Function
 
         <HttpPost()>
-        Function Edit(form As FormCollection) As ActionResult
+        Function Consult(id As Integer) As JsonResult
+            Dim vPermiso As New Permiso
+            vPermiso = vPermiso.RecuperarPermiso(id)
+            Return Json(JsonConvert.SerializeObject(vPermiso))
+        End Function
+
+        <HttpPost()>
+        Function Edit(id_permiso As Integer, nombre_permiso As String) As JsonResult
             Dim vPermiso As New Permiso
             With vPermiso
-                .pId_permiso = form("txtId_permiso")
-                .pNombre_permiso = form("txtNombre_permiso")
+                .pId_permiso = id_permiso
+                .pNombre_permiso = nombre_permiso
                 .ActualizarPermiso()
             End With
-            Return RedirectToAction("Index")
+            Return Json("")
         End Function
 
         <HttpGet()>

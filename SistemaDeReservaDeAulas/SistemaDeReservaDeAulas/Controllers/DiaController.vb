@@ -1,5 +1,6 @@
 ﻿Imports System.Web.Mvc
 Imports ModeloDeNegocio
+Imports Newtonsoft.Json
 
 Namespace Controllers
     Public Class DiaController
@@ -12,39 +13,34 @@ Namespace Controllers
             Return View()
         End Function
 
-        <HttpGet()>
-        Function Create() As ActionResult
-            Return View()
-        End Function
-
         <HttpPost()>
-        Function Create(form As FormCollection) As ActionResult
+        Function Create(descripcion As String, cod_dia As String) As JsonResult
             Dim vDia As New Dia
             With vDia
-                .pDescripcion = form("txtDescripcion")
-                .pCod_dia = form("txtCod_dia")
+                .pDescripcion = descripcion
+                .pCod_dia = cod_dia
                 .InsertarDia()
             End With
-            Return RedirectToAction("Index")
-        End Function
-
-        <HttpGet()>
-        Function Edit(id As Integer) As ActionResult
-            Dim vDia As New Dia
-            vDia = vDia.RecuperarDia(id)
-            Return View(vDia)
+            Return Json("")
         End Function
 
         <HttpPost()>
-        Function Edit(form As FormCollection) As ActionResult
+        Function Consult(id As Integer) As JsonResult
+            Dim vDia As New Dia
+            vDia = vDia.RecuperarDia(id)
+            Return Json(JsonConvert.SerializeObject(vDia))
+        End Function
+
+        <HttpPost()>
+        Function Edit(id_dia As Integer, descripcion As String, cod_dia As Char) As JsonResult
             Dim vDia As New Dia
             With vDia
-                .pId_dia = form("txtid_dia")
-                .pDescripcion = form("txtDescripcion")
-                .pCod_dia = form("txtcod_dia")
+                .pId_dia = id_dia
+                .pDescripcion = descripcion
+                .pCod_dia = cod_dia
                 .ActualizarDia()
             End With
-            Return RedirectToAction("Index")
+            Return Json("")
         End Function
 
         <HttpGet()>

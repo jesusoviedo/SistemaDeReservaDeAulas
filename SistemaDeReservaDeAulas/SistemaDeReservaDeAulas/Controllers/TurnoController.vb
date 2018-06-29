@@ -1,5 +1,7 @@
 ﻿Imports System.Web.Mvc
 Imports ModeloDeNegocio
+Imports Newtonsoft.Json
+Imports System.Timers
 
 Namespace Controllers
     Public Class TurnoController
@@ -13,41 +15,36 @@ Namespace Controllers
             Return View()
         End Function
 
-        <HttpGet()>
-        Function Create() As ActionResult
-            Return View()
-        End Function
-
         <HttpPost()>
-        Function Create(form As FormCollection) As ActionResult
+        Function Create(descripcion As String, hora_inicio As TimeSpan, hora_fin As TimeSpan) As JsonResult
             Dim vTurno As New Turno
             With vTurno
-                .pDescripcion = form("txtDescripcion")
-                .pHora_inicio = form("txtHora_inicio")
-                .pHora_fin = form("txtHora_fin")
+                .pDescripcion = descripcion
+                .pHora_inicio = hora_inicio
+                .pHora_fin = hora_fin
                 .InsertarTurno()
             End With
-            Return RedirectToAction("Index")
-        End Function
-
-        <HttpGet()>
-        Function Edit(id As Integer) As ActionResult
-            Dim vTurno As New Turno
-            vTurno = vTurno.RecuperarTurno(id)
-            Return View(vTurno)
+            Return Json("")
         End Function
 
         <HttpPost()>
-        Function Edit(form As FormCollection) As ActionResult
+        Function Consult(id As Integer) As JsonResult
+            Dim vTurno As New Turno
+            vTurno = vTurno.RecuperarTurno(id)
+            Return Json(JsonConvert.SerializeObject(vTurno))
+        End Function
+
+        <HttpPost()>
+        Function Edit(id_turno As Integer, descripcion As String, hora_inicio As TimeSpan, hora_fin As TimeSpan) As JsonResult
             Dim vTurno As New Turno
             With vTurno
-                .pId_turno = form("txtId_turno")
-                .pDescripcion = form("txtDescripcion")
-                .pHora_inicio = form("txtHora_inicio")
-                .pHora_fin = form("txtHora_fin")
+                .pId_turno = id_turno
+                .pDescripcion = descripcion
+                .pHora_inicio = hora_inicio
+                .pHora_fin = hora_fin
                 .ActualizarTurno()
             End With
-            Return RedirectToAction("Index")
+            Return Json("")
         End Function
 
         <HttpGet()>

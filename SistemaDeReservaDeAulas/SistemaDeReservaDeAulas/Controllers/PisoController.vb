@@ -1,5 +1,6 @@
 ﻿Imports System.Web.Mvc
 Imports ModeloDeNegocio
+Imports Newtonsoft.Json
 
 Namespace Controllers
     Public Class PisoController
@@ -13,37 +14,32 @@ Namespace Controllers
             Return View()
         End Function
 
-        <HttpGet()>
-        Function Create() As ActionResult
-            Return View()
-        End Function
-
         <HttpPost()>
-        Function Create(form As FormCollection) As ActionResult
+        Function Create(descripcion As String) As JsonResult
             Dim vPiso As New Piso
             With vPiso
-                .pDescripcion = form("txtDescripcion")
+                .pDescripcion = descripcion
                 .InsertarPiso()
             End With
-            Return RedirectToAction("Index")
-        End Function
-
-        <HttpGet()>
-        Function Edit(id As Integer) As ActionResult
-            Dim vPiso As New Piso
-            vPiso = vPiso.RecuperarPiso(id)
-            Return View(vPiso)
+            Return Json("")
         End Function
 
         <HttpPost()>
-        Function Edit(form As FormCollection) As ActionResult
+        Function Consult(id As Integer) As JsonResult
+            Dim vPiso As New Piso
+            vPiso = vPiso.RecuperarPiso(id)
+            Return Json(JsonConvert.SerializeObject(vPiso))
+        End Function
+
+        <HttpPost()>
+        Function Edit(id_piso As Integer, descripcion As String) As JsonResult
             Dim vPiso As New Piso
             With vPiso
-                .pId_piso = form("txtId_piso")
-                .pDescripcion = form("txtDescripcion")
+                .pId_piso = id_piso
+                .pDescripcion = descripcion
                 .ActualizarPiso()
             End With
-            Return RedirectToAction("Index")
+            Return Json("")
         End Function
 
         <HttpGet()>
@@ -55,5 +51,6 @@ Namespace Controllers
             End With
             Return RedirectToAction("Index")
         End Function
+
     End Class
 End Namespace
