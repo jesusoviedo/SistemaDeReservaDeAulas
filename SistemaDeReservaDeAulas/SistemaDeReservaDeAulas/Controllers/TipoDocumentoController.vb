@@ -1,5 +1,6 @@
 ﻿Imports System.Web.Mvc
 Imports ModeloDeNegocio
+Imports Newtonsoft.Json
 
 Namespace Controllers
     Public Class TipoDocumentoController
@@ -13,37 +14,32 @@ Namespace Controllers
             Return View()
         End Function
 
-        <HttpGet()>
-        Function Create() As ActionResult
-            Return View()
-        End Function
-
         <HttpPost()>
-        Function Create(form As FormCollection) As ActionResult
+        Function Create(descripcion As String) As JsonResult
             Dim vTipoDocumento As New TipoDocumento
             With vTipoDocumento
-                .pDescripcion = form("txtDescripcion")
+                .pDescripcion = descripcion
                 .InsertarTipoDocumento()
             End With
-            Return RedirectToAction("Index")
-        End Function
-
-        <HttpGet()>
-        Function Edit(id As Integer) As ActionResult
-            Dim vTipoDocumento As New TipoDocumento
-            vTipoDocumento = vTipoDocumento.RecuperarTipoDocumento(id)
-            Return View(vTipoDocumento)
+            Return Json("")
         End Function
 
         <HttpPost()>
-        Function Edit(form As FormCollection) As ActionResult
+        Function Consult(id As Integer) As JsonResult
+            Dim vTipoDocumento As New TipoDocumento
+            vTipoDocumento = vTipoDocumento.RecuperarTipoDocumento(id)
+            Return Json(JsonConvert.SerializeObject(vTipoDocumento))
+        End Function
+
+        <HttpPost()>
+        Function Edit(id_tipo_doc As Integer, descripcion As String) As JsonResult
             Dim vTipoDocumento As New TipoDocumento
             With vTipoDocumento
-                .pId_tipo_doc = form("txtId_tipo_doc")
-                .pDescripcion = form("txtDescripcion")
+                .pId_tipo_doc = id_tipo_doc
+                .pDescripcion = descripcion
                 .ActualizarTipoDocumento()
             End With
-            Return RedirectToAction("Index")
+            Return Json("")
         End Function
 
         <HttpGet()>

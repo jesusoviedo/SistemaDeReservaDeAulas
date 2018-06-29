@@ -1,5 +1,6 @@
 ﻿Imports System.Web.Mvc
 Imports ModeloDeNegocio
+Imports Newtonsoft.Json
 
 Namespace Controllers
     Public Class TipoAulaController
@@ -13,37 +14,32 @@ Namespace Controllers
             Return View()
         End Function
 
-        <HttpGet()>
-        Function Create() As ActionResult
-            Return View()
-        End Function
-
         <HttpPost()>
-        Function Create(form As FormCollection) As ActionResult
+        Function Create(descripcion As String) As JsonResult
             Dim vTipoAula As New TipoAula
             With vTipoAula
-                .pDescripcion = form("txtDescripcion")
+                .pDescripcion = descripcion
                 .InsertarTipoAula()
             End With
-            Return RedirectToAction("Index")
-        End Function
-
-        <HttpGet()>
-        Function Edit(id As Integer) As ActionResult
-            Dim vTipoAula As New TipoAula
-            vTipoAula = vTipoAula.RecuperarTipoAula(id)
-            Return View(vTipoAula)
+            Return Json("")
         End Function
 
         <HttpPost()>
-        Function Edit(form As FormCollection) As ActionResult
+        Function Consult(id As Integer) As JsonResult
+            Dim vTipoAula As New TipoAula
+            vTipoAula = vTipoAula.RecuperarTipoAula(id)
+            Return Json(JsonConvert.SerializeObject(vTipoAula))
+        End Function
+
+        <HttpPost()>
+        Function Edit(id_tipo_aula As Integer, descripcion As String) As JsonResult
             Dim vTipoAula As New TipoAula
             With vTipoAula
-                .pId_tipo_aula = form("txtId_tipo_aula")
-                .pDescripcion = form("txtDescripcion")
+                .pId_tipo_aula = id_tipo_aula
+                .pDescripcion = descripcion
                 .ActualizarTipoAula()
             End With
-            Return RedirectToAction("Index")
+            Return Json("")
         End Function
 
         <HttpGet()>

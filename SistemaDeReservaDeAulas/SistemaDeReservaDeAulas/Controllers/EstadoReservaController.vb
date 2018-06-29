@@ -1,5 +1,6 @@
 ﻿Imports System.Web.Mvc
 Imports ModeloDeNegocio
+Imports Newtonsoft.Json
 
 Namespace Controllers
     Public Class EstadoReservaController
@@ -19,31 +20,31 @@ Namespace Controllers
         End Function
 
         <HttpPost()>
-        Function Create(form As FormCollection) As ActionResult
+        Function Create(descripcion As String) As JsonResult
             Dim vEstadoReserva As New EstadoReserva
             With vEstadoReserva
-                .pDescripcion = form("txtDescripcion")
+                .pDescripcion = descripcion
                 .InsertarEstadoReserva()
             End With
-            Return RedirectToAction("Index")
-        End Function
-
-        <HttpGet()>
-        Function Edit(id As Integer) As ActionResult
-            Dim vEstadoReserva As New EstadoReserva
-            vEstadoReserva = vEstadoReserva.RecuperarEstadoReserva(id)
-            Return View(vEstadoReserva)
+            Return Json("")
         End Function
 
         <HttpPost()>
-        Function Edit(form As FormCollection) As ActionResult
+        Function Consult(id As Integer) As JsonResult
+            Dim vEstadoReserva As New EstadoReserva
+            vEstadoReserva = vEstadoReserva.RecuperarEstadoReserva(id)
+            Return Json(JsonConvert.SerializeObject(vEstadoReserva))
+        End Function
+
+        <HttpPost()>
+        Function Edit(id_estado_reserva As Integer, descripcion As String) As JsonResult
             Dim vEstadoReserva As New EstadoReserva
             With vEstadoReserva
-                .pId_estado_reserva = form("txtId_estado_reserva")
-                .pDescripcion = form("txtDescripcion")
+                .pId_estado_reserva = id_estado_reserva
+                .pDescripcion = descripcion
                 .ActualizarEstadoReserva()
             End With
-            Return RedirectToAction("Index")
+            Return Json("")
         End Function
 
         <HttpGet()>

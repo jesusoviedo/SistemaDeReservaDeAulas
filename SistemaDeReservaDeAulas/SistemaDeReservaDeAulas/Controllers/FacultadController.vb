@@ -1,5 +1,6 @@
 ﻿Imports System.Web.Mvc
 Imports ModeloDeNegocio
+Imports Newtonsoft.Json
 
 Namespace Controllers
     Public Class FacultadController
@@ -13,39 +14,32 @@ Namespace Controllers
             Return View()
         End Function
 
-        <HttpGet()>
-        Function Create() As ActionResult
-            Return View()
-        End Function
-
         <HttpPost()>
-        Function Create(form As FormCollection) As ActionResult
+        Function Create(nombre_facultad As String) As JsonResult
             Dim vFacultad As New Facultad
             With vFacultad
-                .pNombre_facultad = form("txtNombre_facultad")
+                .pNombre_facultad = nombre_facultad
                 .InsertarFacultad()
             End With
-            Return RedirectToAction("Index")
-        End Function
-
-        <HttpGet()>
-        Function Edit(id As Integer) As ActionResult
-
-            Dim vFacultad As New Facultad
-            vFacultad = vFacultad.RecuperarFacultad(id)
-
-            Return View(vFacultad)
+            Return Json("")
         End Function
 
         <HttpPost()>
-        Function Edit(form As FormCollection) As ActionResult
+        Function Consult(id As Integer) As JsonResult
+            Dim vFacultad As New Facultad
+            vFacultad = vFacultad.RecuperarFacultad(id)
+            Return Json(JsonConvert.SerializeObject(vFacultad))
+        End Function
+
+        <HttpPost()>
+        Function Edit(id_facultad As Integer, nombre_facultad As String) As JsonResult
             Dim vFacultad As New Facultad
             With vFacultad
-                .pId_facultad = form("txtId_facultad")
-                .pNombre_facultad = form("txtNombre_facultad")
+                .pId_facultad = id_facultad
+                .pNombre_facultad = nombre_facultad
                 .ActualizarFacultad()
             End With
-            Return RedirectToAction("Index")
+            Return Json("")
         End Function
 
         <HttpGet()>

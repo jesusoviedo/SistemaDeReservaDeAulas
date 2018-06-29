@@ -10,6 +10,11 @@ Namespace Controllers
             Dim dtReserva As New DataTable
             dtReserva = Reserva.RecuperarReserva()
             ViewData("Reservas") = dtReserva.AsEnumerable
+
+            Dim dtEstadoReserva As New DataTable
+            dtEstadoReserva = EstadoReserva.RecuperarEstadoReserva()
+            ViewData("EstadosReservas") = dtEstadoReserva.AsEnumerable
+
             Return View()
         End Function
 
