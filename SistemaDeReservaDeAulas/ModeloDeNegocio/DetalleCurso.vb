@@ -47,33 +47,33 @@ Public Class DetalleCurso
         End Try
     End Sub
 
-    Public Shared Function RecuperarDetalleCurso() As DataTable
+    Public Shared Function RecuperarDetalleCurso(vNro_Curso As Integer) As DataTable
         Try
             Dim dtDetalleCurso As New DataTable
-            dtDetalleCurso = gDatos.TraerDataTable("SpConsultarDetalleCurso", 0)
+            dtDetalleCurso = gDatos.TraerDataTable("SpConsultarDetalleCurso", vNro_Curso)
             Return dtDetalleCurso
         Catch ex As Exception
             Throw ex
         End Try
     End Function
 
-    Public Function RecuperarDetalleCurso(vNro_Curso As Integer) As DetalleCurso
-        Try
-            Dim dtDetalleCurso As New DataTable
-            dtDetalleCurso = gDatos.TraerDataTable("SpConsultarDetalleCurso", vNro_Curso)
-            If dtDetalleCurso.Rows.Count > 0 Then
-                Dim vDetalleCurso As New DetalleCurso
-                With vDetalleCurso
-                    .nro_curso = dtDetalleCurso.Rows(0).Item("nro_curso")
-                    .id_dia = dtDetalleCurso.Rows(0).Item("id_dia")
-                End With
-                Return vDetalleCurso
-            Else
-                Return Nothing
-            End If
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Function
+    'Public Function RecuperarDetalleCurso(vNro_Curso As Integer) As DetalleCurso
+    '    Try
+    '        Dim dtDetalleCurso As New DataTable
+    '        dtDetalleCurso = gDatos.TraerDataTable("SpConsultarDetalleCurso", vNro_Curso)
+    '        If dtDetalleCurso.Rows.Count > 0 Then
+    '            Dim vDetalleCurso As New DetalleCurso
+    '            With vDetalleCurso
+    '                .nro_curso = dtDetalleCurso.Rows(0).Item("nro_curso")
+    '                .id_dia = dtDetalleCurso.Rows(0).Item("id_dia")
+    '            End With
+    '            Return vDetalleCurso
+    '        Else
+    '            Return Nothing
+    '        End If
+    '    Catch ex As Exception
+    '        Throw ex
+    '    End Try
+    'End Function
 
 End Class

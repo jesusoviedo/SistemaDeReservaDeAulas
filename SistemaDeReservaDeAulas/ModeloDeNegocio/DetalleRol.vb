@@ -47,34 +47,34 @@ Public Class DetalleRol
         End Try
     End Sub
 
-    Public Shared Function RecuperarDetalleRol() As DataTable
+    Public Shared Function RecuperarDetalleRol(vId_rol As Integer) As DataTable
         Try
             Dim dtDetalleRol As New DataTable
-            dtDetalleRol = gDatos.TraerDataTable("SpConsultarDetalleRol", 0)
+            dtDetalleRol = gDatos.TraerDataTable("SpConsultarDetalleRol", vId_rol)
             Return dtDetalleRol
         Catch ex As Exception
             Throw ex
         End Try
     End Function
 
-    Public Function RecuperarDetalleRol(vId_rol As Integer) As DetalleRol
-        Try
-            Dim dtDetalleRol As New DataTable
-            dtDetalleRol = gDatos.TraerDataTable("SpConsultarDetalleRol", vId_rol)
-            If dtDetalleRol.Rows.Count > 0 Then
-                Dim vDetalleRol As New DetalleRol
-                With vDetalleRol
-                    .id_rol = dtDetalleRol.Rows(0).Item("id_rol")
-                    .id_permiso = dtDetalleRol.Rows(0).Item("id_permiso")
-                End With
-                Return vDetalleRol
-            Else
-                Return Nothing
-            End If
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Function
+    'Public Function RecuperarDetalleRol(vId_rol As Integer) As DetalleRol
+    '    Try
+    '        Dim dtDetalleRol As New DataTable
+    '        dtDetalleRol = gDatos.TraerDataTable("SpConsultarDetalleRol", vId_rol)
+    '        If dtDetalleRol.Rows.Count > 0 Then
+    '            Dim vDetalleRol As New DetalleRol
+    '            With vDetalleRol
+    '                .id_rol = dtDetalleRol.Rows(0).Item("id_rol")
+    '                .id_permiso = dtDetalleRol.Rows(0).Item("id_permiso")
+    '            End With
+    '            Return vDetalleRol
+    '        Else
+    '            Return Nothing
+    '        End If
+    '    Catch ex As Exception
+    '        Throw ex
+    '    End Try
+    'End Function
 
 End Class
 

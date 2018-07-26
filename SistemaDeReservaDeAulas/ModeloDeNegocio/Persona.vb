@@ -1,6 +1,6 @@
 ﻿Imports ModeloDeNegocio.Util
 
-Public MustInherit Class Persona
+Public Class Persona
     Private id_persona As Integer
     Private documento As String
     Private id_tipo_doc As Integer
@@ -80,27 +80,6 @@ Public MustInherit Class Persona
         End Try
     End Sub
 
-    Public Overridable Sub InsertarProfesor()
-
-    End Sub
-    Public Overridable Sub ActualizarProfesor()
-
-    End Sub
-    Public Overridable Sub EliminarProfesor()
-
-    End Sub
-
-    Public Overridable Sub InsertarUsuario()
-
-    End Sub
-    Public Overridable Sub ActualizarUsuario()
-
-    End Sub
-    Public Overridable Sub EliminarUsuario()
-
-    End Sub
-
-
     Public Sub ActualizarPersona()
         Try
             gDatos.Ejecutar("SpActualizarPersona", Me.documento, Me.id_tipo_doc, Me.nombre, Me.apellido, Me.fecha_naci, Me.email, Me.id_persona)
@@ -127,30 +106,30 @@ Public MustInherit Class Persona
         End Try
     End Function
 
-    'Public Function RecuperarPersona(vId_persona As Integer) As Persona
-    '    Try
-    '        Dim dtPersona As New DataTable
-    '        dtPersona = gDatos.TraerDataTable("SpConsultarPersona", vId_persona)
-    '        If dtPersona.Rows.Count > 0 Then
-    '            Dim vPersona As New Persona
-    '            With vPersona
-    '                .id_persona = dtPersona.Rows(0).Item("id_persona")
-    '                .documento = dtPersona.Rows(0).Item("documento")
-    '                .id_tipo_doc = dtPersona.Rows(0).Item("id_tipo_doc")
-    '                .nombre = dtPersona.Rows(0).Item("nombre")
-    '                .apellido = dtPersona.Rows(0).Item("apellido")
-    '                .fecha_naci = dtPersona.Rows(0).Item("fecha_naci")
-    '                .email = dtPersona.Rows(0).Item("email")
+    Public Function RecuperarPersona(vId_persona As Integer) As Persona
+        Try
+            Dim dtPersona As New DataTable
+            dtPersona = gDatos.TraerDataTable("SpConsultarPersona", vId_persona)
+            If dtPersona.Rows.Count > 0 Then
+                Dim vPersona As New Persona
+                With vPersona
+                    .id_persona = dtPersona.Rows(0).Item("id_persona")
+                    .documento = dtPersona.Rows(0).Item("documento")
+                    .id_tipo_doc = dtPersona.Rows(0).Item("id_tipo_doc")
+                    .nombre = dtPersona.Rows(0).Item("nombre")
+                    .apellido = dtPersona.Rows(0).Item("apellido")
+                    .fecha_naci = Date.ParseExact(dtPersona.Rows(0).Item("fecha_naci"), "dd/MM/yyyy", Nothing)
+                    .email = dtPersona.Rows(0).Item("email")
 
-    '            End With
-    '            Return vPersona
-    '        Else
-    '            Return Nothing
-    '        End If
-    '    Catch ex As Exception
-    '        Throw ex
-    '    End Try
-    'End Function
+                End With
+                Return vPersona
+            Else
+                Return Nothing
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
 
 
 End Class

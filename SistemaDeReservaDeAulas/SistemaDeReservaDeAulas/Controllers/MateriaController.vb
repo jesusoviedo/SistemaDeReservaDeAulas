@@ -1,5 +1,6 @@
 ﻿Imports System.Web.Mvc
 Imports ModeloDeNegocio
+Imports Newtonsoft.Json
 
 Namespace Controllers
     Public Class MateriaController
@@ -7,14 +8,10 @@ Namespace Controllers
 
         <HttpGet()>
         Function Index() As ActionResult
+
             Dim dtMateria As New DataTable
             dtMateria = Materia.RecuperarMateria()
             ViewData("Materias") = dtMateria.AsEnumerable
-            Return View()
-        End Function
-
-        <HttpGet()>
-        Function Create() As ActionResult
 
             Dim dtDpto As New DataTable
             dtDpto = Departamento.RecuperarDepartamento()
@@ -24,39 +21,33 @@ Namespace Controllers
         End Function
 
         <HttpPost()>
-        Function Create(form As FormCollection) As ActionResult
+        Function Create(descripcion As String, id_departamento As Integer) As JsonResult
             Dim vMateria As New Materia
             With vMateria
-                .pDescripcion = form("txtDescripcion")
-                .pId_departamento = form("txtId_departamento")
+                .pDescripcion = descripcion
+                .pId_departamento = id_departamento
                 .InsertarMateria()
             End With
-            Return RedirectToAction("Index")
-        End Function
-
-        <HttpGet()>
-        Function Edit(id As Integer) As ActionResult
-
-            Dim dtDpto As New DataTable
-            dtDpto = Departamento.RecuperarDepartamento()
-            ViewData("Departamentos") = dtDpto.AsEnumerable
-
-            Dim vMateria As New Materia
-            vMateria = vMateria.RecuperarMateria(id)
-
-            Return View(vMateria)
+            Return Json("")
         End Function
 
         <HttpPost()>
-        Function Edit(form As FormCollection) As ActionResult
+        Function Consult(id As Integer) As JsonResult
+            Dim vMateria As New Materia
+            vMateria = vMateria.RecuperarMateria(id)
+            Return Json(JsonConvert.SerializeObject(vMateria))
+        End Function
+
+        <HttpPost()>
+        Function Edit(id_materia As Integer, descripcion As String, id_departamento As Integer) As JsonResult
             Dim vMateria As New Materia
             With vMateria
-                .pId_materia = form("txtId_materia")
-                .pDescripcion = form("txtDescripcion")
-                .pId_departamento = form("txtId_departamento")
+                .pId_materia = id_materia
+                .pDescripcion = descripcion
+                .pId_departamento = id_departamento
                 .ActualizarMateria()
             End With
-            Return RedirectToAction("Index")
+            Return Json("")
         End Function
 
         <HttpGet()>

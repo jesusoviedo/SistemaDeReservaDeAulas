@@ -1,12 +1,11 @@
 ﻿Imports ModeloDeNegocio.Util
 Public Class Usuario
-    Inherits Persona
 
-    Protected id_usuario As Integer
-    Protected id_rol As Integer
-    Protected id_persona As Integer
-    Protected user_name As String
-    Protected password As String
+    Private id_usuario As Integer
+    Private id_rol As Integer
+    Private id_persona As Integer
+    Private user_name As String
+    Private password As String
 
     Public Property pId_usuario As Integer
         Get
@@ -26,7 +25,14 @@ Public Class Usuario
         End Set
     End Property
 
-
+    Public Property pId_persona As Integer
+        Get
+            Return id_persona
+        End Get
+        Set(value As Integer)
+            id_persona = value
+        End Set
+    End Property
 
     Public Property pUser_name As String
         Get
@@ -46,31 +52,29 @@ Public Class Usuario
         End Set
     End Property
 
-    Public Overrides Sub InsertarUsuario()
+
+    Public Sub InsertarUsuario()
         Try
             gDatos.Ejecutar("SpInsertarUsuario", Me.id_rol, Me.id_persona, Me.user_name, Me.password)
         Catch ex As Exception
             Throw ex
         End Try
-        MyBase.InsertarPersona()
     End Sub
 
-    Public Overrides Sub ActualizarUsuario()
+    Public Sub ActualizarUsuario()
         Try
-            gDatos.Ejecutar("SpActualizarUsuario", Me.id_rol, Me.id_persona, Me.user_name, Me.password, Me.id_usuario)
+            gDatos.Ejecutar("SpActualizarUsuario", Me.id_rol, Me.id_persona, Me.user_name, Me.id_usuario)
         Catch ex As Exception
             Throw ex
         End Try
-        MyBase.ActualizarPersona()
     End Sub
 
-    Public Overrides Sub EliminarUsuario()
+    Public Sub EliminarUsuario()
         Try
             gDatos.Ejecutar("SpEliminarUsuario", Me.id_usuario)
         Catch ex As Exception
             Throw ex
         End Try
-        'MyBase.EliminarPersona()
     End Sub
 
     Public Shared Function RecuperarUsuario() As DataTable
@@ -94,18 +98,9 @@ Public Class Usuario
                     .id_usuario = dtUsuario.Rows(0).Item("id_usuario")
                     .id_rol = dtUsuario.Rows(0).Item("id_rol")
                     .user_name = dtUsuario.Rows(0).Item("user_name")
-                    .password = dtUsuario.Rows(0).Item("password")
+                    '.password = dtUsuario.Rows(0).Item("password")
                     .id_persona = dtUsuario.Rows(0).Item("id_persona")
-                    .pDocumento = dtUsuario.Rows(0).Item("documento")
-                    .pId_tipo_doc = dtUsuario.Rows(0).Item("id_tipo_doc")
-                    .pNombre = dtUsuario.Rows(0).Item("nombre")
-                    .pApellido = dtUsuario.Rows(0).Item("apellido")
-                    .pFecha_naci = dtUsuario.Rows(0).Item("fecha_naci")
-                    .pEmail = dtUsuario.Rows(0).Item("email")
                 End With
-
-
-
                 Return vUsuario
             Else
                 Return Nothing

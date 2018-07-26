@@ -286,60 +286,64 @@ ga('create', 'UA-30027142-1', 'w3layouts.com');
                     </script>*@
                     <!-- /script-for sticky-nav -->
                     <!--inner block start here-->
-                    <div class="inner-block">
-                        <div class="blank">
-                            <div class="blankpage-main">
-                                @RenderBody
 
 
-                                <!---728x90--->
-                                <script src='//publisher.eboundservices.com/dynamicAds/dynamicScript.js'></script>
-                                <div style='margin: 0 auto;margin-top: 5px;'>
-      
+                        <div class="inner-block">
+                           
+                                <div class="blankpage-main">
+                                    Usuario Fulano de Tal
+                                </div><br />
+    
+                            <div class="blank">
+                                <div class="blankpage-main">
+                                    @RenderBody
+
+
+                                    <!---728x90--->
+                                    <script src='//publisher.eboundservices.com/dynamicAds/dynamicScript.js'></script>
+                                    <div style='margin: 0 auto;margin-top: 5px;'>
+
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <!--inner block end here-->
-                    <!---728x90--->
-                    <script src='//publisher.eboundservices.com/dynamicAds/dynamicScript.js'></script>
-                    @*<div style='margin: 0 auto;text-align: center;margin-top: 5px;'>
-                    <script>
-                    var allowedNumberOfEboundDynamicAdds = 4;
-                    var sizesEboundDynamicAdsDesktop = ['728x90'];
-                    var sizesEboundDynamicAdsTablet = ['728x90'];
-                    var sizesEboundDynamicAdsMobile = ['320x100'];
-                    eboundAdsTagByDevice(sizesEboundDynamicAdsDesktop,sizesEboundDynamicAdsTablet,sizesEboundDynamicAdsMobile, 'ebound_header_tag');
+                        <!--inner block end here-->
+                        <!---728x90--->
+                        <script src='//publisher.eboundservices.com/dynamicAds/dynamicScript.js'></script>
+                        @*<div style='margin: 0 auto;text-align: center;margin-top: 5px;'>
+            <script>
+            var allowedNumberOfEboundDynamicAdds = 4;
+            var sizesEboundDynamicAdsDesktop = ['728x90'];
+            var sizesEboundDynamicAdsTablet = ['728x90'];
+            var sizesEboundDynamicAdsMobile = ['320x100'];
+            eboundAdsTagByDevice(sizesEboundDynamicAdsDesktop,sizesEboundDynamicAdsTablet,sizesEboundDynamicAdsMobile, 'ebound_header_tag');
 
-                    if(typeof user_tag_config == 'undefined'){
-                    var user_tag_config = {};
-                    }
-                    user_tag_config['ebound_header_tag'] = {};
-                    user_tag_config['ebound_header_tag']['desktop'] = {};
-                    user_tag_config['ebound_header_tag']['desktop']['cpm'] = '';
-                    user_tag_config['ebound_header_tag']['desktop']['adsCode'] = '';
-                    user_tag_config['ebound_header_tag']['tablet'] = {};
-                    user_tag_config['ebound_header_tag']['tablet']['cpm'] = '';
-                    user_tag_config['ebound_header_tag']['tablet']['adsCode'] = '';
-                    user_tag_config['ebound_header_tag']['mobile'] = {};
-                    user_tag_config['ebound_header_tag']['mobile']['cpm'] = '';
-                    user_tag_config['ebound_header_tag']['mobile']['adsCode'] = '';
-                    </script>
-                    </div>*@
-                    <!--copy rights start here-->
-                    <div class="copyrights">
-                        <p>© 2018 - Universidad Autónoma de Asunción </p>
+            if(typeof user_tag_config == 'undefined'){
+            var user_tag_config = {};
+            }
+            user_tag_config['ebound_header_tag'] = {};
+            user_tag_config['ebound_header_tag']['desktop'] = {};
+            user_tag_config['ebound_header_tag']['desktop']['cpm'] = '';
+            user_tag_config['ebound_header_tag']['desktop']['adsCode'] = '';
+            user_tag_config['ebound_header_tag']['tablet'] = {};
+            user_tag_config['ebound_header_tag']['tablet']['cpm'] = '';
+            user_tag_config['ebound_header_tag']['tablet']['adsCode'] = '';
+            user_tag_config['ebound_header_tag']['mobile'] = {};
+            user_tag_config['ebound_header_tag']['mobile']['cpm'] = '';
+            user_tag_config['ebound_header_tag']['mobile']['adsCode'] = '';
+            </script>
+            </div>*@
+                        <!--copy rights start here-->
+                        <div class="copyrights">
+                            <p>© 2018 - Universidad Autónoma de Asunción </p>
+                        </div>
+                        <!--COPY rights end here-->
                     </div>
-                    <!--COPY rights end here-->
-                </div>
             </div>
             <!--slider menu-->
             <div class="sidebar-menu">
-                <div class="logo">
-                    <a href="#" class="sidebar-icon"><span class="fa fa-bars"></span> </a> <a href="#">
-                        <span id="logo"></span>
-                        @*<img id="logo" src="" alt="Logo"/>*@
-                    </a>
+                <div class="logo" style="width: 100%;">
+                    <a href="#" class="sidebar-icon"><span class="fa fa-bars"></span></a>
                 </div>
                 <div class="menu">
                     <ul id="menu">
@@ -347,6 +351,12 @@ ga('create', 'UA-30027142-1', 'w3layouts.com');
                         <li>
                             <a href="#"><i class="fa fa-cogs"></i><span>Mantener</span><span class="fa fa-angle-right" style="float: right"></span></a>
                             <ul>
+                                <li><a href="/Usuario/">Usuario</a></li>
+                                <li><a href="/Persona/">Persona</a></li>
+                                <li><a href="/DetalleCurso/">Detalle de Curso</a></li>
+                                <li><a href="/DetalleRol/">Detalle de Rol</a></li>
+                                <li><a href="/Materia/">Materia</a></li>
+                                <li><a href="/Departamento/">Departamento</a></li>
                                 <li><a href="/EstadoReserva/">Estado reserva</a></li>
                                 <li><a href="/TipoAula/">Tipo de aula</a></li>
                                 <li><a href="/Piso/">Piso</a></li>
@@ -358,21 +368,23 @@ ga('create', 'UA-30027142-1', 'w3layouts.com');
                                 <li><a href="/Dia/">Día</a></li>
                                 <li><a href="/Insumo/">Insumo</a></li>
                                 <li><a href="/Facultad/">Facultad</a></li>
+                                <li><a href="/Aula/">Aula</a></li>
+                                <li><a href="/Curso/">Curso</a></li>
                             </ul>
                         </li>
                         <li id="menu-comunicacao">
                             <a href="#"><i class="fa fa-book nav_icon"></i><span>Element</span><span class="fa fa-angle-right" style="float: right"></span></a>
                             <ul id="menu-comunicacao-sub">
-                                @*<li id="menu-mensagens" style="width: 120px">
+                                <li id="menu-mensagens" style="width: 120px">
                                     <a href="buttons.html">Buttons</a>
-                                </li>*@
+                                </li>
                                 @*<li id="menu-arquivos"><a href="typography.html">Typography</a></li>
                                 <li id="menu-arquivos"><a href="icons.html">Icons</a></li>*@
                                 <li id="menu-arquivos"><a href="/Reserva/Create">Solicitar Reserva</a></li>
                                 <li id="menu-arquivos"><a href="/Reserva/Index">Prototipo Reserva</a></li>
                             </ul>
                         </li>
-                        @*<li><a href="maps.html"><i class="fa fa-map-marker"></i><span>Maps</span></a></li>*@
+                        <li><a href="maps.html"><i class="fa fa-map-marker"></i><span>Maps</span></a></li>
                         @*<li id="menu-academico">
                             <a href="#"><i class="fa fa-file-text"></i><span>Pages</span><span class="fa fa-angle-right" style="float: right"></span></a>
                             <ul id="menu-academico-sub">
@@ -381,28 +393,28 @@ ga('create', 'UA-30027142-1', 'w3layouts.com');
                             </ul>
                         </li>*@
 
-                        @*<li><a href="charts.html"><i class="fa fa-bar-chart"></i><span>Charts</span></a></li>
+                        <li><a href="charts.html"><i class="fa fa-bar-chart"></i><span>Charts</span></a></li>
                         <li>
                             <a href="#"><i class="fa fa-envelope"></i><span>Mailbox</span><span class="fa fa-angle-right" style="float: right"></span></a>
-                            <ul id="menu-academico-sub">*@
+                            <ul id="menu-academico-sub">
                                 @*<li id="menu-academico-avaliacoes"><a href="inbox.html">Inbox</a></li>
                                 <li id="menu-academico-boletim"><a href="inbox-details.html">Compose email</a></li>*@
-                            @*</ul>
-                        </li>*@
-                        @*<li>
+                            </ul>
+                        </li>
+                        <li>
                             <a href="#"><i class="fa fa-cog"></i><span>System</span><span class="fa fa-angle-right" style="float: right"></span></a>
-                            <ul id="menu-academico-sub">*@
+                            <ul id="menu-academico-sub">
                                 @*<li id="menu-academico-avaliacoes"><a href="404.html">404</a></li>
                                 <li id="menu-academico-boletim"><a href="blank.html">Blank</a></li>*@
-                            @*</ul>
+                            </ul>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-shopping-cart"></i><span>E-Commerce</span><span class="fa fa-angle-right" style="float: right"></span></a>
-                            <ul id="menu-academico-sub">*@
+                            <ul id="menu-academico-sub">
                                 @*<li id="menu-academico-avaliacoes"><a href="product.html">Product</a></li>
                                 <li id="menu-academico-boletim"><a href="price.html">Price</a></li>*@
-                            @*</ul>
-                        </li>*@
+                            </ul>
+                        </li>
                     </ul>
                 </div>
             </div>

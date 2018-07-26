@@ -82,13 +82,13 @@ Public Class Aula
     Public Sub ActualizarAula()
         Try
             gDatos.Ejecutar("SpActualizarAula",
-                            Me.id_aula,
                             Me.nro_aula,
                             Me.id_tipo_aula,
                             Me.id_piso,
                             Me.posee_proyector,
-                            Me.capacidad
-                            )
+                            Me.capacidad,
+                            Me.id_aula
+)
         Catch ex As Exception
             Throw ex
         End Try
