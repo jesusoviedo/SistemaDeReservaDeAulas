@@ -1,5 +1,6 @@
 ﻿Imports System.Web.Mvc
 Imports ModeloDeNegocio
+Imports Newtonsoft.Json
 
 Namespace Controllers
     Public Class DetalleRolController
@@ -7,14 +8,7 @@ Namespace Controllers
 
         <HttpGet()>
         Function Index() As ActionResult
-            Dim dtDetalleRol As New DataTable
-            dtDetalleRol = DetalleRol.RecuperarDetalleRol()
-            ViewData("DetallesRoles") = dtDetalleRol.AsEnumerable
-            Return View()
-        End Function
 
-        <HttpGet()>
-        Function Create() As ActionResult
             Dim dtRol As New DataTable
             dtRol = Rol.RecuperarRol()
             ViewData("Roles") = dtRol.AsEnumerable
@@ -22,55 +16,38 @@ Namespace Controllers
             Dim dtPermiso As New DataTable
             dtPermiso = Permiso.RecuperarPermiso()
             ViewData("Permisos") = dtPermiso.AsEnumerable
+
             Return View()
         End Function
 
         <HttpPost()>
-        Function Create(form As FormCollection) As ActionResult
+        Function Create(id_rol As Integer, id_permiso As Integer) As JsonResult
             Dim vDetalleRol As New DetalleRol
             With vDetalleRol
-                .pId_rol = form("txtId_rol")
-                .pId_permiso = form("txtId_permiso")
+                .pId_rol = id_rol
+                .pId_permiso = id_permiso
                 .InsertarDetalleRol()
             End With
-            Return RedirectToAction("Index")
-        End Function
-
-        <HttpGet()>
-        Function Edit(id As Integer) As ActionResult
-            Dim dtRol As New DataTable
-            dtRol = Rol.RecuperarRol()
-            ViewData("Roles") = dtRol.AsEnumerable
-
-            Dim dtPermiso As New DataTable
-            dtPermiso = Permiso.RecuperarPermiso()
-            ViewData("Permisos") = dtPermiso.AsEnumerable
-
-            Dim vDetalleRol As New DetalleRol
-            vDetalleRol = vDetalleRol.RecuperarDetalleRol(id)
-            Return View(vDetalleRol)
+            Return Json("")
         End Function
 
         <HttpPost()>
-        Function Edit(form As FormCollection) As ActionResult
-            Dim vDetalleRol As New DetalleRol
-            With vDetalleRol
-                .pId_rol = form("txtId_rol")
-                .pId_permiso = form("txtId_permiso")
-                .ActualizarDetalleRol()
-            End With
-            Return RedirectToAction("Index")
+        Function Consult(id As Integer) As JsonResult
+            Dim vDetalleRol As New DataTable
+            vDetalleRol = DetalleRol.RecuperarDetalleRol(id)
+            Return Json(JsonConvert.SerializeObject(vDetalleRol))
         End Function
 
-        <HttpGet()>
-        Function Delete(idRol As Integer, idPermiso As Integer) As ActionResult
+        <HttpPost()>
+        Function Delete(id_rol As Integer, id_permiso As Integer) As JsonResult
             Dim vDetalleRol As New DetalleRol
             With vDetalleRol
-                .pId_rol = idRol
-                .pId_permiso = idPermiso
+                .pId_rol = id_rol
+                .pId_permiso = id_permiso
                 .EliminarDetalleRol()
             End With
-            Return RedirectToAction("Index")
+            Return Json("")
         End Function
+
     End Class
 End Namespace

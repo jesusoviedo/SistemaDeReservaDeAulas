@@ -74,7 +74,7 @@ Public Class Materia
                 With vMateria
                     .id_materia = dtMateria.Rows(0).Item("id_materia")
                     .descripcion = dtMateria.Rows(0).Item("descripcion")
-                    .id_departamento = dtMateria.Rows(0).Item("id_departamento")
+                    .id_departamento = dtMateria.Rows(0).Item("id_dpto")
                 End With
                 Return vMateria
             Else

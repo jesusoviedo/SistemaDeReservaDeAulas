@@ -1,5 +1,6 @@
 ﻿Imports System.Web.Mvc
 Imports ModeloDeNegocio
+Imports Newtonsoft.Json
 
 Namespace Controllers
     Public Class AulaController
@@ -7,14 +8,10 @@ Namespace Controllers
 
         <HttpGet()>
         Function Index() As ActionResult
+
             Dim dtAula As New DataTable
             dtAula = Aula.RecuperarAula()
             ViewData("Aulas") = dtAula.AsEnumerable
-            Return View()
-        End Function
-
-        <HttpGet()>
-        Function Create() As ActionResult
 
             Dim dtTipoAula As New DataTable
             dtTipoAula = TipoAula.RecuperarTipoAula()
@@ -28,49 +25,39 @@ Namespace Controllers
         End Function
 
         <HttpPost()>
-        Function Create(form As FormCollection) As ActionResult
+        Function Create(nro_aula As Integer, id_tipo_aula As Integer, id_piso As Integer, posee_proyector As String, capacidad As Integer) As JsonResult
             Dim vAula As New Aula
             With vAula
-                .pNro_aula = form("txtNro_aula")
-                .pId_tipo_aula = form("txtId_tipo_aula")
-                .pId_piso = form("txtId_piso")
-                .pPosee_proyector = form("txtPosee_proyector")
-                .pCapacidad = form("txtCapacidad")
+                .pNro_aula = nro_aula
+                .pId_tipo_aula = id_tipo_aula
+                .pId_piso = id_piso
+                .pPosee_proyector = posee_proyector
+                .pCapacidad = capacidad
                 .InsertarAula()
             End With
-            Return RedirectToAction("Index")
-        End Function
-
-        <HttpGet()>
-        Function Edit(id As Integer) As ActionResult
-
-            Dim dtTipoAula As New DataTable
-            dtTipoAula = TipoAula.RecuperarTipoAula()
-            ViewData("TiposAulas") = dtTipoAula.AsEnumerable
-
-            Dim dtPiso As New DataTable
-            dtPiso = Piso.RecuperarPiso()
-            ViewData("Pisos") = dtPiso.AsEnumerable
-
-            Dim vAula As New Aula
-            vAula = vAula.RecuperarAula(id)
-
-            Return View(vAula)
+            Return Json("")
         End Function
 
         <HttpPost()>
-        Function Edit(form As FormCollection) As ActionResult
+        Function Consult(id As Integer) As JsonResult
+            Dim vAula As New Aula
+            vAula = vAula.RecuperarAula(id)
+            Return Json(JsonConvert.SerializeObject(vAula))
+        End Function
+
+        <HttpPost()>
+        Function Edit(id_aula As Integer, nro_aula As Integer, id_tipo_aula As Integer, id_piso As Integer, posee_proyector As String, capacidad As Integer) As JsonResult
             Dim vAula As New Aula
             With vAula
-                .pId_piso = form("txtId_piso")
-                .pNro_aula = form("txtNro_aula")
-                .pId_tipo_aula = form("txtId_tipo_aula")
-                .pId_piso = form("txtId_piso")
-                .pPosee_proyector = form("txtPosee_proyector")
-                .pCapacidad = form("txtCapacidad")
+                .pId_aula = id_aula
+                .pNro_aula = nro_aula
+                .pId_tipo_aula = id_tipo_aula
+                .pId_piso = id_piso
+                .pPosee_proyector = posee_proyector
+                .pCapacidad = capacidad
                 .ActualizarAula()
             End With
-            Return RedirectToAction("Index")
+            Return Json("")
         End Function
 
         <HttpGet()>

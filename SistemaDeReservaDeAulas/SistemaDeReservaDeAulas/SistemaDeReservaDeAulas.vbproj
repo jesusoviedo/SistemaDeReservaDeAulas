@@ -242,6 +242,7 @@
     <Compile Include="Controllers\InsumoController.vb" />
     <Compile Include="Controllers\MateriaController.vb" />
     <Compile Include="Controllers\PermisoController.vb" />
+    <Compile Include="Controllers\PersonaController.vb" />
     <Compile Include="Controllers\PisoController.vb" />
     <Compile Include="Controllers\ReservaController.vb" />
     <Compile Include="Controllers\RolController.vb" />
@@ -249,6 +250,7 @@
     <Compile Include="Controllers\TipoDocumentoController.vb" />
     <Compile Include="Controllers\TipoInsumoController.vb" />
     <Compile Include="Controllers\TurnoController.vb" />
+    <Compile Include="Controllers\UsuarioController.vb" />
     <Compile Include="Global.asax.vb">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -320,6 +322,14 @@
     <Content Include="Views\Dia\Index.vbhtml" />
     <Content Include="Views\Insumo\Index.vbhtml" />
     <Content Include="Views\Facultad\Index.vbhtml" />
+    <Content Include="Views\Aula\Index.vbhtml" />
+    <Content Include="Views\Curso\Index.vbhtml" />
+    <Content Include="Views\Departamento\Index.vbhtml" />
+    <Content Include="Views\Materia\Index.vbhtml" />
+    <Content Include="Views\DetalleRol\Index.vbhtml" />
+    <Content Include="Views\DetalleCurso\Index.vbhtml" />
+    <Content Include="Views\Persona\Index.vbhtml" />
+    <Content Include="Views\Usuario\Index.vbhtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -330,7 +340,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\Aula\" />
     <Folder Include="Views\DetalleReserva\" />
   </ItemGroup>
   <ItemGroup>

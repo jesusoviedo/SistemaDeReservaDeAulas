@@ -3,30 +3,33 @@
     Layout = "~/Views/Template/Basic.vbhtml"
 End Code
 
+
 <div class="container">
-    <h3>Insumo</h3>
-    <a class="btn btn-outline-primary btn-lg btn-block" href="javascript:Agregar()"><ion-icon name="add"></ion-icon>Nuevo Insumo</a>
-    <input type="hidden" id="id_insumo" />
+    <h3>Usuario</h3>
+    <a class="btn btn-outline-primary btn-lg btn-block" href="javascript:Agregar()"><ion-icon name="add"></ion-icon>Nuevo Usuario</a>
+    <input type="hidden" id="id_usuario" />
     <br />
     <br />
     <table class="table table-hover table-bordered" id="myTable">
         <thead>
             <tr>
                 <th>Código</th>
-                <th>Descripción</th>
-                <th>Tipo de Insumo</th>
+                <th>Nombre</th>
+                <th>Usuario</th>
+                <th>Rol</th>
                 <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
-            @For Each vInsumo In ViewData("Insumos")
+            @For Each vUsuario In ViewData("Usuarios")
                 @<tr>
-                    <td>@vInsumo("id_insumo")</td>
-                    <td>@vInsumo("descripcion")</td>
-                    <td>@vInsumo("nombre_tip_insumo")</td>
+                    <td>@vUsuario("id_usuario")</td>
+                    <td>@vUsuario("nombre")</td>                     
+                    <td>@vUsuario("user_name")</td>
+                    <td>@vUsuario("nombre_rol")</td>
                     <td>
-                        <a class="btn btn-outline-warning" href="javascript:ConsultarRegistro(@vInsumo("id_insumo"))"><ion-icon name="document"></ion-icon></a>
-                        <a class="btn btn-outline-danger" href="javascript:Confirmar(@vInsumo("id_insumo"))"><ion-icon name="trash"></ion-icon></a>
+                        <a class="btn btn-outline-warning" href="javascript:ConsultarRegistro(@vUsuario("id_usuario"))"><ion-icon name="document"></ion-icon></a>
+                        <a class="btn btn-outline-danger" href="javascript:Confirmar(@vUsuario("id_usuario"))"><ion-icon name="trash"></ion-icon></a>
                     </td>
                 </tr>
             Next
@@ -40,7 +43,7 @@ End Code
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Eliminar Insumo</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Eliminar Usuario</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -50,7 +53,7 @@ End Code
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-outline-success" onclick="javascript: EliminarRegistro()">Aceptar</button>
+                <button type="button" class="btn btn-outline-success" onclick="javascript:EliminarRegistro()">Aceptar</button>
             </div>
         </div>
     </div>
@@ -62,7 +65,7 @@ End Code
         <div class="modal-content">
 
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Crear Insumo</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Crear Usuario</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -70,21 +73,38 @@ End Code
 
             <div class="modal-body">
 
+                <div class="form-group">
+                    <label class="form">Persona:</label>
+                    <select class="form-control" type="text" name="txtId_persona" id="txtId_persona" placeholder="" required >
+                        @For Each row In ViewData("Personas")
+                            @<option value="@row("id_persona")">@row("nombre") @row("apellido")</option>
+                        Next
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form">Rol:</label>
+                    <select class="form-control" type="text" name="txtId_rol" id="txtId_rol" placeholder="" required>
+                        @For Each row In ViewData("Roles")
+                            @<option value="@row("id_rol")">@row("nombre_rol")</option>
+                        Next
+                    </select>
+                </div>
+
                 <div class="form">
                     <div class="form-group">
-                        @*<label class="form">Descripción:</label>*@
-                        <input class="form-control" type="text" name="txtDescripcion" id="Descripcion" placeholder="Descripción" required />
-                    </div>
-
-                    <div class="form-group">
-                        <label class="form">Tipo de Insumo:</label>
-                        <select class="form-control" type="text" name="txtIdTipInsumo" id="IdTipInsumo" placeholder="" required>
-                            @For Each row In ViewData("TiposInsumos")
-                                @<option value="@row("id_tip_insumo")">@row("descripcion")</option>
-                            Next
-                        </select>
+                        <label class="form">Usuario:</label>
+                        <input class="form-control" type="text" name="txtUser_name" id="txtUser_name" placeholder="" required />
                     </div>
                 </div>
+
+                <div class="form">
+                    <div class="form-group">
+                        <label class="form">Contraseña:</label>
+                        <input class="form-control" type="password" name="txtPassword" id="txtPassword" placeholder="" required />
+                    </div>
+                </div>
+
             </div>
 
             <div class="modal-footer">
@@ -96,13 +116,13 @@ End Code
     </div>
 </div>
 
-<!-- Modal para editar -->
+<!-- Modal para editar-->
 <div class="modal fade" id="modal_edi" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
 
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modificar Insumo</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Modificar Usuario</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -110,25 +130,40 @@ End Code
 
             <div class="modal-body">
 
-                <div class="form">
-                    <input type="hidden" name="pId_insumo" id="pId_insumo" required />
+                <input type="hidden" name="pId_usuario" id="pId_usuario" required />
 
-                    <div class="form-group">
-                        <label class="form" for="pDescripcion">Descripción:</label>
-                        <input class="form-control" type="text" name="pDescripcion" id="pDescripcion" placeholder="Descripción" required />
-                    </div>
-
-                    <div class="form-group">
-                        <label class="form" for="pId_tip_insumo">Tipo de Insumo:</label>
-                        <select class="form-control" type="text" name="pId_tip_insumo" id="pId_tip_insumo" placeholder="" required>
-                            @For Each row In ViewData("TiposInsumos")
-                                @<option value="@row("id_tip_insumo")">@row("descripcion")</option>
-                            Next
-                        </select>
-
-                    </div>
-
+                <div class="form-group">
+                    <label class="form">Persona:</label>
+                    <select class="form-control" type="text" name="pId_persona" id="pId_persona" placeholder="" required disabled>
+                        @For Each row In ViewData("Personas")
+                            @<option value="@row("id_persona")">@row("nombre") @row("apellido")</option>
+                        Next
+                    </select>
                 </div>
+
+                <div class="form-group">
+                    <label class="form">Rol:</label>
+                    <select class="form-control" type="text" name="pId_rol" id="pId_rol" placeholder="" required>
+                        @For Each row In ViewData("Roles")
+                            @<option value="@row("id_rol")">@row("nombre_rol")</option>
+                        Next
+                    </select>
+                </div>
+
+                <div class="form">
+                    <div class="form-group">
+                        <label class="form">Usuario:</label>
+                        <input class="form-control" type="text" name="pUser_name" id="pUser_name" placeholder="" required />
+                    </div>
+                </div>
+
+                @*<div class="form">
+                    <div class="form-group">
+                        <label class="form">Contraseña:</label>
+                        <input class="form-control" type="password" name="pPassword" id="pPassword" placeholder="" required />
+                    </div>
+                </div>*@
+
             </div>
 
             <div class="modal-footer">
@@ -138,13 +173,14 @@ End Code
 
         </div>
     </div>
-</div>
+</div> 
 
 
 
 <script type="text/javascript">
+
         function Confirmar(id) {
-            $('#id_insumo').val(id);
+            $('#id_usuario').val(id);
             $('#modal_conf').modal('show');
         };
 
@@ -154,9 +190,9 @@ End Code
 
         function EliminarRegistro() {
             $.ajax({
-                url: '/Insumo/Delete',
+                url: '/Usuario/Delete',
                 data: {
-                    id: $('#id_insumo').val()
+                    id: $('#id_usuario').val()
                 },
                 type: 'GET',
                 dateType: 'JSON',
@@ -171,13 +207,15 @@ End Code
 
         function AgregarRegistro() {
             var parametro = {
-                descripcion: $("#Descripcion").val(),
-                id_tip_insumo: $("#IdTipInsumo").val()
+                id_rol: $("#txtId_rol").val(),
+                id_persona: $("#txtId_persona").val(),
+                user_name: $("#txtUser_name").val(),
+                password: $("#txtPassword").val()
             };
 
             $.ajax({
                 type: "POST",
-                url: '/Insumo/Create',
+                url: '/Usuario/Create',
                 data: parametro,
                 dataType: "JSON",
                 success: function (msg) {
@@ -195,14 +233,16 @@ End Code
             };
             $.ajax({
                 type: "POST",
-                url: '/Insumo/Consult',
+                url: '/Usuario/Consult',
                 data: parametro,
                 dataType: "JSON",
                 success: function (msg) {
                     var datos = jQuery.parseJSON(msg);
-                    $("#pId_insumo").val(datos.pId_insumo);
-                    $("#pDescripcion").val(datos.pDescripcion);
-                    $("#pId_tip_insumo").val(datos.pId_tip_insumo);
+                    $("#pId_usuario").val(datos.pId_usuario);
+                    $("#pId_rol").val(datos.pId_rol);
+                    $("#pId_persona").val(datos.pId_persona);
+                    $("#pUser_name").val(datos.pUser_name);
+                    //$("#pPassword").val(datos.pPassword);
                     $('#modal_edi').modal('show');
                 },
                 error: function () {
@@ -213,14 +253,16 @@ End Code
 
         function ActualizarRegistro() {
             var parametro = {
-                id_insumo: $("#pId_insumo").val(),
-                descripcion: $("#pDescripcion").val(),
-                id_tip_insumo: $("#pId_tip_insumo").val()
+                id_usuario: $("#pId_usuario").val(),
+                id_rol: $("#pId_rol").val(),
+                id_persona: $("#pId_persona").val(),
+                user_name: $("#pUser_name").val(),
+                //password: $("#pPassword").val()
             };
 
             $.ajax({
                 type: "POST",
-                url: '/Insumo/Edit',
+                url: '/Usuario/Edit',
                 data: parametro,
                 dataType: "JSON",
                 success: function (msg) {
@@ -233,3 +275,4 @@ End Code
         }
 
 </script>
+

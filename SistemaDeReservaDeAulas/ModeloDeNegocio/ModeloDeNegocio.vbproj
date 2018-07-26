@@ -98,6 +98,7 @@
     <Compile Include="Turno.vb" />
     <Compile Include="TipoDocumento.vb" />
     <Compile Include="TipoInsumo.vb" />
+    <Compile Include="Usuario.vb" />
     <Compile Include="Util.vb" />
   </ItemGroup>
   <ItemGroup>

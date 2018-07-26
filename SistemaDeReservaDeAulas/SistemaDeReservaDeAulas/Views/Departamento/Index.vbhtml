@@ -4,29 +4,29 @@
 End Code
 
 <div class="container">
-    <h3>Insumo</h3>
-    <a class="btn btn-outline-primary btn-lg btn-block" href="javascript:Agregar()"><ion-icon name="add"></ion-icon>Nuevo Insumo</a>
-    <input type="hidden" id="id_insumo" />
+    <h3>Departamento</h3>
+    <a class="btn btn-outline-primary btn-lg btn-block" href="javascript:Agregar()"><ion-icon name="add"></ion-icon>Nuevo Departamento</a>
     <br />
     <br />
+    <input type="hidden" id="id_departamento" />
     <table class="table table-hover table-bordered" id="myTable">
         <thead>
             <tr>
                 <th>Código</th>
-                <th>Descripción</th>
-                <th>Tipo de Insumo</th>
+                <th>Departamento</th>
+                <th>Facultad</th>
                 <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
-            @For Each vInsumo In ViewData("Insumos")
+            @For Each vDepartamento In ViewData("Departamentos")
                 @<tr>
-                    <td>@vInsumo("id_insumo")</td>
-                    <td>@vInsumo("descripcion")</td>
-                    <td>@vInsumo("nombre_tip_insumo")</td>
+                    <td>@vDepartamento("id_dpto")</td>
+                    <td>@vDepartamento("nombre_dpto")</td>
+                    <td>@vDepartamento("nombre_facultad")</td>
                     <td>
-                        <a class="btn btn-outline-warning" href="javascript:ConsultarRegistro(@vInsumo("id_insumo"))"><ion-icon name="document"></ion-icon></a>
-                        <a class="btn btn-outline-danger" href="javascript:Confirmar(@vInsumo("id_insumo"))"><ion-icon name="trash"></ion-icon></a>
+                        <a class="btn btn-outline-warning" href="javascript:ConsultarRegistro(@vDepartamento("id_dpto"))"><ion-icon name="document"></ion-icon></a>
+                        <a class="btn btn-outline-danger" href="javascript:Confirmar(@vDepartamento("id_dpto"))"><ion-icon name="trash"></ion-icon></a>
                     </td>
                 </tr>
             Next
@@ -40,7 +40,7 @@ End Code
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Eliminar Insumo</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Eliminar Departamento</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -62,7 +62,7 @@ End Code
         <div class="modal-content">
 
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Crear Insumo</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Crear Departamento</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -71,19 +71,21 @@ End Code
             <div class="modal-body">
 
                 <div class="form">
+
                     <div class="form-group">
-                        @*<label class="form">Descripción:</label>*@
-                        <input class="form-control" type="text" name="txtDescripcion" id="Descripcion" placeholder="Descripción" required />
+                        <label class="form">Departamento:</label>
+                        <input class="form-control" type="text" name="txtNombre_dpto" id="txtNombre_dpto" placeholder="" required />
                     </div>
 
                     <div class="form-group">
-                        <label class="form">Tipo de Insumo:</label>
-                        <select class="form-control" type="text" name="txtIdTipInsumo" id="IdTipInsumo" placeholder="" required>
-                            @For Each row In ViewData("TiposInsumos")
-                                @<option value="@row("id_tip_insumo")">@row("descripcion")</option>
+                        <label class="form">Facultad:</label>
+                        <select class="form-control" type="text" name="txtId_facultad" id="txtId_facultad" placeholder="" required>
+                            @For Each row In ViewData("Facultades")
+                                @<option value="@row("id_facultad")">@row("nombre_facultad")</option>
                             Next
                         </select>
                     </div>
+
                 </div>
             </div>
 
@@ -102,7 +104,7 @@ End Code
         <div class="modal-content">
 
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modificar Insumo</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Modificar Departamento</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -111,21 +113,20 @@ End Code
             <div class="modal-body">
 
                 <div class="form">
-                    <input type="hidden" name="pId_insumo" id="pId_insumo" required />
+                    <input type="hidden" name="pId_dpto" id="pId_dpto" required />
 
                     <div class="form-group">
-                        <label class="form" for="pDescripcion">Descripción:</label>
-                        <input class="form-control" type="text" name="pDescripcion" id="pDescripcion" placeholder="Descripción" required />
+                        <label class="form">Departamento:</label>
+                        <input class="form-control" type="text" name="pNombre_dpto" id="pNombre_dpto" placeholder="" required />
                     </div>
 
                     <div class="form-group">
-                        <label class="form" for="pId_tip_insumo">Tipo de Insumo:</label>
-                        <select class="form-control" type="text" name="pId_tip_insumo" id="pId_tip_insumo" placeholder="" required>
-                            @For Each row In ViewData("TiposInsumos")
-                                @<option value="@row("id_tip_insumo")">@row("descripcion")</option>
+                        <label class="form">Facultad:</label>
+                        <select class="form-control" type="text" name="pId_facultad" id="pId_facultad" placeholder="" required>
+                            @For Each row In ViewData("Facultades")
+                                @<option value="@row("id_facultad")">@row("nombre_facultad")</option>
                             Next
                         </select>
-
                     </div>
 
                 </div>
@@ -144,7 +145,7 @@ End Code
 
 <script type="text/javascript">
         function Confirmar(id) {
-            $('#id_insumo').val(id);
+            $('#id_departamento').val(id);
             $('#modal_conf').modal('show');
         };
 
@@ -154,9 +155,9 @@ End Code
 
         function EliminarRegistro() {
             $.ajax({
-                url: '/Insumo/Delete',
+                url: '/Departamento/Delete',
                 data: {
-                    id: $('#id_insumo').val()
+                    id: $('#id_departamento').val()
                 },
                 type: 'GET',
                 dateType: 'JSON',
@@ -171,13 +172,13 @@ End Code
 
         function AgregarRegistro() {
             var parametro = {
-                descripcion: $("#Descripcion").val(),
-                id_tip_insumo: $("#IdTipInsumo").val()
+                nombre_dpto: $("#txtNombre_dpto").val(),
+                id_facultad: $("#txtId_facultad").val()
             };
 
             $.ajax({
                 type: "POST",
-                url: '/Insumo/Create',
+                url: '/Departamento/Create',
                 data: parametro,
                 dataType: "JSON",
                 success: function (msg) {
@@ -195,32 +196,32 @@ End Code
             };
             $.ajax({
                 type: "POST",
-                url: '/Insumo/Consult',
+                url: '/Departamento/Consult',
                 data: parametro,
                 dataType: "JSON",
                 success: function (msg) {
                     var datos = jQuery.parseJSON(msg);
-                    $("#pId_insumo").val(datos.pId_insumo);
-                    $("#pDescripcion").val(datos.pDescripcion);
-                    $("#pId_tip_insumo").val(datos.pId_tip_insumo);
+                    $("#pId_dpto").val(datos.pId_dpto);
+                    $("#pNombre_dpto").val(datos.pNombre_dpto);
+                    $("#pId_facultad").val(datos.pId_facultad);
                     $('#modal_edi').modal('show');
                 },
                 error: function () {
-                    alert("se ha producido un error cargar planilla.");
+                    alert("se ha producido un error.");
                 }
             });
         }
 
         function ActualizarRegistro() {
             var parametro = {
-                id_insumo: $("#pId_insumo").val(),
-                descripcion: $("#pDescripcion").val(),
-                id_tip_insumo: $("#pId_tip_insumo").val()
+                id_dpto: $("#pId_dpto").val(),
+                nombre_dpto: $("#pNombre_dpto").val(),
+                id_facultad: $("#pId_facultad").val()
             };
 
             $.ajax({
                 type: "POST",
-                url: '/Insumo/Edit',
+                url: '/Departamento/Edit',
                 data: parametro,
                 dataType: "JSON",
                 success: function (msg) {
@@ -233,3 +234,4 @@ End Code
         }
 
 </script>
+

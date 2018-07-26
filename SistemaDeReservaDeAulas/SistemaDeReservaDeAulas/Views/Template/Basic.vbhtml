@@ -347,6 +347,12 @@ ga('create', 'UA-30027142-1', 'w3layouts.com');
                         <li>
                             <a href="#"><i class="fa fa-cogs"></i><span>Mantener</span><span class="fa fa-angle-right" style="float: right"></span></a>
                             <ul>
+                                <li><a href="/Usuario/">Usuario</a></li>
+                                <li><a href="/Persona/">Persona</a></li>
+                                <li><a href="/DetalleCurso/">Detalle de Curso</a></li>
+                                <li><a href="/DetalleRol/">Detalle de Rol</a></li>
+                                <li><a href="/Materia/">Materia</a></li>
+                                <li><a href="/Departamento/">Departamento</a></li>
                                 <li><a href="/EstadoReserva/">Estado reserva</a></li>
                                 <li><a href="/TipoAula/">Tipo de aula</a></li>
                                 <li><a href="/Piso/">Piso</a></li>
@@ -358,6 +364,8 @@ ga('create', 'UA-30027142-1', 'w3layouts.com');
                                 <li><a href="/Dia/">Día</a></li>
                                 <li><a href="/Insumo/">Insumo</a></li>
                                 <li><a href="/Facultad/">Facultad</a></li>
+                                <li><a href="/Aula/">Aula</a></li>
+                                <li><a href="/Curso/">Curso</a></li>
                             </ul>
                         </li>
                         <li id="menu-comunicacao">
