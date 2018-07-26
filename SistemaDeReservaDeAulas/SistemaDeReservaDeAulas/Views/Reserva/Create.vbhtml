@@ -6,7 +6,6 @@ End Code
 <div class="container">
     <h3>Reserva de Aula</h3>
     <br />
-    <br />
 
     <form action="/Reserva/Create" method="post">
 
@@ -16,7 +15,7 @@ End Code
         </div>
 
         <div class="form-group">
-            <label class="form" for="txtId_aula">Aula:</label>
+            <label class="form" for="txtId_aula">Tipo de Aula:</label>
             <select class="form-control" type="text" name="txtId_aula" id="txtId_aula" placeholder="" required>
                 @For Each row In ViewData("Aulas")
                     @<option value="@row("id_aula")">@row("nro_aula")</option>
@@ -31,6 +30,11 @@ End Code
                     @<option value="@row("nro_curso")">@row("nro_curso")</option>
                 Next
             </select>
+        </div>
+
+        <div class="form-group">
+            <label class="form" for="txtObservacion">Cantidad de Alumnos:</label>
+            <textarea class="form-control" name="txtObservacion" id="txtObservacion" placeholder="" required></textarea>
         </div>
 
         <div class="form-group">
@@ -49,10 +53,21 @@ End Code
         </div>
 
         <div class="form-group">
-            <input type="submit" class="btn btn-outline-success" value="Guardar" />
-            <input type="reset" class="btn btn-outline-secondary" value="Cancelar" />
+            <input type="submit" class="btn btn-outline-success" value="Buscar" />
         </div>
-    </form>
+        <div class="form-group">
+            <table class="table table-bordered table-hover">
+                <tr>
+                    <th>Piso</th>
+                    <th>Nro. Aula</th>
+                    <th>Capacidad</th>
+                    <th>Proyector</th>
+                    <th>Confirmar</th>
+                </tr>
+                <tbody id="tabla-reserva"></tbody>
+            </table>
+        </div>
+</form>
 
 </div>
 
