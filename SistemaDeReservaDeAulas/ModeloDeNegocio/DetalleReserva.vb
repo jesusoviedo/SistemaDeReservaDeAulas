@@ -58,10 +58,10 @@ Public Class DetalleReserva
         End Try
     End Sub
 
-    Public Shared Function RecuperarDetalleReserva() As DataTable
+    Public Shared Function RecuperarDetalleInsumo(vId_reserva As Integer) As DataTable
         Try
             Dim dtDetalleReserva As New DataTable
-            dtDetalleReserva = gDatos.TraerDataTable("SpConsultarDetalleReserva", 0)
+            dtDetalleReserva = gDatos.TraerDataTable("SpConsultarDetalleReserva", vId_reserva)
             Return dtDetalleReserva
         Catch ex As Exception
             Throw ex

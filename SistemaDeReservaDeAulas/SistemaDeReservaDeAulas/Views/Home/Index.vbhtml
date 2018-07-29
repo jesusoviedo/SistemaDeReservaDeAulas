@@ -4,11 +4,11 @@ End Code
 
 @*<div class="inner-block">*@
     <!--market updates updates-->
-    <div class="row">
+    <div class="row" >
         <div class="col-md-4 market-update-gd">
             <div class="market-update-block clr-block-1">
                 <div class="col-md-8 market-update-left">
-                    <h3>83</h3>
+                    <h3 id="contador"></h3>
                     <h4>Solicitudes</h4>
                     @*<h4>Other hand, we denounce</h4>*@
                 </div>
@@ -22,7 +22,7 @@ End Code
             <div class="market-update-block clr-block-2">
                 <div class="col-md-8 market-update-left">
                     <h3>135</h3>
-                    <h4>Pendientes</h4>
+                    <h4>Pendientes </h4>
                     @*<h4>Other hand, we denounce</h4>*@
                 </div>
                 <div class="col-md-4 market-update-right">
@@ -47,3 +47,18 @@ End Code
         <div class="clearfix"> </div>
     </div>
 @*</div>*@
+
+
+<script type="text/javascript">
+    var cont = 0;
+
+    function func(){
+	    cont++;
+	    document.getElementById("contador").innerHTML = cont;
+    }
+
+    window.onload = function () {
+        setInterval('func()', 1000);
+    }
+
+</script>

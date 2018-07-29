@@ -2,15 +2,15 @@
 
 Public Class EstadoReserva
 
-    Private id_estado_reserva As Integer
+    Private id_estado_reserva As String
     Private descripcion As String
 
     'propiedades 
-    Public Property pId_estado_reserva As Integer
+    Public Property pId_estado_reserva As String
         Get
             Return id_estado_reserva
         End Get
-        Set(value As Integer)
+        Set(value As String)
             id_estado_reserva = value
         End Set
     End Property
@@ -27,7 +27,7 @@ Public Class EstadoReserva
     'metodos
     Public Sub InsertarEstadoReserva()
         Try
-            gDatos.Ejecutar("SpInsertarEstadoReserva", Me.descripcion)
+            gDatos.Ejecutar("SpInsertarEstadoReserva", Me.id_estado_reserva, Me.descripcion)
         Catch ex As Exception
             Throw ex
         End Try
@@ -52,14 +52,14 @@ Public Class EstadoReserva
     Public Shared Function RecuperarEstadoReserva() As DataTable
         Try
             Dim dtEstadoReserva As New DataTable
-            dtEstadoReserva = gDatos.TraerDataTable("SpConsultarEstadoReserva", 0)
+            dtEstadoReserva = gDatos.TraerDataTable("SpConsultarEstadoReserva", "0")
             Return dtEstadoReserva
         Catch ex As Exception
             Throw ex
         End Try
     End Function
 
-    Public Function RecuperarEstadoReserva(vId_estado_reserva As Integer) As EstadoReserva
+    Public Function RecuperarEstadoReserva(vId_estado_reserva As String) As EstadoReserva
         Try
             Dim dtEstadoReserva As New DataTable
             dtEstadoReserva = gDatos.TraerDataTable("SpConsultarEstadoReserva", vId_estado_reserva)

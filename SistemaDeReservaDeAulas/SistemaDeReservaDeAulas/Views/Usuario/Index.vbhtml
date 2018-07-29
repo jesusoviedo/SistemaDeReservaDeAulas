@@ -17,6 +17,7 @@ End Code
                 <th>Nombre</th>
                 <th>Usuario</th>
                 <th>Rol</th>
+                <th>Departamento</th>
                 <th>Acciones</th>
             </tr>
         </thead>
@@ -27,6 +28,7 @@ End Code
                     <td>@vUsuario("nombre")</td>                     
                     <td>@vUsuario("user_name")</td>
                     <td>@vUsuario("nombre_rol")</td>
+                    <td>@vUsuario("nombre_dpto")</td>
                     <td>
                         <a class="btn btn-outline-warning" href="javascript:ConsultarRegistro(@vUsuario("id_usuario"))"><ion-icon name="document"></ion-icon></a>
                         <a class="btn btn-outline-danger" href="javascript:Confirmar(@vUsuario("id_usuario"))"><ion-icon name="trash"></ion-icon></a>
@@ -91,6 +93,15 @@ End Code
                     </select>
                 </div>
 
+                <div class="form-group">
+                    <label class="form">Departamento:</label>
+                    <select class="form-control" type="text" name="txtId_dpto" id="txtId_dpto" placeholder="" required>
+                        @For Each row In ViewData("Departamentos")
+                            @<option value="@row("id_dpto")">@row("nombre_dpto")</option>
+                        Next
+                    </select>
+                </div>
+
                 <div class="form">
                     <div class="form-group">
                         <label class="form">Usuario:</label>
@@ -146,6 +157,15 @@ End Code
                     <select class="form-control" type="text" name="pId_rol" id="pId_rol" placeholder="" required>
                         @For Each row In ViewData("Roles")
                             @<option value="@row("id_rol")">@row("nombre_rol")</option>
+                        Next
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form">Departamento:</label>
+                    <select class="form-control" type="text" name="pId_dpto" id="pId_dpto" placeholder="" required>
+                        @For Each row In ViewData("Departamentos")
+                            @<option value="@row("id_dpto")">@row("nombre_dpto")</option>
                         Next
                     </select>
                 </div>
@@ -210,7 +230,8 @@ End Code
                 id_rol: $("#txtId_rol").val(),
                 id_persona: $("#txtId_persona").val(),
                 user_name: $("#txtUser_name").val(),
-                password: $("#txtPassword").val()
+                password: $("#txtPassword").val(),
+                id_dpto: $("#txtId_dpto").val()
             };
 
             $.ajax({
@@ -242,7 +263,7 @@ End Code
                     $("#pId_rol").val(datos.pId_rol);
                     $("#pId_persona").val(datos.pId_persona);
                     $("#pUser_name").val(datos.pUser_name);
-                    //$("#pPassword").val(datos.pPassword);
+                    $("#pId_dpto").val(datos.pId_dpto);
                     $('#modal_edi').modal('show');
                 },
                 error: function () {
@@ -257,7 +278,7 @@ End Code
                 id_rol: $("#pId_rol").val(),
                 id_persona: $("#pId_persona").val(),
                 user_name: $("#pUser_name").val(),
-                //password: $("#pPassword").val()
+                id_dpto: $("#pId_dpto").val()
             };
 
             $.ajax({

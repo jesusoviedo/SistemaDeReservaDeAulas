@@ -1,118 +1,280 @@
 ﻿@Code
-    ViewData("Title") = "Reserva de Aula"
+    ViewData("Title") = "Create"
     Layout = "~/Views/Template/Basic.vbhtml"
 End Code
 
-
-
 <div class="container">
+    <h3>Reserva de Aula</h3>
+    <br />
 
-    <h3>Aulas por piso</h3>
-    <div>
-        <a href="#" class="btn btn-primary">Piso 1</a>
-        <a href="#" class="btn btn-primary">Piso 2</a>
-        <a href="#" class="btn btn-primary">Piso 3</a>
-        <a href="#" class="btn btn-primary">Piso 4</a>
-        <a href="#" class="btn btn-primary">Piso 5</a>
-        <a href="#" class="btn btn-primary">Piso 6</a>
-        <a href="#" class="btn btn-primary">Piso 7</a>
-    </div>
-    <br />
-    <table cellpadding="4" border="0">
-        <tr>
-            <th><h5>Estado</h5></th>
-            <th><h5>Turno</h5></th>
-        </tr>
-        <tr>
-            <td>
-                <div class="form-group">
-                    <a href="#" class="btn btn-dark">Todos</a>
-                    <a href="#" class="btn btn-primary"><ion-icon name="add"></ion-icon>Disponible</a>
-                    <a href="#" class="btn btn-secondary"><ion-icon name="add"></ion-icon>Reservado</a>
-                    <a href="#" class="btn btn-dark"><ion-icon name="add"></ion-icon>Pendiente</a>
-                    <button type="button" class="btn btn-outline-success">Fecha</button>
-                    <a href="#" class="btn btn-primary">Modificar</a>
-                </div>
-            </td>
-        </tr>
-    </table>
-    <br />
-    <h5>Seleccione el aula que desee verificar</h5>
-    <div>
-        @For Each row In ViewData("EstadosReservas")
-            @if (row("descripcion") = "Disponible") Then
-                @<a href="javascript:ver(@row("id_estado_reserva"),'Disponible')" Class="btn btn-primary">@row("id_estado_reserva")</a>
-            ElseIf (row("descripcion") = "Reservado") Then
-                @<a href="javascript:ver(@row("id_estado_reserva"),'Reservado')" Class="btn btn-secondary">@row("id_estado_reserva")</a>
-            Else
-                @<a href="javascript:ver(@row("id_estado_reserva"),'Pendiente')" Class="btn btn-dark">@row("id_estado_reserva")</a>
-            End If
-        Next
-    </div>
-    <br />
-    <table cellpadding="4">
-        <tr>
-            <td class="align-top">
-                <div id="1">
-                    <iframe src="https://calendar.google.com/calendar/embed?height=600&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=q053spttd3e6ducss9u4aphjik%40group.calendar.google.com&amp;color=%23B1365F&amp;ctz=America%2FAsuncion" style="border-width:0" width="680" height="500" frameborder="0" scrolling="no"></iframe>
-                </div>
-            </td>
-            <td></td>
-            <td class="align-top">
-                <div class="form-group">
-                    <section>
-                        <h4><strong>Descripción del aula Seleccionado</strong></h4>
-                        <p>Esta aula cuenta con las siguientes caracteristícas</p>
-                        <ul>
-                            <li><strong>Aula N° : </strong><input id="tid"></li>
-                            <li><strong>Cuenta con Proyector : </strong><text id="">asdasd</text></li>
-                            <li><strong>Cuenta con Equipos : </strong><text id="">asdasd</text></li>
-                            <li><strong>Tamaño del Aula : </strong><text id="">asdasd</text></li>
-                            <li><strong>Tipo de Aula : </strong><text id="">asdasd</text></li>
-                            <li><strong>Cantidad Máxima : </strong><text id="">asdasd</text></li>
-                            <li><strong>Estado : </strong><input id="ss"></li>
-                        </ul>
-                    </section>
-                    <a href="javascript:validar(ss.value)" class="btn btn-primary">Reservar</a>
-                    <a href="#" class="btn btn-secondary">Cancelar</a>
-                    <a href="#" class="btn btn-secondary">Salir</a>
-                </div>
-            </td>
-        </tr>
-    </table>
+    <form action="javascript:BuscarAulasDisponibles()">
+
+        <div class="form-group">
+            <label class="form" for="txtFecha_reserva">Fecha reserva:</label>
+            <input class="form-control" type="date" name="txtFecha_reserva" id="txtFecha_reserva" placeholder="" required />
+        </div>
+
+        <div class="form-group">
+            <label class="form" for="txtId_tipo_aula">Tipo de Aula:</label>
+            <select class="form-control" type="text" name="txtId_tipo_aula" id="txtId_tipo_aula" placeholder="" required>
+                @For Each row In ViewData("TiposAulas")
+                    @<option value="@row("id_tipo_aula")">@row("descripcion")</option>
+                Next
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label class="form" for="txtNro_curso">Curso:</label>
+            <select class="form-control" type="text" name="txtNro_curso" id="txtNro_curso" placeholder="" required>
+                @For Each row In ViewData("Cursos")
+                    @<option value="@row("nro_curso")">@row("nro_curso")</option>
+                Next
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label class="form" for="txtCantidadAlumno">Cantidad de Alumnos:</label>
+            <input class="form-control" type="number" name="txtCantidadAlumno" id="txtCantidadAlumno" placeholder="" required />
+        </div>
+
+        <div class="form-group">
+            <label class="form" for="txtHora_inicio">Hora inicio:</label>
+            <input class="form-control" type="time" name="txtHora_inicio" id="txtHora_inicio" placeholder="" required />
+        </div>
+
+        <div class="form-group">
+            <label class="form" for="txtHora_fin">Hora fin:</label>
+            <input class="form-control" type="time" name="txtHora_fin" id="txtHora_fin" placeholder="" required />
+        </div>
+
+        <div class="form-group">
+            <input type="submit" class="btn btn-outline-success btn-lg" value="Buscar" " />
+            <input type="reset" class="btn btn-outline-secondary btn-lg" value="Cancalar" />
+        </div>
+    </form>
+
+
+        <div class="card-footer" id="listaAulas" hidden>
+
+            <br />
+            <h3>Aulas disponibles</h3>
+            <br />
+
+            <div class="form-group">
+                <a class="btn btn-outline-info btn-lg btn-block" href="javascript:Agregar()"><ion-icon name="add"></ion-icon>Agregar Insumo</a>
+            </div>
+
+            <div class="form-group">
+                <label class="form-la" for="txtObservacion">Observación:</label>
+                <textarea class="form-control" name="txtObservacion" id="txtObservacion" rows="5" placeholder=""></textarea>
+            </div>
+
+            <div class="form-group">
+
+                <table class="table table-bordered table-hover" id="myTable">
+                    <thead>
+                        <tr>
+                            <th>Piso</th>
+                            <th>Nro. Aula</th>
+                            <th>Capacidad</th>
+                            <th>Proyector</th>
+                            <th>Confirmar</th>
+                        </tr>
+                    </thead>
+                    <tbody id="datosAulasDisponibles"></tbody>
+                </table>
+            </div>
+
+
+
+
+        </div>
+
+
 </div>
 
+
+<!-- mensaje de confirmacion -->
+<div class="modal fade" id="modal_conf" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Reserva de Aula</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Solicitud de Reserva realizada correctamente
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" onclick="javascript:LimpiarTodo()">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal para agregar insumos-->
+<div class="modal fade" id="modal_agr" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Agregar Insumo</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+
+                <div class="form">
+
+                    <div class="form-group">
+                        <label class="form" for="txtId_insumo">Insumo:</label>
+                        <select class="form-control" type="text" name="txtId_insumo" id="txtId_insumo" placeholder="" required >
+                            @For Each row In ViewData("Insumos")
+                                @<option value="@row("id_insumo")">@row("descripcion")</option>
+                            Next
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form" for="txtCantidad">Cantidad</label>
+                        <input class="form-control" type="number" name="txtCantidad" id="txtCantidad" placeholder="" required />
+                    </div>
+
+                    <div class="form-group">
+                        <table class="table table-bordered table-hover">
+                            <tr>
+                                <th>Insumo</th>
+                                <th>Cantidad</th>
+                                <th></th>
+                            </tr>
+                            <tbody id="datosInsumo"></tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="modal-footer">                
+                <button type="button" class="btn btn-outline-success" onclick="AgregarInsumo()">Agregar</button>
+                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+
+        </div>
+    </div>
+</div>
 
 
 <script type="text/javascript">
 
-            //Function() ver(id) {
-            //    If (confirm('¿Desea ver aula '+id+'?')) {
-            //        $.ajax({
-            //            url: 'TipoUsuario/Delete',
-            //            data: {
-            //                id: id
-            //            },
-            //            type: 'GET',
-            //            dateType: 'JSON',
-            //            success: Function (retorno) {
-            //                location.reload();
-            //            },
-            //            Error: Function () {
-            //                alert("se ha producido un error.");
-            //            }
-            //        })
-            //    }
-            //}
-        function ver(id,s) {
-            $('#tid').val(id);
-            $('#ss').val(s);
-        }
-       function validar(q) {
-            if (q == "Reservado") {
-                alert('El aula esta reservado');
-            } else if (q == "Pendiente") {
-                alert('La reserva esta al pendiente de aprobación');
-            } else { alert('Reservado con exito!!!'); }
-        }
+    var cont = 0;
+    var array_insumo = [];
+    var array_cantidad = [];
+
+    function BuscarAulasDisponibles() {
+
+        var parametro = {
+            fecha_reserva: $("#txtFecha_reserva").val(),
+            id_tipo_aula: $("#txtId_tipo_aula").val(),
+            cantidadAlumno: $("#txtCantidadAlumno").val(),
+            hora_inicio: $("#txtHora_inicio").val(),
+            hora_fin: $("#txtHora_fin").val()
+        };
+
+        document.getElementById("listaAulas").removeAttribute("hidden");
+
+        $.ajax({
+            type: "POST",
+            url: '/Reserva/ConsultarAulasDisponibles',
+            data: parametro,
+            dataType: "json",
+            success: function (msg) {
+                var datos = jQuery.parseJSON(msg);
+                var row = "";
+                for (i = 0; i < datos.length; i++) {
+
+                    row += "<tr><td>" + datos[i].piso +
+                            "</td><td>" + datos[i].aula +
+                            "</td><td>" + datos[i].capacidad +
+                            "</td><td>" + datos[i].proyector +
+                            "<td> <a class='btn btn-outline-primary' href='javascript:SolicitarReserva(" + datos[i].id_aula + ")'>Solicitar</a>" +
+                            "</td></tr>";
+                }
+                $("#datosAulasDisponibles").html(row);
+            },
+            error: function () {
+                alert("se ha producido un error cargar planilla.");
+            }
+        });
+    }
+
+    function SolicitarReserva(id_aula) {   
+
+        var parametro = {
+            fecha_reserva: $("#txtFecha_reserva").val(),
+            id_aula: id_aula,
+            nro_curso: $("#txtNro_curso").val(),
+            observacion: $("#txtObservacion").val(),
+            hora_inicio: $("#txtHora_inicio").val(),
+            hora_fin: $("#txtHora_fin").val(),
+            insumos: array_insumo.filter(Boolean),
+            cant_insumos: array_cantidad.filter(Boolean)
+        };
+
+        $.ajax({
+            type: "POST",
+            url: '/Reserva/Create',
+            data: parametro,
+            dataType: "JSON",
+            success: function (msg) {
+                
+                $('#modal_conf').modal('show');
+               
+            },
+            error: function () {
+                alert("se ha producido un error.");
+            }
+        });        
+    }
+
+    function LimpiarTodo() {
+        location.reload();
+    };
+
+    function Agregar() {
+        $('#modal_agr').modal('show');
+    };
+
+    function AgregarInsumo() {
+        
+        var row = "";
+        row = '<tr id="fila' + cont + '"><td>' + $('#txtId_insumo option:selected').text() +
+               
+            '</td><td>' + $("#txtCantidad").val() +
+
+            '</td><td><button type="button" class="btn btn-danger" onclick="eliminarFilaInsumo(' + cont + ');" ><ion-icon name="trash"></ion-icon></button></td>' +
+
+            '<input type="hidden" name="idArticulo" value="' + $("#txtId_insumo").val() + '">' +            
+
+            '</td></tr>';
+
+        $("#datosInsumo").append(row);
+        array_insumo[cont] = $("#txtId_insumo").val();
+        array_cantidad[cont] = $("#txtCantidad").val();
+        cont++;
+
+        $("#txtCantidad").val("");
+    }
+
+    function eliminarFilaInsumo(index) {
+        $("#fila" + index).remove();
+        delete array_insumo[index];
+        delete array_cantidad[index];
+    }
+
 </script>
+

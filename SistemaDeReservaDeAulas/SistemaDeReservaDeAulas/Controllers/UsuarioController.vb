@@ -9,62 +9,98 @@ Namespace Controllers
         <HttpGet()>
         Function Index() As ActionResult
 
-            Dim dtUsuario As New DataTable
-            dtUsuario = Usuario.RecuperarUsuario()
-            ViewData("Usuarios") = dtUsuario.AsEnumerable
+            If Session("user") Is Nothing Then
+                Return RedirectToAction("ErrorSesion", "Home")
+            Else
 
-            Dim dtPersona As New DataTable
-            dtPersona = Persona.RecuperarPersona()
-            ViewData("Personas") = dtPersona.AsEnumerable
+                Dim dtUsuario As New DataTable
+                dtUsuario = Usuario.RecuperarUsuario()
+                ViewData("Usuarios") = dtUsuario.AsEnumerable
 
-            Dim dtRol As New DataTable
-            dtRol = Rol.RecuperarRol()
-            ViewData("Roles") = dtRol.AsEnumerable
+                Dim dtPersona As New DataTable
+                dtPersona = Persona.RecuperarPersona()
+                ViewData("Personas") = dtPersona.AsEnumerable
 
-            Return View()
+                Dim dtRol As New DataTable
+                dtRol = Rol.RecuperarRol()
+                ViewData("Roles") = dtRol.AsEnumerable
+
+                Dim dtDpto As New DataTable
+                dtDpto = Departamento.RecuperarDepartamento()
+                ViewData("Departamentos") = dtDpto.AsEnumerable
+
+                Return View()
+            End If
+
         End Function
 
         <HttpPost()>
-        Function Create(id_rol As Integer, id_persona As Integer, user_name As String, password As String) As JsonResult
-            Dim vUsuario As New Usuario
-            With vUsuario
-                .pId_rol = id_rol
-                .pId_persona = id_persona
-                .pUser_name = user_name
-                .pPassword = password
-                .InsertarUsuario()
-            End With
-            Return Json("")
+        Function Create(id_rol As Integer, id_persona As Integer, user_name As String, password As String, id_dpto As Integer) As JsonResult
+
+            If Session("user") Is Nothing Then
+                Return Json("")
+            Else
+                Dim vUsuario As New Usuario
+                With vUsuario
+                    .pId_rol = id_rol
+                    .pId_persona = id_persona
+                    .pUser_name = user_name
+                    .pPassword = password
+                    .pId_dpto = id_dpto
+                    .InsertarUsuario()
+                End With
+                Return Json("")
+            End If
+
         End Function
 
         <HttpPost()>
         Function Consult(id As Integer) As JsonResult
-            Dim vUsuario As New Usuario
-            vUsuario = vUsuario.RecuperarUsuario(id)
-            Return Json(JsonConvert.SerializeObject(vUsuario))
+
+            If Session("user") Is Nothing Then
+                Return Json("")
+            Else
+                Dim vUsuario As New Usuario
+                vUsuario = vUsuario.RecuperarUsuario(id)
+                Return Json(JsonConvert.SerializeObject(vUsuario))
+            End If
+
         End Function
 
         <HttpPost()>
-        Function Edit(id_usuario As Integer, id_rol As Integer, id_persona As Integer, user_name As String) As JsonResult
-            Dim vUsuario As New Usuario
-            With vUsuario
-                .pId_usuario = id_usuario
-                .pId_rol = id_rol
-                .pId_persona = id_persona
-                .pUser_name = user_name
-                .ActualizarUsuario()
-            End With
-            Return Json("")
+        Function Edit(id_usuario As Integer, id_rol As Integer, id_persona As Integer, user_name As String, id_dpto As Integer) As JsonResult
+
+            If Session("user") Is Nothing Then
+                Return Json("")
+            Else
+                Dim vUsuario As New Usuario
+                With vUsuario
+                    .pId_usuario = id_usuario
+                    .pId_rol = id_rol
+                    .pId_persona = id_persona
+                    .pUser_name = user_name
+                    .pId_dpto = id_dpto
+                    .ActualizarUsuario()
+                End With
+                Return Json("")
+            End If
+
         End Function
 
         <HttpGet()>
         Function Delete(id As Integer) As ActionResult
-            Dim vUsuario As New Usuario
-            With vUsuario
-                .pId_usuario = id
-                .EliminarUsuario()
-            End With
-            Return RedirectToAction("Index")
+
+            If Session("user") Is Nothing Then
+                Return RedirectToAction("ErrorSesion", "Home")
+            Else
+                Dim vUsuario As New Usuario
+                With vUsuario
+                    .pId_usuario = id
+                    .EliminarUsuario()
+                End With
+                Return RedirectToAction("Index")
+            End If
+
         End Function
 
 

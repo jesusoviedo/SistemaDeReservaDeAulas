@@ -1,5 +1,6 @@
 ﻿Imports System.Web.Mvc
 Imports ModeloDeNegocio
+Imports Newtonsoft.Json
 
 Namespace Controllers
     Public Class ReservaController
@@ -7,107 +8,126 @@ Namespace Controllers
 
         <HttpGet()>
         Function Index() As ActionResult
-            Dim dtReserva As New DataTable
-            dtReserva = Reserva.RecuperarReserva()
-            ViewData("Reservas") = dtReserva.AsEnumerable
 
-            Dim dtEstadoReserva As New DataTable
-            dtEstadoReserva = EstadoReserva.RecuperarEstadoReserva()
-            ViewData("EstadosReservas") = dtEstadoReserva.AsEnumerable
+            If Session("user") Is Nothing Then
+                Return RedirectToAction("ErrorSesion", "Home")
+            Else
+                Dim dtTipoAula As New DataTable
+                dtTipoAula = TipoAula.RecuperarTipoAula()
+                ViewData("TiposAulas") = dtTipoAula.AsEnumerable
 
-            Return View()
-        End Function
+                Dim dtCurso As New DataTable
+                dtCurso = Curso.RecuperarCurso()
+                ViewData("Cursos") = dtCurso.AsEnumerable
 
-        <HttpGet()>
-        Function Create() As ActionResult
+                Dim dtInsumo As New DataTable
+                dtInsumo = Insumo.RecuperarInsumo()
+                ViewData("Insumos") = dtInsumo.AsEnumerable
 
-            Dim dtAula As New DataTable
-            dtAula = Aula.RecuperarAula()
-            ViewData("Aulas") = dtAula.AsEnumerable
+                Return View()
+            End If
 
-            Dim dtCurso As New DataTable
-            dtCurso = Curso.RecuperarCurso()
-            ViewData("Cursos") = dtCurso.AsEnumerable
-
-            Dim dtEstadoReserva As New DataTable
-            dtEstadoReserva = EstadoReserva.RecuperarEstadoReserva()
-            ViewData("EstadosReservas") = dtEstadoReserva.AsEnumerable
-
-            'Dim dtUsuarios As New DataTable
-            'dtUsuarios = Usuario.RecuperarEstadoReserva()
-            'ViewData("Usuarios") = dtUsuarios.AsEnumerable
-
-            Return View()
         End Function
 
         <HttpPost()>
-        Function Create(form As FormCollection) As ActionResult
-            Dim vReserva As New Reserva
-            With vReserva
-                .pFecha_reserva = form("txtFecha_reserva")
-                .pId_aula = form("txtId_aula")
-                .pNro_curso = form("txtNro_curso")
-                .pObservacion = form("txtObservacion")
-                .pHora_inicio = form("txtHora_inicio")
-                .pHora_fin = form("txtHora_fin")
-                .pId_estado_reserva = form("txtId_estado_reserva")
-                .pId_usuario = form("txtId_usuario")
-                .InsertarReserva()
-            End With
-            Return RedirectToAction("Index")
-        End Function
+        Function ConsultarAulasDisponibles(fecha_reserva As String, id_tipo_aula As Integer, cantidadAlumno As Integer, hora_inicio As String, hora_fin As String) As JsonResult
 
-        <HttpGet()>
-        Function Edit(id As Integer) As ActionResult
+            If Session("user") Is Nothing Then
+                Return Json("")
+            Else
+                Dim vDetalleAulasDisponibles As New DataTable
+                vDetalleAulasDisponibles = Reserva.AulasDisponibles(fecha_reserva, id_tipo_aula, cantidadAlumno, hora_inicio, hora_fin)
+                Return Json(JsonConvert.SerializeObject(vDetalleAulasDisponibles))
+            End If
 
-            Dim dtAula As New DataTable
-            dtAula = Aula.RecuperarAula()
-            ViewData("Aulas") = dtAula.AsEnumerable
-
-            Dim dtCurso As New DataTable
-            dtCurso = Curso.RecuperarCurso()
-            ViewData("Cursos") = dtCurso.AsEnumerable
-
-            Dim dtEstadoReserva As New DataTable
-            dtEstadoReserva = EstadoReserva.RecuperarEstadoReserva()
-            ViewData("EstadosReservas") = dtEstadoReserva.AsEnumerable
-
-            'Dim dtUsuarios As New DataTable
-            'dtUsuarios = Usuario.RecuperarEstadoReserva()
-            'ViewData("Usuarios") = dtUsuarios.AsEnumerable
-
-            Dim vReserva As New Reserva
-            vReserva = vReserva.RecuperarReserva(id)
-
-            Return View(vReserva)
         End Function
 
         <HttpPost()>
-        Function Edit(form As FormCollection) As ActionResult
-            Dim vReserva As New Reserva
-            With vReserva
-                .pId_reserva = form("txtId_reserva")
-                .pFecha_reserva = form("txtFecha_reserva")
-                .pId_aula = form("txtId_aula")
-                .pNro_curso = form("txtNro_curso")
-                .pObservacion = form("txtObservacion")
-                .pHora_inicio = form("txtHora_inicio")
-                .pHora_fin = form("txtHora_fin")
-                .pId_estado_reserva = form("txtId_estado_reserva")
-                .pId_usuario = form("txtId_usuario")
-                .ActualizarReserva()
-            End With
-            Return RedirectToAction("Index")
+        Function Create(fecha_reserva As String, id_aula As Integer, nro_curso As Integer, observacion As String, hora_inicio As String, hora_fin As String, insumos() As String, cant_insumos() As String) As JsonResult
+
+            If Session("user") Is Nothing Then
+                Return Json("")
+            Else
+                Dim vOperacion As String = "S"
+                Dim vMail As New Mail
+                Dim vReserva As New Reserva
+                With vReserva
+                    .pFecha_reserva = fecha_reserva
+                    .pId_aula = id_aula
+                    .pNro_curso = nro_curso
+                    .pObservacion = observacion
+                    .pHora_inicio = hora_inicio
+                    .pHora_fin = hora_fin
+                    .pId_usuario = Session("id_usuario")
+                    .InsertarReserva()
+                End With
+
+                If insumos IsNot Nothing Then
+                    For indiceDetalleReserva As Integer = 0 To insumos.Length - 1
+                        Dim vDetalleReserva As New DetalleReserva
+                        With vDetalleReserva
+                            .pId_reserva = vReserva.pId_reserva
+                            .pId_insumo = insumos(indiceDetalleReserva)
+                            .pCantidad = cant_insumos(indiceDetalleReserva)
+                            .InsertarDetalleReserva()
+                        End With
+                    Next
+                End If
+
+                vMail.EnvioMail(vReserva.pId_reserva, vOperacion)
+
+                Return Json("")
+            End If
+
         End Function
 
+
         <HttpGet()>
-        Function Delete(id As Integer) As ActionResult
-            Dim vReserva As New Reserva
-            With vReserva
-                .pId_reserva = id
-                .EliminarReserva()
-            End With
-            Return RedirectToAction("Index")
+        Function Pendiente() As ActionResult
+
+            If Session("user") Is Nothing Then
+                Return RedirectToAction("ErrorSesion", "Home")
+            Else
+                Dim dtReserva As New DataTable
+                dtReserva = Reserva.ConsultarReservaPendientes(Session("id_dpto"))
+                ViewData("ReservasPendientes") = dtReserva.AsEnumerable
+
+                Dim dtEstadoReserva As New DataTable
+                dtEstadoReserva = EstadoReserva.RecuperarEstadoReserva()
+                ViewData("EstadosReservas") = dtEstadoReserva.AsEnumerable
+
+                Return View()
+            End If
+
+        End Function
+
+        <HttpPost()>
+        Function Consult(id_reserva As Integer) As JsonResult
+
+            If Session("user") Is Nothing Then
+                Return Json("")
+            Else
+                Dim vReserva As New Reserva
+                vReserva = vReserva.RecuperarReserva(id_reserva)
+                Return Json(JsonConvert.SerializeObject(vReserva))
+            End If
+
+        End Function
+
+        <HttpPost()>
+        Function AprobarRechazar(id_reserva As Integer, operacion As String) As JsonResult
+
+            If Session("user") Is Nothing Then
+                Return Json("")
+            Else
+                Reserva.AutorizarRechazarReserva(id_reserva, operacion)
+                Dim vMail As New Mail
+                Dim vReserva As New Reserva
+                vMail.EnvioMail(id_reserva, operacion)
+
+                Return Json("")
+            End If
+
         End Function
 
     End Class

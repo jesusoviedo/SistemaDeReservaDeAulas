@@ -23,8 +23,8 @@ End Code
                  <td>@vEstadoReserva("id_estado_reserva")</td>
                  <td>@vEstadoReserva("descripcion")</td>
                  <td>
-                     <a class="btn btn-outline-warning" href="javascript:ConsultarRegistro(@vEstadoReserva("id_estado_reserva"))"><ion-icon name="document"></ion-icon></a>
-                     <a class="btn btn-outline-danger" href="javascript:Confirmar(@vEstadoReserva("id_estado_reserva"))"><ion-icon name="trash"></ion-icon></a>
+                     <a class="btn btn-outline-warning" href="javascript:ConsultarRegistro('@vEstadoReserva("id_estado_reserva")')"><ion-icon name="document"></ion-icon></a>
+                     <a class="btn btn-outline-danger" href="javascript:Confirmar('@vEstadoReserva("id_estado_reserva")')"><ion-icon name="trash"></ion-icon></a>
                  </td>
              </tr>
                  Next
@@ -70,8 +70,15 @@ End Code
 
                     <div class="form">
                         <div class="form-group">
-                            @*<label class="form">Descripción:</label>*@
-                            <input class="form-control" type="text" name="txtDescripcion" id="Descripcion" placeholder="Descripción" required />
+                            <label class="form">Cogido:</label>
+                            <input class="form-control" type="text" name="txtCogido" id="Cogido" placeholder="" required max="1" min="1"/>
+                        </div>
+                    </div>
+
+                    <div class="form">
+                        <div class="form-group">
+                            <label class="form">Descripción:</label>
+                            <input class="form-control" type="text" name="txtDescripcion" id="Descripcion" placeholder="" required />
                         </div>
                     </div>
                 </div>
@@ -100,10 +107,17 @@ End Code
                 <div class="modal-body">
 
                     <div class="form">
-                        <input type="hidden" name="txtId_estado_reserva" id="pId_estado_reserva" required />
+
+                        <div class="form">
+                            <div class="form-group">
+                                <label class="form">Cogido:</label>
+                                <input class="form-control" type="text" name="txtId_estado_reserva" id="pId_estado_reserva" placeholder="" required disabled />
+                            </div>
+                        </div>
+
                         <div class="form-group">
                             <label class="form" for="pDescripcion">Descripción:</label>
-                            <input class="form-control" type="text" name="txtDescripcion" id="pDescripcion" placeholder="Descripción" required />
+                            <input class="form-control" type="text" name="txtDescripcion" id="pDescripcion" placeholder="" required />
                         </div>
                     </div>
                 </div>
@@ -148,7 +162,8 @@ End Code
 
         function AgregarRegistro() {
             var parametro = {
-                descripcion: $("#Descripcion").val()
+                id_estado_reserva: $("#Cogido").val(),
+                descripcion: $("#Descripcion").val()               
             };
 
             $.ajax({

@@ -8,44 +8,66 @@ Namespace Controllers
 
         Function Index() As ActionResult
 
-            Dim dtCurso As New DataTable
-            dtCurso = Curso.RecuperarCurso()
-            ViewData("Cursos") = dtCurso.AsEnumerable
+            If Session("user") Is Nothing Then
+                Return RedirectToAction("ErrorSesion", "Home")
+            Else
+                Dim dtCurso As New DataTable
+                dtCurso = Curso.RecuperarCurso()
+                ViewData("Cursos") = dtCurso.AsEnumerable
 
-            Dim dtDia As New DataTable
-            dtDia = Dia.RecuperarDia()
-            ViewData("Dias") = dtDia.AsEnumerable
+                Dim dtDia As New DataTable
+                dtDia = Dia.RecuperarDia()
+                ViewData("Dias") = dtDia.AsEnumerable
 
-            Return View()
+                Return View()
+            End If
+
         End Function
 
         <HttpPost()>
         Function Create(nro_curso As Integer, id_dia As Integer) As JsonResult
-            Dim vDetalleCurso As New DetalleCurso
-            With vDetalleCurso
-                .pNro_curso = nro_curso
-                .pId_dia = id_dia
-                .InsertarDetalleCurso()
-            End With
-            Return Json("")
+
+            If Session("user") Is Nothing Then
+                Return Json("")
+            Else
+                Dim vDetalleCurso As New DetalleCurso
+                With vDetalleCurso
+                    .pNro_curso = nro_curso
+                    .pId_dia = id_dia
+                    .InsertarDetalleCurso()
+                End With
+                Return Json("")
+            End If
+
         End Function
 
         <HttpPost()>
         Function Consult(id As Integer) As JsonResult
-            Dim vDetalleCurso As New DataTable
-            vDetalleCurso = DetalleCurso.RecuperarDetalleCurso(id)
-            Return Json(JsonConvert.SerializeObject(vDetalleCurso))
+
+            If Session("user") Is Nothing Then
+                Return Json("")
+            Else
+                Dim vDetalleCurso As New DataTable
+                vDetalleCurso = DetalleCurso.RecuperarDetalleCurso(id)
+                Return Json(JsonConvert.SerializeObject(vDetalleCurso))
+            End If
+
         End Function
 
         <HttpPost()>
         Function Delete(nro_curso As Integer, id_dia As Integer) As JsonResult
-            Dim vDetalleCurso As New DetalleCurso
-            With vDetalleCurso
-                .pNro_curso = nro_curso
-                .pId_dia = id_dia
-                .EliminarDetalleCurso()
-            End With
-            Return Json("")
+
+            If Session("user") Is Nothing Then
+                Return Json("")
+            Else
+                Dim vDetalleCurso As New DetalleCurso
+                With vDetalleCurso
+                    .pNro_curso = nro_curso
+                    .pId_dia = id_dia
+                    .EliminarDetalleCurso()
+                End With
+                Return Json("")
+            End If
         End Function
 
     End Class

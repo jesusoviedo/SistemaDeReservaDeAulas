@@ -62,7 +62,7 @@ ga('create', 'UA-30027142-1', 'w3layouts.com');
   ga('send', 'pageview');
     </script>
     </head>
-    <body>
+    <body >
         <div class="page-container">
             <div class="left-content">
                 <div class="mother-grid-inner">
@@ -269,6 +269,7 @@ ga('create', 'UA-30027142-1', 'w3layouts.com');
                     <div class="clearfix"> </div>
                     </div>*@
                     <!--heder end here-->
+
                     <!-- script-for sticky-nav -->
                     @*<script>
                     $(document).ready(function() {
@@ -291,7 +292,8 @@ ga('create', 'UA-30027142-1', 'w3layouts.com');
                         <div class="inner-block">
                            
                                 <div class="blankpage-main">
-                                    Usuario Fulano de Tal
+                                    <h>Sistema de Reservas de Aulas</h>
+                                    Usuario @Session("user") @Session("rol")
                                 </div><br />
     
                             <div class="blank">
@@ -380,8 +382,10 @@ ga('create', 'UA-30027142-1', 'w3layouts.com');
                                 </li>
                                 @*<li id="menu-arquivos"><a href="typography.html">Typography</a></li>
                                 <li id="menu-arquivos"><a href="icons.html">Icons</a></li>*@
-                                <li id="menu-arquivos"><a href="/Reserva/Create">Solicitar Reserva</a></li>
-                                <li id="menu-arquivos"><a href="/Reserva/Index">Prototipo Reserva</a></li>
+                                <li id="menu-arquivos"><a href="/Reserva/Index">Solicitar Reserva</a></li>
+                                @*<li id="menu-arquivos"><a href="/Reserva/Index2">Prototipo Reserva</a></li>*@
+                                <li id="menu-arquivos"><a href="/Reserva/Pendiente">Pendiente</a></li>
+                                @*<li id="menu-arquivos"><a href="">Cerrar Session</a></li>*@
                             </ul>
                         </li>
                         <li><a href="maps.html"><i class="fa fa-map-marker"></i><span>Maps</span></a></li>
@@ -409,11 +413,7 @@ ga('create', 'UA-30027142-1', 'w3layouts.com');
                             </ul>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-shopping-cart"></i><span>E-Commerce</span><span class="fa fa-angle-right" style="float: right"></span></a>
-                            <ul id="menu-academico-sub">
-                                @*<li id="menu-academico-avaliacoes"><a href="product.html">Product</a></li>
-                                <li id="menu-academico-boletim"><a href="price.html">Price</a></li>*@
-                            </ul>
+                            <a href="/Home/CerrarSesion"><i class="fa fa-shopping-cart"></i><span>Cerrar Sesión</span></a>
                         </li>
                     </ul>
                 </div>
@@ -455,9 +455,28 @@ $(".sidebar-icon").click(function() {
         <script src="https://cdn.datatables.net/1.10.17/js/jquery.dataTables.min.js"></script>
         <script src="https://cdn.datatables.net/1.10.17/js/dataTables.bootstrap4.min.js"></script>
         <script type="text/javascript">
-        $(document).ready(function () {
-            $('#myTable').DataTable();
-        });
+
+            $(document).ready(function () {
+                $('#myTable').DataTable();
+            });
+
+            //window.onunload = window.beforeunload = function () {
+
+            //    $.ajax({
+            //        type: "GET",
+            //        url: '/Home/CerrarSesion',
+            //        data: null,
+            //        dataType: "JSON",
+            //        success: function (msg) {
+            //            console.log("adios");
+            //        },
+            //        error: function () {
+            //            console.log("adios");
+            //        }
+            //    });
+
+            //};
+
         </script>
 
         <script src="https://unpkg.com/ionicons@4.2.1/dist/ionicons.js"></script>

@@ -73,6 +73,7 @@
     <Compile Include="EstadoReserva.vb" />
     <Compile Include="Facultad.vb" />
     <Compile Include="Insumo.vb" />
+    <Compile Include="Mail.vb" />
     <Compile Include="Materia.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
