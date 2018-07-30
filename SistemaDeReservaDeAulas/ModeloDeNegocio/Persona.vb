@@ -8,6 +8,7 @@ Public Class Persona
     Private apellido As String
     Private fecha_naci As Date
     Private email As String
+    Private profesorSN As String
 
     Public Property pId_persona As Integer
         Get
@@ -72,9 +73,18 @@ Public Class Persona
         End Set
     End Property
 
+    Public Property pProfesorSN As String
+        Get
+            Return profesorSN
+        End Get
+        Set(value As String)
+            profesorSN = value
+        End Set
+    End Property
+
     Public Sub InsertarPersona()
         Try
-            gDatos.Ejecutar("SpInsertarPersona", Me.documento, Me.id_tipo_doc, Me.nombre, Me.apellido, Me.fecha_naci, Me.email)
+            Me.id_persona = gDatos.TraerValor("SpInsertarPersona", Me.documento, Me.id_tipo_doc, Me.nombre, Me.apellido, Me.fecha_naci, Me.email, Me.pProfesorSN, Me.id_persona)
         Catch ex As Exception
             Throw ex
         End Try
@@ -120,7 +130,7 @@ Public Class Persona
                     .apellido = dtPersona.Rows(0).Item("apellido")
                     .fecha_naci = Date.ParseExact(dtPersona.Rows(0).Item("fecha_naci"), "dd/MM/yyyy", Nothing)
                     .email = dtPersona.Rows(0).Item("email")
-
+                    .profesorSN = dtPersona.Rows(0).Item("profesorSN")
                 End With
                 Return vPersona
             Else

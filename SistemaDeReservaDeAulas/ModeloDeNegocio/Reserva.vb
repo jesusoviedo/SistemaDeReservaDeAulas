@@ -112,30 +112,30 @@ Public Class Reserva
 
     End Sub
 
-    Public Sub ActualizarReserva()
-        Try
-            gDatos.Ejecutar("SpActualizarReserva",
-                            Me.fecha_reserva,
-                            Me.id_aula,
-                            Me.nro_curso,
-                            Me.observacion,
-                            Me.hora_inicio,
-                            Me.hora_fin,
-                            Me.id_usuario,
-                            Me.id_reserva
-                            )
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
+    'Public Sub ActualizarReserva()
+    '    Try
+    '        gDatos.Ejecutar("SpActualizarReserva",
+    '                        Me.fecha_reserva,
+    '                        Me.id_aula,
+    '                        Me.nro_curso,
+    '                        Me.observacion,
+    '                        Me.hora_inicio,
+    '                        Me.hora_fin,
+    '                        Me.id_usuario,
+    '                        Me.id_reserva
+    '                        )
+    '    Catch ex As Exception
+    '        Throw ex
+    '    End Try
+    'End Sub
 
-    Public Sub EliminarReserva()
-        Try
-            gDatos.Ejecutar("SpEliminarReserva", Me.id_reserva)
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
+    'Public Sub EliminarReserva()
+    '    Try
+    '        gDatos.Ejecutar("SpEliminarReserva", Me.id_reserva)
+    '    Catch ex As Exception
+    '        Throw ex
+    '    End Try
+    'End Sub
 
     Public Shared Function RecuperarReserva() As DataTable
         Try
@@ -196,6 +196,34 @@ Public Class Reserva
     Public Shared Sub AutorizarRechazarReserva(vId_reserva As Integer, vOperacion As String)
         Try
             gDatos.Ejecutar("SpAutorizarRechazarReserva", vId_reserva, vOperacion)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Public Shared Function ConsultarCantidadReserva() As DataTable
+        Try
+            Dim dtReserva As New DataTable
+            dtReserva = gDatos.TraerDataTable("SpConsultarCantidadReserva")
+            Return dtReserva
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Shared Function ConsultarReservaPorUsuario(vId_reserva As Integer, vEstado As String) As DataTable
+        Try
+            Dim dtReserva As New DataTable
+            dtReserva = gDatos.TraerDataTable("SpConsultarReservaPorUsuario", vId_reserva, vEstado)
+            Return dtReserva
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Shared Sub AnularReserva(vId_reserva As Integer)
+        Try
+            gDatos.Ejecutar("SpAnularReserva", vId_reserva)
         Catch ex As Exception
             Throw ex
         End Try

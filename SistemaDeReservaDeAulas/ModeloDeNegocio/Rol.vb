@@ -1,14 +1,14 @@
 ﻿Imports ModeloDeNegocio.Util
 
 Public Class Rol
-    Private id_rol As Integer
+    Private id_rol As String
     Private nombre_rol As String
 
-    Public Property pId_rol As Integer
+    Public Property pId_rol As String
         Get
             Return id_rol
         End Get
-        Set(value As Integer)
+        Set(value As String)
             id_rol = value
         End Set
     End Property
@@ -25,7 +25,7 @@ Public Class Rol
     'metodos
     Public Sub InsertarRol()
         Try
-            gDatos.Ejecutar("SpInsertarRol", Me.nombre_rol)
+            gDatos.Ejecutar("SpInsertarRol", Me.id_rol.ToUpper(), Me.nombre_rol)
         Catch ex As Exception
             Throw ex
         End Try
@@ -50,14 +50,14 @@ Public Class Rol
     Public Shared Function RecuperarRol() As DataTable
         Try
             Dim dtRol As New DataTable
-            dtRol = gDatos.TraerDataTable("SpConsultarRol", 0)
+            dtRol = gDatos.TraerDataTable("SpConsultarRol", "0")
             Return dtRol
         Catch ex As Exception
             Throw ex
         End Try
     End Function
 
-    Public Function RecuperarRol(vId_rol As Integer) As Rol
+    Public Function RecuperarRol(vId_rol As String) As Rol
         Try
             Dim dtRol As New DataTable
             dtRol = gDatos.TraerDataTable("SpConsultarRol", vId_rol)

@@ -23,14 +23,13 @@ Namespace Controllers
                 dtaula = Materia.RecuperarMateria()
                 ViewData("Materias") = dtaula.AsEnumerable
 
-                Dim dtturno As New DataTable
-                dtturno = Turno.RecuperarTurno()
-                ViewData("Turnos") = dtturno.AsEnumerable
+                Dim dturno As New DataTable
+                dturno = Turno.RecuperarTurno()
+                ViewData("Turnos") = dturno.AsEnumerable
 
-                '-----FALTA CLASE PROFESOR-----
                 Dim dtprofesor As New DataTable
-                'dtprofesor = Profesor.RecuperarProfesor()
-                'ViewData("Profesores") = dtaula.AsEnumerable
+                dtprofesor = Profesor.RecuperarProfesor()
+                ViewData("Profesores") = dtprofesor.AsEnumerable
 
                 Return View()
             End If

@@ -24,8 +24,9 @@ End Code
                     <td>@vRol("id_rol")</td>
                     <td>@vRol("nombre_rol")</td>
                     <td>
-                        <a class="btn btn-outline-warning" href="javascript:ConsultarRegistro(@vRol("id_rol"))"><ion-icon name="document"></ion-icon></a>
-                        <a class="btn btn-outline-danger" href="javascript:Confirmar(@vRol("id_rol"))"><ion-icon name="trash"></ion-icon></a>
+                        <a class="btn btn-outline-warning" href="javascript:ConsultarRegistro('@vRol("id_rol")')"><ion-icon name="document" ></ion-icon></a>
+                        <a class="btn btn-outline-danger" href="javascript:Confirmar('@vRol("id_rol")')"><ion-icon name="trash" ></ion-icon></a>
+                        <a class="btn btn-outline-success" href="/DetalleRol/"><ion-icon name="albums" ></ion-icon></a>
                     </td>
                 </tr>
             Next
@@ -71,8 +72,15 @@ End Code
 
                 <div class="form">
                     <div class="form-group">
-                        @*<label class="form">Descripción:</label>*@
-                        <input class="form-control" type="text" name="txtNombreRol" id="NombreRol" placeholder="Descripción" required />
+                        <label class="form">Cogido:</label>
+                        <input class="form-control" type="text" name="txtCogido" id="Cogido" placeholder="" required max="5" min="5" />
+                    </div>
+                </div>
+
+                <div class="form">
+                    <div class="form-group">
+                        <label class="form">Descripción:</label>
+                        <input class="form-control" type="text" name="txtNombreRol" id="NombreRol" placeholder="" required />
                     </div>
                 </div>
             </div>
@@ -101,7 +109,13 @@ End Code
             <div class="modal-body">
 
                 <div class="form">
-                    <input type="hidden" name="pId_rol" id="pId_rol" required />
+
+                    <div class="form">
+                        <div class="form-group">
+                            <label class="form">Cogido:</label>
+                            <input class="form-control" type="text" name="pId_rol" id="pId_rol" placeholder="" required disabled />
+                        </div>
+                    </div>
 
                     <div class="form-group">
                         <label class="form" for="pNombre_rol">Descripción:</label>
@@ -151,6 +165,7 @@ End Code
 
         function AgregarRegistro() {
             var parametro = {
+                id_rol: $("#Cogido").val(),
                 nombre_rol: $("#NombreRol").val()
             };
 

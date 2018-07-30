@@ -58,6 +58,9 @@ Public Class Mail
         If reserva.pId_estado_reserva = "P" Then
             vEstado = "Recibida"
         End If
+        If reserva.pId_estado_reserva = "X" Then
+            vEstado = "Anulada"
+        End If
 
         cuerpoMensaje = "<h3>Estimado Usuario</h3>" +
                     "<p>Le informamos que la solicitud de la reserva realizada para la fecha " +

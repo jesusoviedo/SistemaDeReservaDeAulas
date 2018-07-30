@@ -5,6 +5,7 @@ End Code
 
 <div class="container">
     <h3>Persona</h3>
+    <br />
     <a class="btn btn-outline-primary btn-lg btn-block" href="javascript:Agregar()"><ion-icon name="add"></ion-icon>Nueva Persona</a>
     <input type="hidden" id="id_persona" />
     <br />
@@ -17,6 +18,7 @@ End Code
                 <th>Nombre y Apellido</th>
                 <th>Fecha nacimiento</th>
                 <th>Email</th>
+                <th>Profesor</th>
                 <th>Acciones</th>
             </tr>
         </thead>
@@ -28,6 +30,7 @@ End Code
                     <td>@vPersona("nombre") @vPersona("apellido")</td>
                     <td>@vPersona("fecha_naci")</td>
                     <td>@vPersona("email")</td>
+                     <td>@vPersona("profesorSN")</td>
                     <td>
                         <a class="btn btn-outline-warning" href="javascript:ConsultarRegistro(@vPersona("id_persona"))"><ion-icon name="document"></ion-icon></a>
                         <a class="btn btn-outline-danger" href="javascript:Confirmar(@vPersona("id_persona"))"><ion-icon name="trash"></ion-icon></a>
@@ -75,47 +78,53 @@ End Code
             <div class="modal-body">
 
                 <div class="form">
+
                     <div class="form-group">
                         <label class="form">Documento:</label>
                         <input class="form-control" type="text" name="txtDocumento" id="txtDocumento" placeholder="" required />
-                    </div>
-                </div>
+                    </div>              
 
-                <div class="form-group">
-                    <label class="form">Tipo de documento:</label>
-                    <select class="form-control" type="text" name="txtId_tipo_doc" id="txtId_tipo_doc" placeholder="" required>
-                        @For Each row In ViewData("TiposDocumentos")
-                            @<option value="@row("id_tipo_doc")">@row("descripcion")</option>
-                        Next
-                    </select>
-                </div>
+                    <div class="form-group">
+                        <label class="form">Tipo de documento:</label>
+                        <select class="form-control" type="text" name="txtId_tipo_doc" id="txtId_tipo_doc" placeholder="" required>
+                            @For Each row In ViewData("TiposDocumentos")
+                                @<option value="@row("id_tipo_doc")">@row("descripcion")</option>
+                            Next
+                        </select>
+                    </div>   
 
-                <div class="form">
+                
                     <div class="form-group">
                         <label class="form">Nombre:</label>
                         <input class="form-control" type="text" name="txtNombre" id="txtNombre" placeholder="" required />
-                    </div>
-                </div>
+                    </div>             
 
-                <div class="form">
+               
                     <div class="form-group">
                         <label class="form">Apellido:</label>
                         <input class="form-control" type="text" name="txtApellido" id="txtApellido" placeholder="" required />
-                    </div>
-                </div>
+                    </div>              
 
-                <div class="form">
+               
                     <div class="form-group">
                         <label class="form">Fecha nacimiento:</label>
                         <input class="form-control" type="date" name="txtFecha_naci" id="txtFecha_naci" placeholder="" required />
-                    </div>
-                </div>
+                    </div>           
 
-                <div class="form">
+                
                     <div class="form-group">
                         <label class="form">Email:</label>
                         <input class="form-control" type="email" name="txtEmail" id="txtEmail" placeholder="" required />
                     </div>
+
+                    <div class="form-group">
+                        <label class="form">Es un profesor:</label>
+                        <select class="form-control" name="txtEsProfesor" id="txtEsProfesor" >
+                            <option value="S">Si</option>
+                            <option value="N" selected>No</option>
+                        </select>
+                    </div>
+
                 </div>
 
             </div>
@@ -239,7 +248,8 @@ End Code
                 documento: $("#txtDocumento").val(),
                 id_tipo_doc: $("#txtId_tipo_doc").val(),
                 fecha_naci: $("#txtFecha_naci").val(),
-                email: $("#txtEmail").val()
+                email: $("#txtEmail").val(),
+                profesor: $("#txtEsProfesor").val()
             };
 
             $.ajax({

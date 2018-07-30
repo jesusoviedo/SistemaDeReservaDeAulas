@@ -121,9 +121,38 @@ Namespace Controllers
                 Return Json("")
             Else
                 Reserva.AutorizarRechazarReserva(id_reserva, operacion)
+
                 Dim vMail As New Mail
-                Dim vReserva As New Reserva
                 vMail.EnvioMail(id_reserva, operacion)
+
+                Return Json("")
+            End If
+
+        End Function
+
+        <HttpPost()>
+        Function ConsultarCantidadReserva() As JsonResult
+
+            If Session("user") Is Nothing Then
+                Return Json("")
+            Else
+                Dim dtReserva As New DataTable
+                dtReserva = Reserva.ConsultarCantidadReserva()
+                Return Json(JsonConvert.SerializeObject(dtReserva))
+            End If
+
+        End Function
+
+        <HttpPost()>
+        Function Anular(id_reserva As Integer) As JsonResult
+
+            If Session("user") Is Nothing Then
+                Return Json("")
+            Else
+                Reserva.AnularReserva(id_reserva)
+
+                Dim vMail As New Mail
+                vMail.EnvioMail(id_reserva, "X")
 
                 Return Json("")
             End If

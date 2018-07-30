@@ -292,9 +292,21 @@ ga('create', 'UA-30027142-1', 'w3layouts.com');
                         <div class="inner-block">
                            
                                 <div class="blankpage-main">
-                                    <h>Sistema de Reservas de Aulas</h>
-                                    Usuario @Session("user") @Session("rol")
-                                </div><br />
+                                    <div class="text-center">
+                                        <h2>Sistema de Reservas de Aulas</h2>
+                                    </div>
+                                     <div>
+                                         <p>
+                                             <ion-icon name="person"></ion-icon>                                             
+                                             <i>@Session("nombre")</i>
+                                             <br /> 
+                                             <ion-icon name="cog"></ion-icon>                                            
+                                             <i>@Session("rol")</i>                                             
+                                         </p>                                       
+                                     </div>
+
+                                    </div>
+                                    <br />
     
                             <div class="blank">
                                 <div class="blankpage-main">
@@ -355,8 +367,8 @@ ga('create', 'UA-30027142-1', 'w3layouts.com');
                             <ul>
                                 <li><a href="/Usuario/">Usuario</a></li>
                                 <li><a href="/Persona/">Persona</a></li>
-                                <li><a href="/DetalleCurso/">Detalle de Curso</a></li>
-                                <li><a href="/DetalleRol/">Detalle de Rol</a></li>
+                                @*<li><a href="/DetalleCurso/">Detalle de Curso</a></li>
+                                <li><a href="/DetalleRol/">Detalle de Rol</a></li>*@
                                 <li><a href="/Materia/">Materia</a></li>
                                 <li><a href="/Departamento/">Departamento</a></li>
                                 <li><a href="/EstadoReserva/">Estado reserva</a></li>
@@ -480,6 +492,7 @@ $(".sidebar-icon").click(function() {
         </script>
 
         <script src="https://unpkg.com/ionicons@4.2.1/dist/ionicons.js"></script>
+
 
     </body>
 </html>

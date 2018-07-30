@@ -28,7 +28,7 @@ Namespace Controllers
             Else
                 Dim vEstadoReserva As New EstadoReserva
                 With vEstadoReserva
-                    .pId_estado_reserva = id_estado_reserva.ToUpper()
+                    .pId_estado_reserva = id_estado_reserva.Substring(0, 1)
                     .pDescripcion = descripcion
                     .InsertarEstadoReserva()
                 End With

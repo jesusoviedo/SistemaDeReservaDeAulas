@@ -330,9 +330,9 @@
     <Content Include="Views\DetalleCurso\Index.vbhtml" />
     <Content Include="Views\Persona\Index.vbhtml" />
     <Content Include="Views\Usuario\Index.vbhtml" />
-    <Content Include="Views\Home\Login.vbhtml" />
     <Content Include="Views\Reserva\Pendiente.vbhtml" />
     <Content Include="Views\Home\ErrorSesion.vbhtml" />
+    <Content Include="Views\Home\Login.vbhtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

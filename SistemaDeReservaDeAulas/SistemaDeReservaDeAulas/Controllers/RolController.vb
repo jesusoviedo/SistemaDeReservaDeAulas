@@ -21,13 +21,14 @@ Namespace Controllers
         End Function
 
         <HttpPost()>
-        Function Create(nombre_rol As String) As JsonResult
+        Function Create(id_rol As String, nombre_rol As String) As JsonResult
 
             If Session("user") Is Nothing Then
                 Return Json("")
             Else
                 Dim vRol As New Rol
                 With vRol
+                    .pId_rol = id_rol.Substring(0, 5)
                     .pNombre_rol = nombre_rol
                     .InsertarRol()
                 End With
@@ -37,7 +38,7 @@ Namespace Controllers
         End Function
 
         <HttpPost()>
-        Function Consult(id As Integer) As JsonResult
+        Function Consult(id As String) As JsonResult
 
             If Session("user") Is Nothing Then
                 Return Json("")
@@ -50,7 +51,7 @@ Namespace Controllers
         End Function
 
         <HttpPost()>
-        Function Edit(id_rol As Integer, nombre_rol As String) As JsonResult
+        Function Edit(id_rol As String, nombre_rol As String) As JsonResult
 
             If Session("user") Is Nothing Then
                 Return Json("")
@@ -67,7 +68,7 @@ Namespace Controllers
         End Function
 
         <HttpGet()>
-        Function Delete(id As Integer) As ActionResult
+        Function Delete(id As String) As ActionResult
 
             If Session("user") Is Nothing Then
                 Return RedirectToAction("ErrorSesion", "Home")

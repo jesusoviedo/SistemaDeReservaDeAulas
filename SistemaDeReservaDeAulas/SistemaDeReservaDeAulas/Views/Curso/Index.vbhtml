@@ -33,8 +33,13 @@ End Code
                     <td>@vCurso("cant_inscriptos")</td>
                     <td>@vCurso("anho_lectivo")</td>
                     <td>
-                        <a class="btn btn-outline-warning" href="javascript:ConsultarRegistro(@vCurso("nro_curso"))"><ion-icon name="document"></ion-icon></a>
-                        <a class="btn btn-outline-danger" href="javascript:Confirmar(@vCurso("nro_curso"))"><ion-icon name="trash"></ion-icon></a>
+                        <a class="btn btn-outline-warning" href="javascript:ConsultarRegistro(@vCurso("nro_curso"))"><ion-icon name="document" size="large"></ion-icon></a>
+                        <br />
+                        <br />
+                        <a class="btn btn-outline-danger" href="javascript:Confirmar(@vCurso("nro_curso"))"><ion-icon name="trash" size="large"></ion-icon></a>
+                        <br />
+                        <br />
+                        <a class="btn btn-outline-success" href="/DetalleCurso/"><ion-icon name="albums" size="large"></ion-icon></a>
                     </td>
                 </tr>
             Next
@@ -110,11 +115,11 @@ End Code
 
                     <div class="form-group">
                         <label class="form">Profesor:</label>
-                        @*<select class="form-control" type="text" name="id_profesor" id="id_profesor" placeholder="" required>
+                        <select class="form-control" type="text" name="id_profesor" id="id_profesor" placeholder="" required>
                             @For Each row In ViewData("Profesores")
-                                @<option value="@row("id_profesor")">@row("id_profesor")</option>
+                                @<option value="@row("id_profesor")">@row("nombre")</option>
                             Next
-                        </select>*@
+                        </select>
                     </div>
 
                     <div class="form-group">
@@ -186,17 +191,18 @@ End Code
 
                         <div class="form-group">
                             <label class="form">Profesor:</label>
-                            @*<select class="form-control" type="text" name="pid_profesor" id="pid_profesor" placeholder="" required>
+                            <select class="form-control" type="text" name="pid_profesor" id="pid_profesor" placeholder="" required>
                                 @For Each row In ViewData("Profesores")
-                                    @<option value="@row("id_profesor")">@row("id_profesor")</option>
+                                    @<option value="@row("id_profesor")">@row("nombre")</option>
                                 Next
-                            </select>*@
+                            </select>
                         </div>
 
                         <div class="form-group">
                             <label class="form">Cantidad de inscriptos:</label>
                             <input class="form-control" type="text" name="pcant_inscriptos" id="pcant_inscriptos" placeholder="" required />
                         </div>
+
                         <div class="form-group">
                             <label class="form">Año lectivo:</label>
                             <input class="form-control" type="text" name="panho_lectivo" id="panho_lectivo" placeholder="" required />
@@ -249,9 +255,7 @@ End Code
                 id_aula: $("#id_aula").val(),
                 id_materia: $("#id_materia").val(),
                 id_turno: $("#id_turno").val(),
-
-                id_profesor: 1,// $("#id_profesor").val(),
-
+                id_profesor: $("#id_profesor").val(),
                 cant_inscriptos: $("#cant_inscriptos").val(),
                 anho_lectivo: $("#anho_lectivo").val()
             };
@@ -285,9 +289,7 @@ End Code
                     $("#pid_aula").val(datos.pId_aula);
                     $("#pid_materia").val(datos.pId_materia);
                     $("#pid_turno").val(datos.pId_turno);
-                    //$("#pid_profesor").val(datos.pId_profesor);
-                    $("#pid_profesor").val(1);
-
+                    $("#pid_profesor").val(datos.pId_profesor);
                     $("#pcant_inscriptos").val(datos.pCant_inscriptos);
                     $("#panho_lectivo").val(datos.pAnho_lectivo);
                     $('#modal_edi').modal('show');
@@ -304,10 +306,7 @@ End Code
                 id_aula: $("#pid_aula").val(),
                 id_materia: $("#pid_materia").val(),
                 id_turno: $("#pid_turno").val(),
-
-                //id_profesor: $("#pid_profesor").val(),
-                id_profesor: 1,
-
+                id_profesor: $("#pid_profesor").val(),
                 cant_inscriptos: $("#pcant_inscriptos").val(),
                 anho_lectivo: $("#panho_lectivo").val()
             };

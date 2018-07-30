@@ -9,6 +9,7 @@ Public Class Usuario
     Private id_dpto As Integer
     Private resultado As Integer
     Private nombre_rol As String
+    Private nombre_persona As String
 
     Public Property pId_usuario As Integer
         Get
@@ -82,6 +83,15 @@ Public Class Usuario
         End Set
     End Property
 
+    Public Property pNombre_persona As String
+        Get
+            Return nombre_persona
+        End Get
+        Set(value As String)
+            nombre_persona = value
+        End Set
+    End Property
+
     Public Sub InsertarUsuario()
         Try
             gDatos.Ejecutar("SpInsertarUsuario", Me.id_rol, Me.id_persona, Me.user_name, Me.password, Me.id_dpto)
@@ -139,13 +149,6 @@ Public Class Usuario
         End Try
     End Function
 
-    'Public Function Ingresar() As Integer
-    '    Dim vResult As Integer
-    '    Me.resultado = gDatos.TraerValor("SpLoginUsuario", Me.user_name, Me.password, Me.resultado)
-    '    vResult = Me.resultado
-    '    Return vResult
-    'End Function
-
     Public Function Ingresar(vUser_name As String, vPassword As String) As Usuario
         Try
             Dim dtUsuario As New DataTable
@@ -160,6 +163,7 @@ Public Class Usuario
                     .user_name = dtUsuario.Rows(0).Item("user_name")
                     .id_persona = dtUsuario.Rows(0).Item("id_persona")
                     .id_dpto = dtUsuario.Rows(0).Item("id_dpto")
+                    .nombre_persona = dtUsuario.Rows(0).Item("nombre")
                 End With
                 Return vUsuario
             Else

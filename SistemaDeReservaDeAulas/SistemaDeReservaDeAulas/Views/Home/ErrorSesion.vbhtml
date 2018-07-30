@@ -6,37 +6,49 @@ End Code
 
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Login</title>
+    <title>Acceso Denegado</title>
 
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <link href="~/scripts/css/bootstrap.css" rel="stylesheet" type="text/css" media="all">
+    <!-- Custom Theme files -->
+    <link href="~/scripts/css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <!--js-->
+    <script src="~/scripts/js/jquery-2.1.1.min.js"></script>
+    <!--icons-css-->
+    <link href="~/scripts/css/font-awesome.css" rel="stylesheet">
+    <!--Google Fonts-->
+    <link href='//fonts.googleapis.com/css?family=Carrois+Gothic' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Work+Sans:400,500,600' rel='stylesheet' type='text/css'>
+    <!--static chart-->
 </head>
-
-
-<!------ Include the above in your HEAD tag ---------->
 <body>
-    <div id="login">
-        <h3 class="text-center text-white pt-5">Login form</h3>
-        <div class="container">
-            <div id="login-row" class="row justify-content-center align-items-center">
-                <div id="login-column" class="col-md-6">
-                    <div id="login-box" class="col-md-12">
+    <div class="login-page">
+        <div class="login-main">
 
-                        <form id="login-form" class="form" action="/Home/login" method="get">
-                            <h3 class="text-center text-info">Acceso Denegado</h3>
-                            <p>Inicie sesión para poder realizar cualquier acción en la Aplicación</p>
-                            <div class="form-group">
-                                <input type="submit" name="submit" class="btn btn-info btn-block" value="Ingresar">
-                            </div>
-                        </form>
+            <div class="login-head">
+                <h1>Acceso Denegado</h1>
+            </div>
 
+            <div class="login-block">
+                <form id="login-form" action="/Home/login" method="get">
+
+                    <div class="form-group">
+                        <label>Inicie sesión para poder realizar cualquier acción en la Aplicación</label>
+                    </div>                    
+
+                    <div class="form-group">
+                        <input type="submit" name="submit" class="btn btn-info " value="Iniciar sesión">
                     </div>
-                </div>
+
+                </form>
             </div>
         </div>
     </div>
 </body>
+</html>
 
-</html>>

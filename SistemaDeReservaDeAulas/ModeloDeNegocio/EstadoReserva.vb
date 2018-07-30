@@ -27,7 +27,7 @@ Public Class EstadoReserva
     'metodos
     Public Sub InsertarEstadoReserva()
         Try
-            gDatos.Ejecutar("SpInsertarEstadoReserva", Me.id_estado_reserva, Me.descripcion)
+            gDatos.Ejecutar("SpInsertarEstadoReserva", Me.id_estado_reserva.ToUpper(), Me.descripcion)
         Catch ex As Exception
             Throw ex
         End Try

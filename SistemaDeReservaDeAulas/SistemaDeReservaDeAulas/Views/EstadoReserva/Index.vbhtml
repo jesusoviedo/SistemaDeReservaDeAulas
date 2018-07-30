@@ -111,13 +111,13 @@ End Code
                         <div class="form">
                             <div class="form-group">
                                 <label class="form">Cogido:</label>
-                                <input class="form-control" type="text" name="txtId_estado_reserva" id="pId_estado_reserva" placeholder="" required disabled />
+                                <input class="form-control" type="text" name="pId_estado_reserva" id="pId_estado_reserva" placeholder="" required disabled />
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="form" for="pDescripcion">Descripción:</label>
-                            <input class="form-control" type="text" name="txtDescripcion" id="pDescripcion" placeholder="" required />
+                            <input class="form-control" type="text" name="pDescripcion" id="pDescripcion" placeholder="" required />
                         </div>
                     </div>
                 </div>

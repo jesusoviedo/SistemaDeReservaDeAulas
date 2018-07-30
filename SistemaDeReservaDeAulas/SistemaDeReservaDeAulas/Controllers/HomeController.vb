@@ -11,7 +11,25 @@ Namespace Controllers
             If Session("user") Is Nothing Then
                 Return RedirectToAction("ErrorSesion", "Home")
             Else
-                Return View()
+                'If por Then rol
+                Dim dtReservaSolicitas As New DataTable
+                    dtReservaSolicitas = Reserva.ConsultarReservaPorUsuario(Session("id_usuario"), "P")
+                    ViewData("ReservasSolicitas") = dtReservaSolicitas.AsEnumerable
+
+                    Dim dtReservaAprovada As New DataTable
+                    dtReservaAprovada = Reserva.ConsultarReservaPorUsuario(Session("id_usuario"), "A")
+                    ViewData("ReservasAprovadas") = dtReservaAprovada.AsEnumerable
+
+                    Dim dtReservaRechazada As New DataTable
+                    dtReservaRechazada = Reserva.ConsultarReservaPorUsuario(Session("id_usuario"), "R")
+                    ViewData("ReservasRechazadas") = dtReservaRechazada.AsEnumerable
+
+                    Dim dtReservaAnulada As New DataTable
+                    dtReservaAnulada = Reserva.ConsultarReservaPorUsuario(Session("id_usuario"), "X")
+                    ViewData("ReservasAnuladas") = dtReservaAnulada.AsEnumerable
+
+                    Return View()
+
             End If
 
         End Function
@@ -56,13 +74,13 @@ Namespace Controllers
             vPassword = form("txtPassword")
             vUsuario = vUsuario.Ingresar(vUser_name, vPassword)
 
-
             If vUsuario Is Nothing Then
                 TempData("mensaje") = "Usuario o contraseña incorrecta"
                 Return RedirectToAction("Login", "Home")
             Else
                 Session("id_usuario") = vUsuario.pId_usuario
                 Session("user") = vUsuario.pUser_name
+                Session("nombre") = vUsuario.pNombre_persona
                 Session("id_rol") = vUsuario.pId_rol
                 Session("rol") = vUsuario.pNombre_rol
                 Session("id_dpto") = vUsuario.pId_dpto

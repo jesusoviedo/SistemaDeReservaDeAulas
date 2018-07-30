@@ -93,6 +93,7 @@
     <Compile Include="Permiso.vb" />
     <Compile Include="Persona.vb" />
     <Compile Include="Piso.vb" />
+    <Compile Include="Profesor.vb" />
     <Compile Include="Reserva.vb" />
     <Compile Include="Rol.vb" />
     <Compile Include="TipoAula.vb" />
