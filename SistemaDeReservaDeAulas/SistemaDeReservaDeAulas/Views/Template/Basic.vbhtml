@@ -359,11 +359,14 @@ ga('create', 'UA-30027142-1', 'w3layouts.com');
 
 
 
-                <div class="logo" style="width: 100%;">
+                @*<div class="logo" style="width: 100%;">
                     <a href="#" class="sidebar-icon"><span class="fa fa-bars"></span></a>
-                </div>
+                </div>*@
                 <div class="menu">
                     <ul id="menu">
+
+                        <li id="ocultar"><a href="#"><i class="fa fa-bars"></i><span></span></a></li>
+
                         <li id="menu-home"><a href="/Home/"><i class="fa fa-home"></i><span>Principal</span></a></li>
                         <li id="menu-comunicacao">
                             <a href="#"><i class="fa fa-book nav_icon"></i><span>Reserva</span><span class="fa fa-angle-right" style="float: right"></span></a>
@@ -505,7 +508,7 @@ ga('create', 'UA-30027142-1', 'w3layouts.com');
 <script>
 var toggle = true;
 
-$(".sidebar-icon").click(function() {
+$("#ocultar").click(function () {
   if (toggle)
   {
     $(".page-container").addClass("sidebar-collapsed").removeClass("sidebar-collapsed-back");

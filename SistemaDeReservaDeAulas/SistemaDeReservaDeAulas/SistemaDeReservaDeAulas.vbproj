@@ -225,7 +225,9 @@
     <Content Include="scripts\js\nivo-lightbox.min.js" />
     <Content Include="scripts\js\scripts.js" />
     <Content Include="scripts\js\skycons.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.vb" />
