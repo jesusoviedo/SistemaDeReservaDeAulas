@@ -298,7 +298,6 @@
     </None>
     <Content Include="Views\web.config" />
     <Content Include="packages.config" />
-    <Content Include="Views\Home\Index.vbhtml" />
     <Content Include="Views\EstadoReserva\Index.vbhtml" />
     <Content Include="scripts\fonts\fontawesome-webfont.eot" />
     <Content Include="scripts\fonts\fontawesome-webfont.ttf" />
@@ -309,8 +308,6 @@
     <Content Include="scripts\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="scripts\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="scripts\fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="Views\Template\Basic.vbhtml" />
-    <Content Include="Views\Reserva\Index2.vbhtml" />
     <Content Include="Views\TipoAula\Index.vbhtml" />
     <Content Include="Views\Reserva\Index.vbhtml" />
     <Content Include="Views\Piso\Index.vbhtml" />
@@ -333,6 +330,8 @@
     <Content Include="Views\Reserva\Pendiente.vbhtml" />
     <Content Include="Views\Home\ErrorSesion.vbhtml" />
     <Content Include="Views\Home\Login.vbhtml" />
+    <Content Include="Views\Template\Basic.vbhtml" />
+    <Content Include="Views\Home\Index.vbhtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

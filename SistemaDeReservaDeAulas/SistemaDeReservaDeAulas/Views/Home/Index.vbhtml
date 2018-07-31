@@ -2,178 +2,275 @@
     Layout = "~/Views/Template/Basic.vbhtml"
 End Code
 
-@If Session("rol") = "Administrador" Then
+@If Session("rol") = "Profesor" Then
+    @<h4>Mis reservas</h4>
+    @<br />
+Else
+    @<h4>Reservas del departamento de @Session("nombre_dpto")</h4>
+    @<br />
+End If
 
+@If True Then
     @<div Class="row" >
-        <div Class="col-md-4 market-update-gd">
+        <div Class="col-md-3 market-update-gd" id="btnreservaSol">
             <div Class="market-update-block clr-block-1">
                 <div Class="col-md-8 market-update-left">
-                    <h3 id = "pendiente" > 0</h3>
+                    <h3 id="pendienteN">0</h3>
                     <h4> Pendiente</h4>
-                    @*<h4>Other hand, we denounce</h4>*@
                 </div>
-                <div class="market-update-right">
-                    <i class="fa fa-file-text-o"> </i>
-                </div>
+
                 <div class="clearfix"> </div>
             </div>
         </div>
-        <div class="col-md-4 market-update-gd">
-            <div class="market-update-block clr-block-2">
-                <div class="col-md-8 market-update-left">
-                    <h3 id="aprobado">0</h3>
-                    <h4>Aprobado</h4>
-                    @*<h4>Other hand, we denounce</h4>*@
-                </div>
-                <div class="col-md-4 market-update-right">
-                    <i class="fa fa-eye"> </i>
-                </div>
-                <div class="clearfix"> </div>
-            </div>
-        </div>
-        <div class="col-md-4 market-update-gd">
-            <div class="market-update-block clr-block-3">
-                <div class="col-md-8 market-update-left">
-                    <h3 id="rechazado">0</h3>
-                    <h4>Rechazado</h4>
-                    @*<h4>Other hand, we denounce</h4>*@
-                </div>
-                <div Class="col-md-4 market-update-right">
-                    <i Class="fa fa-envelope-o"> </i>
-                </div>
-                <div Class="clearfix"> </div>
-            </div>
-        </div>
-        <div Class="clearfix"> </div>
+         <div Class="col-md-3 market-update-gd" id="btnreservaRec">
+             <div Class="market-update-block clr-block-2">
+                 <div Class="col-md-8 market-update-left">
+                     <h3 id="rechazadoN">0</h3>
+                     <h4>Rechazado</h4>
+                 </div>
+
+                 <div class="clearfix"> </div>
+             </div>
+         </div>
+         <div Class="col-md-3 market-update-gd" id="btnreservaApr">
+             <div Class="market-update-block clr-block-3">
+                 <div Class="col-md-8 market-update-left">
+                     <h3 id="reservadoN"> 0</h3>
+                     <h4> Reservado</h4>
+                 </div>
+                 <div class="clearfix"> </div>
+             </div>
+         </div>
+        @If Session("rol") = "Profesor" Then
+         @<div Class="col-md-3 market-update-gd" id="btnreservaAnu">
+             <div Class="market-update-block clr-block btn-outline-dark" >
+                 <div Class="col-md-8 market-update-left">
+                     <h3 id = "anuladoN" > 0</h3>
+                     <h4> Anulado</h4>
+                 </div>
+
+                 <div Class="clearfix"> </div>
+             </div>
+         </div>
+        @<div Class="clearfix"> </div>
+        End If
     </div>
     @<br />
     @<br />
-
 End If
 
-<h4>Mis reservas</h4>
-<br />
-<div class="btn-group btn-group-lg" role="group">
-    <button type="button" class="btn btn-outline-info" id="btnreservaSol">Solicitadas</button>
-    <button type="button" class="btn btn-outline-success" id="btnreservaApr">Aprovadas</button>
-    <button type="button" class="btn btn-outline-danger" id="btnreservaRec">Rechazadas</button>
-    <button type="button" class="btn btn-outline-dark" id="btnreservaAnu">Anuladas</button>
-</div>
-<br />
-<br />
-
-<table class="table table-hover table-bordered" id="reservaSol" >
-    <thead>
-        <tr>
-            <th>Fecha solicitud</th>
-            <th>Fecha reserva</th>
-            <th>Horario</th>
-            <th>Estado</th>
-            <th>Aula</th>
-            <th>N° Curso</th>
-            <th>Materia</th>            
-            <th>Acciones</th>
-        </tr>
-    </thead>
-    <tbody>
-        @For Each vReservaSolicita In ViewData("ReservasSolicitas")
-            @<tr>
-                <td>@vReservaSolicita("fecha_solicitud")</td>
-                <td>@vReservaSolicita("fecha_reserva")</td>
-                <td>@vReservaSolicita("hora_inicio") - @vReservaSolicita("hora_fin")</td>
-                <td>@vReservaSolicita("estado_reserva")</td>
-                <td>@vReservaSolicita("aula")</td>
-                <td>@vReservaSolicita("nro_curso")</td>
-                <td>@vReservaSolicita("nombre_materia")</td>
-                <td>
-                    <a class="btn btn-outline-danger" href="javascript:ConfirmarAnulacion(@vReservaSolicita("id_reserva"))">Anular reserva</a>
-                </td>
+@If True Then
+    @<Table Class="table table-hover table-bordered" id="reservaSol">
+        <thead>
+            <tr>
+                <th> Fecha solicitud</th>
+                <th> Fecha reserva</th>
+                <th> Horario</th>
+                <th> Estado</th>
+                <th> Aula</th>
+                <th> N° Curso</th>
+                <th> Materia</th>
+                @If Session("rol") = "Profesor" Then
+                    @<th> Acciones</th>
+                End If
+                
             </tr>
-        Next
-    <tbody>
-</table>
+        </thead>
+        <tbody>
+            @For Each vReservaSolicita In ViewData("ReservasSolicitas")
+                @<tr>
+                    <td>@vReservaSolicita("fecha_solicitud")</td>
+                    <td>@vReservaSolicita("fecha_reserva")</td>
+                    <td>@vReservaSolicita("hora_inicio") - @vReservaSolicita("hora_fin")</td>
+                    <td>@vReservaSolicita("estado_reserva")</td>
+                    <td>@vReservaSolicita("aula")</td>
+                    <td>@vReservaSolicita("nro_curso")</td>
+                    <td>@vReservaSolicita("nombre_materia")</td>
 
-<table class="table table-hover table-bordered" id="reservaApr" >
-    <thead>
-        <tr>
-            <th>Fecha solicitud</th>
-            <th>Fecha reserva</th>
-            <th>Horario</th>
-            <th>Estado</th>
-            <th>Aula</th>
-            <th>N° Curso</th>
-            <th>Materia</th>
-        </tr>
-    </thead>
-    <tbody>
-        @For Each vReservaAprovada In ViewData("ReservasAprovadas")
-            @<tr>
-                <td>@vReservaAprovada("fecha_solicitud")</td>
-                <td>@vReservaAprovada("fecha_reserva")</td>
-                <td>@vReservaAprovada("hora_inicio") - @vReservaAprovada("hora_fin")</td>
-                <td>@vReservaAprovada("estado_reserva")</td>
-                <td>@vReservaAprovada("aula")</td>
-                <td>@vReservaAprovada("nro_curso")</td>
-                <td>@vReservaAprovada("nombre_materia")</td>
+                     @If Session("rol") = "Profesor" Then
+                        @<td>
+                        <a Class="btn btn-outline-danger" href="javascript:ConfirmarAnulacion(@vReservaSolicita("id_reserva"))">Anular reserva</a>
+                        </td>
+                     End If
+
+                </tr>
+            Next
+        <tbody>
+    </Table>
+
+    @<table class="table table-hover table-bordered" id="reservaApr">
+        <thead>
+            <tr>
+                <th>Fecha solicitud</th>
+                <th>Fecha reserva</th>
+                <th>Horario</th>
+                <th>Estado</th>
+                <th>Aula</th>
+                <th>N° Curso</th>
+                <th>Materia</th>
             </tr>
-        Next
-    <tbody>
-</table>
+        </thead>
+        <tbody>
+            @For Each vReservaAprovada In ViewData("ReservasAprovadas")
+                @<tr>
+                    <td>@vReservaAprovada("fecha_solicitud")</td>
+                    <td>@vReservaAprovada("fecha_reserva")</td>
+                    <td>@vReservaAprovada("hora_inicio") - @vReservaAprovada("hora_fin")</td>
+                    <td>@vReservaAprovada("estado_reserva")</td>
+                    <td>@vReservaAprovada("aula")</td>
+                    <td>@vReservaAprovada("nro_curso")</td>
+                    <td>@vReservaAprovada("nombre_materia")</td>
+                </tr>
+            Next
+        <tbody>
+    </table>
 
-<table class="table table-hover table-bordered" id="reservaRec" >
-    <thead>
-        <tr>
-            <th>Fecha solicitud</th>
-            <th>Fecha reserva</th>
-            <th>Horario</th>
-            <th>Estado</th>
-            <th>Aula</th>
-            <th>N° Curso</th>
-            <th>Materia</th>
-        </tr>
-    </thead>
-    <tbody>
-        @For Each vReservaRechazada In ViewData("ReservasRechazadas")
-            @<tr>
-                <td>@vReservaRechazada("fecha_solicitud")</td>
-                <td>@vReservaRechazada("fecha_reserva")</td>
-                <td>@vReservaRechazada("hora_inicio") - @vReservaRechazada("hora_fin")</td>
-                <td>@vReservaRechazada("estado_reserva")</td>
-                <td>@vReservaRechazada("aula")</td>
-                <td>@vReservaRechazada("nro_curso")</td>
-                <td>@vReservaRechazada("nombre_materia")</td>
+    @<table class="table table-hover table-bordered" id="reservaRec">
+        <thead>
+            <tr>
+                <th>Fecha solicitud</th>
+                <th>Fecha reserva</th>
+                <th>Horario</th>
+                <th>Estado</th>
+                <th>Aula</th>
+                <th>N° Curso</th>
+                <th>Materia</th>
             </tr>
-        Next
-    <tbody>
-</table>
+        </thead>
+        <tbody>
+            @For Each vReservaRechazada In ViewData("ReservasRechazadas")
+                @<tr>
+                    <td>@vReservaRechazada("fecha_solicitud")</td>
+                    <td>@vReservaRechazada("fecha_reserva")</td>
+                    <td>@vReservaRechazada("hora_inicio") - @vReservaRechazada("hora_fin")</td>
+                    <td>@vReservaRechazada("estado_reserva")</td>
+                    <td>@vReservaRechazada("aula")</td>
+                    <td>@vReservaRechazada("nro_curso")</td>
+                    <td>@vReservaRechazada("nombre_materia")</td>
+                </tr>
+            Next
+        <tbody>
+    </table>
 
-<table class="table table-hover table-bordered" id="reservaAnu" >
-    <thead>
-        <tr>
-            <th>Fecha solicitud</th>
-            <th>Fecha reserva</th>
-            <th>Horario</th>
-            <th>Estado</th>
-            <th>Aula</th>
-            <th>N° Curso</th>
-            <th>Materia</th>
-        </tr>
-    </thead>
-    <tbody>
-        @For Each vReservaAnulada In ViewData("ReservasAnuladas")
-            @<tr>
-                <td>@vReservaAnulada("fecha_solicitud")</td>
-                <td>@vReservaAnulada("fecha_reserva")</td>
-                <td>@vReservaAnulada("hora_inicio") - @vReservaAnulada("hora_fin")</td>
-                <td>@vReservaAnulada("estado_reserva")</td>
-                <td>@vReservaAnulada("aula")</td>
-                <td>@vReservaAnulada("nro_curso")</td>
-                <td>@vReservaAnulada("nombre_materia")</td>
+
+    @If Session("rol") = "Profesor" Then
+    @<table class="table table-hover table-bordered" id="reservaAnu">
+        <thead>
+            <tr>
+                <th>Fecha solicitud</th>
+                <th>Fecha reserva</th>
+                <th>Horario</th>
+                <th>Estado</th>
+                <th>Aula</th>
+                <th>N° Curso</th>
+                <th>Materia</th>
             </tr>
-        Next
-    <tbody>
-</table>
+        </thead>
+        <tbody>
+            @For Each vReservaAnulada In ViewData("ReservasAnuladas")
+                @<tr>
+                    <td>@vReservaAnulada("fecha_solicitud")</td>
+                    <td>@vReservaAnulada("fecha_reserva")</td>
+                    <td>@vReservaAnulada("hora_inicio") - @vReservaAnulada("hora_fin")</td>
+                    <td>@vReservaAnulada("estado_reserva")</td>
+                    <td>@vReservaAnulada("aula")</td>
+                    <td>@vReservaAnulada("nro_curso")</td>
+                    <td>@vReservaAnulada("nombre_materia")</td>
+                </tr>
+            Next
+        <tbody>
+    </table>
+    End If
+End If
 
+
+@*@If Session("rol") = "Aprovador" Or Session("rol") = "Administrador" Then
+
+    @<Table Class="table table-hover table-bordered" id="reservaSol">
+        <thead>
+            <tr>
+                <th> Fecha solicitud</th>
+                <th> Fecha reserva</th>
+                <th> Horario</th>
+                <th> Estado</th>
+                <th> Aula</th>
+                <th> N° Curso</th>
+                <th> Materia</th>
+                <th> Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @For Each vReservaSolicita In ViewData("ReservasSolicitas")
+                @<tr>
+                    <td>@vReservaSolicita("fecha_solicitud")</td>
+                    <td>@vReservaSolicita("fecha_reserva")</td>
+                    <td>@vReservaSolicita("hora_inicio") - @vReservaSolicita("hora_fin")</td>
+                    <td>@vReservaSolicita("estado_reserva")</td>
+                    <td>@vReservaSolicita("aula")</td>
+                    <td>@vReservaSolicita("nro_curso")</td>
+                    <td>@vReservaSolicita("nombre_materia")</td>
+                    <td>
+                        <a class="btn btn-outline-danger" href="javascript:ConfirmarAnulacion(@vReservaSolicita("id_reserva"))">Anular reserva</a>
+                    </td>
+                </tr>
+            Next
+        <tbody>
+    </Table>
+
+    @<table class="table table-hover table-bordered" id="reservaApr">
+        <thead>
+            <tr>
+                <th>Fecha solicitud</th>
+                <th>Fecha reserva</th>
+                <th>Horario</th>
+                <th>Estado</th>
+                <th>Aula</th>
+                <th>N° Curso</th>
+                <th>Materia</th>
+            </tr>
+        </thead>
+        <tbody>
+            @For Each vReservaAprovada In ViewData("ReservasAprovadas")
+                @<tr>
+                    <td>@vReservaAprovada("fecha_solicitud")</td>
+                    <td>@vReservaAprovada("fecha_reserva")</td>
+                    <td>@vReservaAprovada("hora_inicio") - @vReservaAprovada("hora_fin")</td>
+                    <td>@vReservaAprovada("estado_reserva")</td>
+                    <td>@vReservaAprovada("aula")</td>
+                    <td>@vReservaAprovada("nro_curso")</td>
+                    <td>@vReservaAprovada("nombre_materia")</td>
+                </tr>
+            Next
+        <tbody>
+    </table>
+
+    @<table class="table table-hover table-bordered" id="reservaRec">
+        <thead>
+            <tr>
+                <th>Fecha solicitud</th>
+                <th>Fecha reserva</th>
+                <th>Horario</th>
+                <th>Estado</th>
+                <th>Aula</th>
+                <th>N° Curso</th>
+                <th>Materia</th>
+            </tr>
+        </thead>
+        <tbody>
+            @For Each vReservaRechazada In ViewData("ReservasRechazadas")
+                @<tr>
+                    <td>@vReservaRechazada("fecha_solicitud")</td>
+                    <td>@vReservaRechazada("fecha_reserva")</td>
+                    <td>@vReservaRechazada("hora_inicio") - @vReservaRechazada("hora_fin")</td>
+                    <td>@vReservaRechazada("estado_reserva")</td>
+                    <td>@vReservaRechazada("aula")</td>
+                    <td>@vReservaRechazada("nro_curso")</td>
+                    <td>@vReservaRechazada("nombre_materia")</td>
+                </tr>
+            Next
+        <tbody>
+    </table>
+End If*@
 
 <!-- Modal para eliminar -->
 <div class="modal fade" id="modal_conf" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -187,7 +284,7 @@ End If
             </div>
             <div class="modal-body">
                 ¿Desea anular esta Reserva?
-                <input hidden type="text" id="selectId_reserva"/>
+                <input hidden type="text" id="selectId_reserva" />
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cerrar</button>
@@ -289,12 +386,16 @@ End If
             data: null,
             dataType:  "JSON",
             success: function (msg) {
-                var datos = jQuery.parseJSON(msg);             
-
+                var datos = jQuery.parseJSON(msg);
+                console.log(datos);
                 for (i = 0; i < datos.length; i++) {
-                    document.getElementById("aprobado").innerHTML = datos[i].Aprobado;
-                    document.getElementById("rechazado").innerHTML = datos[i].Rechazado;
-                    document.getElementById("pendiente").innerHTML = datos[i].Pendiente;
+                    document.getElementById("reservadoN").innerHTML = datos[i].Aprobado;
+                    document.getElementById("rechazadoN").innerHTML = datos[i].Rechazado;
+                    document.getElementById("pendienteN").innerHTML = datos[i].Pendiente;
+
+                    if (datos[i].Anulado >= 0) {
+                        document.getElementById("anuladoN").innerHTML = datos[i].Anulado;
+                    }
                 }
 
             },
@@ -310,7 +411,7 @@ End If
         $("#reservaApr").hide();
         $("#reservaRec").hide();
         $("#reservaAnu").hide();
-        setInterval('ConsultarCantidadReservas()', 1000);
+        setInterval('ConsultarCantidadReservas()', 1500);
     }
 
 </script>

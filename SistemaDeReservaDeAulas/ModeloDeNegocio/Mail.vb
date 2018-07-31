@@ -70,14 +70,24 @@ Public Class Mail
 
         emailDestinatario = persona.pEmail
 
-        'SendMail(vCuerpoCorreo, )
 
-        'cuando se aprueba o rechaza se debe enviar con copia al profesor
-
-        'cuando se solicita se ebde enviar con copia al encargado
         Dim SendMailAsync As New Thread(AddressOf SendMail)
         SendMailAsync.Start()
 
+    End Sub
+
+    Public Sub EnvioMailPassword(user As String, pass As String, email As String)
+        Dim url As String = "http://www.reservaaulasuaa.somee.com/Home/login"
+
+        cuerpoMensaje = "<h3>Estimado Usuario</h3>" +
+                    "<p>Le informamos que se ha generado las credenciales para acceder al Sistema de Reserva de Aulas.<br>" +
+                    "<br><b>Usuario:<i>" + user + "</i></b>" +
+                    "<br><b>Contraseña:<i>" + pass + "</i></b>" +
+                    "<br><br><b><a href=""" + url + """>Ingresar</a></b>"
+
+        emailDestinatario = email
+        Dim SendMailAsync As New Thread(AddressOf SendMail)
+        SendMailAsync.Start()
     End Sub
 
 End Class

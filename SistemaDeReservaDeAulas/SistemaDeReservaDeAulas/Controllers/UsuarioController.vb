@@ -35,20 +35,26 @@ Namespace Controllers
         End Function
 
         <HttpPost()>
-        Function Create(id_rol As Integer, id_persona As Integer, user_name As String, password As String, id_dpto As Integer) As JsonResult
+        Function Create(id_rol As String, id_persona As Integer, user_name As String, id_dpto As Integer) As JsonResult
 
             If Session("user") Is Nothing Then
                 Return Json("")
             Else
+                Dim vPass As String = Usuario.CrearPassword(5)
                 Dim vUsuario As New Usuario
                 With vUsuario
                     .pId_rol = id_rol
                     .pId_persona = id_persona
                     .pUser_name = user_name
-                    .pPassword = password
+                    .pPassword = vPass
                     .pId_dpto = id_dpto
                     .InsertarUsuario()
                 End With
+
+                Dim vPersona As New Persona
+                Dim vEmail As New Mail
+                vEmail.EnvioMailPassword(user_name, vPass, vPersona.RecuperarPersona(id_persona).pEmail)
+
                 Return Json("")
             End If
 
@@ -68,7 +74,7 @@ Namespace Controllers
         End Function
 
         <HttpPost()>
-        Function Edit(id_usuario As Integer, id_rol As Integer, id_persona As Integer, user_name As String, id_dpto As Integer) As JsonResult
+        Function Edit(id_usuario As Integer, id_rol As String, id_persona As Integer, user_name As String, id_dpto As Integer) As JsonResult
 
             If Session("user") Is Nothing Then
                 Return Json("")
@@ -103,6 +109,17 @@ Namespace Controllers
 
         End Function
 
+        <HttpPost()>
+        Function ActualizarPassword(password As String) As JsonResult
+
+            If Session("user") Is Nothing Then
+                Return Json("")
+            Else
+                Usuario.ActualizarPassword(Session("id_usuario"), password)
+                Return Json("")
+            End If
+
+        End Function
 
     End Class
 End Namespace

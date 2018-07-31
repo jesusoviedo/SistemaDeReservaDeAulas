@@ -1,8 +1,9 @@
-﻿Imports ModeloDeNegocio.Util
+﻿Imports System.Text
+Imports ModeloDeNegocio.Util
 Public Class Usuario
 
     Private id_usuario As Integer
-    Private id_rol As Integer
+    Private id_rol As String
     Private id_persona As Integer
     Private user_name As String
     Private password As String
@@ -10,6 +11,7 @@ Public Class Usuario
     Private resultado As Integer
     Private nombre_rol As String
     Private nombre_persona As String
+    Private nombre_dpto As String
 
     Public Property pId_usuario As Integer
         Get
@@ -20,11 +22,11 @@ Public Class Usuario
         End Set
     End Property
 
-    Public Property pId_rol As Integer
+    Public Property pId_rol As String
         Get
             Return id_rol
         End Get
-        Set(value As Integer)
+        Set(value As String)
             id_rol = value
         End Set
     End Property
@@ -89,6 +91,15 @@ Public Class Usuario
         End Get
         Set(value As String)
             nombre_persona = value
+        End Set
+    End Property
+
+    Public Property pNombre_dpto As String
+        Get
+            Return nombre_dpto
+        End Get
+        Set(value As String)
+            nombre_dpto = value
         End Set
     End Property
 
@@ -164,6 +175,7 @@ Public Class Usuario
                     .id_persona = dtUsuario.Rows(0).Item("id_persona")
                     .id_dpto = dtUsuario.Rows(0).Item("id_dpto")
                     .nombre_persona = dtUsuario.Rows(0).Item("nombre")
+                    .nombre_dpto = dtUsuario.Rows(0).Item("nombre_dpto")
                 End With
                 Return vUsuario
             Else
@@ -173,5 +185,23 @@ Public Class Usuario
             Throw ex
         End Try
     End Function
+
+    Public Shared Function CrearPassword(longitud As Integer) As String
+        Dim caracteres As String = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
+        Dim res As New StringBuilder()
+        Dim rnd As New Random()
+        While 0 < System.Math.Max(System.Threading.Interlocked.Decrement(longitud), longitud + 1)
+            res.Append(caracteres(rnd.[Next](caracteres.Length)))
+        End While
+        Return res.ToString()
+    End Function
+
+    Public Shared Sub ActualizarPassword(vId_usuario As Integer, vPassword As String)
+        Try
+            gDatos.Ejecutar("SpActualizarPassword", vId_usuario, vPassword)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 
 End Class

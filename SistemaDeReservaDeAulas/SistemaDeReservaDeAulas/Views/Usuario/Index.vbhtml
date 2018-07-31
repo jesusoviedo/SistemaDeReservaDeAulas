@@ -107,14 +107,7 @@ End Code
                         <label class="form">Usuario:</label>
                         <input class="form-control" type="text" name="txtUser_name" id="txtUser_name" placeholder="" required />
                     </div>
-                </div>
-
-                <div class="form">
-                    <div class="form-group">
-                        <label class="form">Contraseña:</label>
-                        <input class="form-control" type="password" name="txtPassword" id="txtPassword" placeholder="" required />
-                    </div>
-                </div>
+                </div>               
 
             </div>
 
@@ -177,13 +170,6 @@ End Code
                     </div>
                 </div>
 
-                @*<div class="form">
-                    <div class="form-group">
-                        <label class="form">Contraseña:</label>
-                        <input class="form-control" type="password" name="pPassword" id="pPassword" placeholder="" required />
-                    </div>
-                </div>*@
-
             </div>
 
             <div class="modal-footer">
@@ -230,7 +216,6 @@ End Code
                 id_rol: $("#txtId_rol").val(),
                 id_persona: $("#txtId_persona").val(),
                 user_name: $("#txtUser_name").val(),
-                password: $("#txtPassword").val(),
                 id_dpto: $("#txtId_dpto").val()
             };
 
@@ -280,6 +265,8 @@ End Code
                 user_name: $("#pUser_name").val(),
                 id_dpto: $("#pId_dpto").val()
             };
+
+            console.log(parametro);
 
             $.ajax({
                 type: "POST",

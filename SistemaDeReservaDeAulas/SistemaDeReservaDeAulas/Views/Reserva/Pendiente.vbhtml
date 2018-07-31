@@ -29,9 +29,11 @@ End Code
                     <td>@vReserva("nombre_materia")</td>
                     <td>@vReserva("nombre") @vReserva("apellido")</td>
                     <td>
-                        <a class="btn btn-outline-info" href="javascript:InfoReserva(@vReserva("id_reserva"))">Ver detalle</a>
-                        <a class="btn btn-outline-success" href="javascript:ConfirmarApro(@vReserva("id_reserva"))">Autorizar</a>
-                        <a class="btn btn-outline-danger" href="javascript:ConfirmarRech(@vReserva("id_reserva"))">Rechazar</a>
+                        <div class="btn-group-vertical">
+                            <a class="btn btn-outline-info" href="javascript:InfoReserva(@vReserva("id_reserva"))">Ver detalle</a>
+                            <a class="btn btn-outline-success" href="javascript:ConfirmarApro(@vReserva("id_reserva"))">Autorizar</a>
+                            <a class="btn btn-outline-danger" href="javascript:ConfirmarRech(@vReserva("id_reserva"))">Rechazar</a>
+                        </div>
                     </td>
                 </tr>
             Next

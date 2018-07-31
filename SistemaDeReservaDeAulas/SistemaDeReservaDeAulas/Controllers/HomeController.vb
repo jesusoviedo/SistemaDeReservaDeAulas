@@ -11,8 +11,9 @@ Namespace Controllers
             If Session("user") Is Nothing Then
                 Return RedirectToAction("ErrorSesion", "Home")
             Else
-                'If por Then rol
-                Dim dtReservaSolicitas As New DataTable
+                If Session("rol") = "Profesor" Then
+
+                    Dim dtReservaSolicitas As New DataTable
                     dtReservaSolicitas = Reserva.ConsultarReservaPorUsuario(Session("id_usuario"), "P")
                     ViewData("ReservasSolicitas") = dtReservaSolicitas.AsEnumerable
 
@@ -28,7 +29,25 @@ Namespace Controllers
                     dtReservaAnulada = Reserva.ConsultarReservaPorUsuario(Session("id_usuario"), "X")
                     ViewData("ReservasAnuladas") = dtReservaAnulada.AsEnumerable
 
-                    Return View()
+                End If
+
+                If Session("rol") = "Aprovador" Or Session("rol") = "Administrador" Then
+
+                    Dim dtReservaSolicitas As New DataTable
+                    dtReservaSolicitas = Reserva.ConsultarReservaPorDepartamento(Session("id_dpto"), "P")
+                    ViewData("ReservasSolicitas") = dtReservaSolicitas.AsEnumerable
+
+                    Dim dtReservaAprovada As New DataTable
+                    dtReservaAprovada = Reserva.ConsultarReservaPorDepartamento(Session("id_dpto"), "A")
+                    ViewData("ReservasAprovadas") = dtReservaAprovada.AsEnumerable
+
+                    Dim dtReservaRechazada As New DataTable
+                    dtReservaRechazada = Reserva.ConsultarReservaPorDepartamento(Session("id_dpto"), "R")
+                    ViewData("ReservasRechazadas") = dtReservaRechazada.AsEnumerable
+
+                End If
+
+                Return View()
 
             End If
 
@@ -84,6 +103,7 @@ Namespace Controllers
                 Session("id_rol") = vUsuario.pId_rol
                 Session("rol") = vUsuario.pNombre_rol
                 Session("id_dpto") = vUsuario.pId_dpto
+                Session("nombre_dpto") = vUsuario.pNombre_dpto
                 Return RedirectToAction("Index", "Home")
             End If
 

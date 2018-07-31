@@ -201,10 +201,10 @@ Public Class Reserva
         End Try
     End Sub
 
-    Public Shared Function ConsultarCantidadReserva() As DataTable
+    Public Shared Function ConsultarCantidadReserva(vId As Integer, vTipoConsulta As String) As DataTable
         Try
             Dim dtReserva As New DataTable
-            dtReserva = gDatos.TraerDataTable("SpConsultarCantidadReserva")
+            dtReserva = gDatos.TraerDataTable("SpConsultarCantidadReserva", vId, vTipoConsulta)
             Return dtReserva
         Catch ex As Exception
             Throw ex
@@ -228,5 +228,15 @@ Public Class Reserva
             Throw ex
         End Try
     End Sub
+
+    Public Shared Function ConsultarReservaPorDepartamento(vId_departamento As Integer, vEstado As String) As DataTable
+        Try
+            Dim dtReserva As New DataTable
+            dtReserva = gDatos.TraerDataTable("SpConsultarReservaPorDepartamento", vId_departamento, vEstado)
+            Return dtReserva
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
 
 End Class

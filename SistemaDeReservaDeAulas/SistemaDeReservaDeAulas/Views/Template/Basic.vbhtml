@@ -356,84 +356,153 @@ ga('create', 'UA-30027142-1', 'w3layouts.com');
             </div>
             <!--slider menu-->
             <div class="sidebar-menu">
+
+
+
                 <div class="logo" style="width: 100%;">
                     <a href="#" class="sidebar-icon"><span class="fa fa-bars"></span></a>
                 </div>
                 <div class="menu">
                     <ul id="menu">
-                        <li id="menu-home"><a href="/Home/"><i class="fa fa-tachometer"></i><span>Dashboard</span></a></li>
-                        <li>
-                            <a href="#"><i class="fa fa-cogs"></i><span>Mantener</span><span class="fa fa-angle-right" style="float: right"></span></a>
-                            <ul>
-                                <li><a href="/Usuario/">Usuario</a></li>
-                                <li><a href="/Persona/">Persona</a></li>
-                                @*<li><a href="/DetalleCurso/">Detalle de Curso</a></li>
-                                <li><a href="/DetalleRol/">Detalle de Rol</a></li>*@
-                                <li><a href="/Materia/">Materia</a></li>
-                                <li><a href="/Departamento/">Departamento</a></li>
-                                <li><a href="/EstadoReserva/">Estado reserva</a></li>
-                                <li><a href="/TipoAula/">Tipo de aula</a></li>
-                                <li><a href="/Piso/">Piso</a></li>
-                                <li><a href="/TipoDocumento/">Tipo de Documento</a></li>
-                                <li><a href="/TipoInsumo/">Tipo de Insumo</a></li>
-                                <li><a href="/Turno/">Turno</a></li>
-                                <li><a href="/Rol/">Rol</a></li>
-                                <li><a href="/Permiso/">Permiso</a></li>
-                                <li><a href="/Dia/">Día</a></li>
-                                <li><a href="/Insumo/">Insumo</a></li>
-                                <li><a href="/Facultad/">Facultad</a></li>
-                                <li><a href="/Aula/">Aula</a></li>
-                                <li><a href="/Curso/">Curso</a></li>
-                            </ul>
-                        </li>
+                        <li id="menu-home"><a href="/Home/"><i class="fa fa-home"></i><span>Principal</span></a></li>
                         <li id="menu-comunicacao">
-                            <a href="#"><i class="fa fa-book nav_icon"></i><span>Element</span><span class="fa fa-angle-right" style="float: right"></span></a>
+                            <a href="#"><i class="fa fa-book nav_icon"></i><span>Reserva</span><span class="fa fa-angle-right" style="float: right"></span></a>
                             <ul id="menu-comunicacao-sub">
-                                <li id="menu-mensagens" style="width: 120px">
-                                    <a href="buttons.html">Buttons</a>
-                                </li>
+
                                 @*<li id="menu-arquivos"><a href="typography.html">Typography</a></li>
                                 <li id="menu-arquivos"><a href="icons.html">Icons</a></li>*@
                                 <li id="menu-arquivos"><a href="/Reserva/Index">Solicitar Reserva</a></li>
                                 @*<li id="menu-arquivos"><a href="/Reserva/Index2">Prototipo Reserva</a></li>*@
                                 <li id="menu-arquivos"><a href="/Reserva/Pendiente">Pendiente</a></li>
                                 @*<li id="menu-arquivos"><a href="">Cerrar Session</a></li>*@
+                                <li><a href="/EstadoReserva/">Estado reserva</a></li>
                             </ul>
                         </li>
-                        <li><a href="maps.html"><i class="fa fa-map-marker"></i><span>Maps</span></a></li>
-                        @*<li id="menu-academico">
-                            <a href="#"><i class="fa fa-file-text"></i><span>Pages</span><span class="fa fa-angle-right" style="float: right"></span></a>
-                            <ul id="menu-academico-sub">
-                                <li id="menu-academico-boletim"><a href="login.html">Login</a></li>
-                                <li id="menu-academico-avaliacoes"><a href="signup.html">Sign Up</a></li>
-                            </ul>
-                        </li>*@
-
-                        <li><a href="charts.html"><i class="fa fa-bar-chart"></i><span>Charts</span></a></li>
+ 
                         <li>
-                            <a href="#"><i class="fa fa-envelope"></i><span>Mailbox</span><span class="fa fa-angle-right" style="float: right"></span></a>
+                            <a href="#"><i class="fa fa-user"></i><span>Funcionario</span><span class="fa fa-angle-right" style="float: right"></span></a>
+                            <ul>
+                                <li><a href="/Usuario/">Usuario</a></li>
+                                <li><a href="/Persona/">Persona</a></li>
+                                <li><a href="/Rol/">Rol</a></li>
+                                <li><a href="/Permiso/">Permiso</a></li>
+                                <li><a href="/TipoDocumento/">Tipo de Documento</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-windows"></i><span>Curso</span><span class="fa fa-angle-right" style="float: right"></span></a>
+                            <ul>
+                                <li><a href="/Aula/">Aula</a></li>
+                                <li><a href="/Curso/">Curso</a></li>
+                                <li><a href="/Materia/">Materia</a></li>
+                                <li><a href="/TipoAula/">Tipo de aula</a></li>
+                                <li><a href="/Turno/">Turno</a></li>
+                                <li><a href="/Dia/">Día</a></li>
+                                <li><a href="/Piso/">Piso</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-university"></i><span>Universidad</span><span class="fa fa-angle-right" style="float: right"></span></a>
+                            <ul>
+                                <li><a href="/Facultad/">Facultad</a></li>
+                                <li><a href="/Departamento/">Departamento</a></li>                             
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-pencil"></i><span>Insumos</span><span class="fa fa-angle-right" style="float: right"></span></a>
+                            <ul>
+                                <li><a href="/TipoInsumo/">Tipo de Insumo</a></li>
+                                <li><a href="/Insumo/">Insumo</a></li>
+                            </ul>
+                        </li>
+                       
+
+                        @*<li><a href="charts.html"><i class="fa fa-bar-chart"></i><span>Charts</span></a></li>*@
+                        <li>
+                            @*<a href="#"><i class="fa fa-envelope"></i><span>Mailbox</span><span class="fa fa-angle-right" style="float: right"></span></a>*@
                             <ul id="menu-academico-sub">
                                 @*<li id="menu-academico-avaliacoes"><a href="inbox.html">Inbox</a></li>
                                 <li id="menu-academico-boletim"><a href="inbox-details.html">Compose email</a></li>*@
                             </ul>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-cog"></i><span>System</span><span class="fa fa-angle-right" style="float: right"></span></a>
+                            @*<a href="#"><i class="fa fa-cog"></i><span>System</span><span class="fa fa-angle-right" style="float: right"></span></a>*@
                             <ul id="menu-academico-sub">
                                 @*<li id="menu-academico-avaliacoes"><a href="404.html">404</a></li>
                                 <li id="menu-academico-boletim"><a href="blank.html">Blank</a></li>*@
                             </ul>
                         </li>
                         <li>
-                            <a href="/Home/CerrarSesion"><i class="fa fa-shopping-cart"></i><span>Cerrar Sesión</span></a>
+                            <a href="#"><i class="fa fa-cog"></i><span>Usuario</span><span class="fa fa-angle-right" style="float: right"></span></a>
+                            <ul>
+                                <li><a href="javascript:Confirmar()">Cambiar contraseña</a></li>
+                                <li><a href="/Home/CerrarSesion">Cerrar Sesión</a></li>
+                            </ul>
                         </li>
                     </ul>
                 </div>
             </div>
             <div class="clearfix"> </div>
         </div>
+
+
+        <!-- Modal para cambiar contraseña -->
+        <div class="modal fade" id="modal_pass_change" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Cambio de Contraseña</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+
+                        <div class="form">
+                            <div class="form-group">
+                                <input class="form-control" type="password" name="txtpassword" id="txtpassword" placeholder="Nueva contraseña" required max="5" min="5" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-outline-success" data-dismiss="modal" onclick="CambiarPass()">Cambiar contraseña</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal para mostrar mensjar -->
+        <div class="modal fade" id="modal_pass_change_sucess" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Cambio de Contraseña</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+                            Contraseña cambiada correctamente
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cerrar</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
         <!--slide bar menu end here-->
-        <script>
+<script>
 var toggle = true;
 
 $(".sidebar-icon").click(function() {
@@ -472,22 +541,46 @@ $(".sidebar-icon").click(function() {
                 $('#myTable').DataTable();
             });
 
-            //window.onunload = window.beforeunload = function () {
+            function CerrarSesionDeUsuario() {
+                $.ajax({
+                    type: "GET",
+                    url: '/Home/CerrarSesion',
+                    data: null,
+                    dataType: "JSON",
+                    success: function (msg) {                        
+                    },
+                    error: function () {
+                        console.log("adios");
+                    }
+                });
 
-            //    $.ajax({
-            //        type: "GET",
-            //        url: '/Home/CerrarSesion',
-            //        data: null,
-            //        dataType: "JSON",
-            //        success: function (msg) {
-            //            console.log("adios");
-            //        },
-            //        error: function () {
-            //            console.log("adios");
-            //        }
-            //    });
+            };
 
-            //};
+            function Confirmar() {
+                $('#modal_pass_change').modal('show');
+                
+            };
+
+            function CambiarPass() {
+                var parametro = {
+                    password: $("#txtpassword").val(),
+                };
+
+                $.ajax({
+                    type: "POST",
+                    url: '/Usuario/ActualizarPassword',
+                    data: parametro,
+                    dataType: "JSON",
+                    success: function (msg) {
+                        $('#modal_pass_change_sucess').modal('show');
+                        //CerrarSesionDeUsuario();
+                    },
+                    error: function () {
+                        alert("se ha producido un error.");
+                    }
+                });
+            }
+
 
         </script>
 

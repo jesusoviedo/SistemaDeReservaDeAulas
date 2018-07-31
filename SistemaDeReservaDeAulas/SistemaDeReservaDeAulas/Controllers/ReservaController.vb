@@ -88,15 +88,21 @@ Namespace Controllers
             If Session("user") Is Nothing Then
                 Return RedirectToAction("ErrorSesion", "Home")
             Else
-                Dim dtReserva As New DataTable
-                dtReserva = Reserva.ConsultarReservaPendientes(Session("id_dpto"))
-                ViewData("ReservasPendientes") = dtReserva.AsEnumerable
 
-                Dim dtEstadoReserva As New DataTable
-                dtEstadoReserva = EstadoReserva.RecuperarEstadoReserva()
-                ViewData("EstadosReservas") = dtEstadoReserva.AsEnumerable
+                If Session("rol") = "Profesor" Then
+                    Return RedirectToAction("Index", "Home")
+                Else
+                    Dim dtReserva As New DataTable
+                    dtReserva = Reserva.ConsultarReservaPendientes(Session("id_dpto"))
+                    ViewData("ReservasPendientes") = dtReserva.AsEnumerable
 
-                Return View()
+                    Dim dtEstadoReserva As New DataTable
+                    dtEstadoReserva = EstadoReserva.RecuperarEstadoReserva()
+                    ViewData("EstadosReservas") = dtEstadoReserva.AsEnumerable
+
+                    Return View()
+                End If
+
             End If
 
         End Function
@@ -136,8 +142,17 @@ Namespace Controllers
             If Session("user") Is Nothing Then
                 Return Json("")
             Else
+                Dim vId As Integer
+                Dim vTipoConsulta As String
+                If Session("rol") = "Profesor" Then
+                    vId = Session("id_usuario")
+                    vTipoConsulta = "P"
+                Else
+                    vId = Session("id_dpto")
+                    vTipoConsulta = "S"
+                End If
                 Dim dtReserva As New DataTable
-                dtReserva = Reserva.ConsultarCantidadReserva()
+                dtReserva = Reserva.ConsultarCantidadReserva(vId, vTipoConsulta)
                 Return Json(JsonConvert.SerializeObject(dtReserva))
             End If
 
@@ -146,7 +161,7 @@ Namespace Controllers
         <HttpPost()>
         Function Anular(id_reserva As Integer) As JsonResult
 
-            If Session("user") Is Nothing Then
+            If Session("rol") Is Nothing Then
                 Return Json("")
             Else
                 Reserva.AnularReserva(id_reserva)
