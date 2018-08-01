@@ -5,38 +5,40 @@ End Code
 
 
 <div class="container">
-    <h3>Usuario</h3>
+    <h3>Usuario</h3><br />
     <a class="btn btn-outline-primary btn-lg btn-block" href="javascript:Agregar()"><ion-icon name="add"></ion-icon>Nuevo Usuario</a>
     <input type="hidden" id="id_usuario" />
     <br />
     <br />
-    <table class="table table-hover table-bordered" id="myTable">
-        <thead>
-            <tr>
-                <th>Código</th>
-                <th>Nombre</th>
-                <th>Usuario</th>
-                <th>Rol</th>
-                <th>Departamento</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            @For Each vUsuario In ViewData("Usuarios")
-                @<tr>
-                    <td>@vUsuario("id_usuario")</td>
-                    <td>@vUsuario("nombre")</td>                     
-                    <td>@vUsuario("user_name")</td>
-                    <td>@vUsuario("nombre_rol")</td>
-                    <td>@vUsuario("nombre_dpto")</td>
-                    <td>
-                        <a class="btn btn-outline-warning" href="javascript:ConsultarRegistro(@vUsuario("id_usuario"))"><ion-icon name="document"></ion-icon></a>
-                        <a class="btn btn-outline-danger" href="javascript:Confirmar(@vUsuario("id_usuario"))"><ion-icon name="trash"></ion-icon></a>
-                    </td>
+    <div class="table-responsive">
+        <table class="table table-hover table-bordered" id="myTable">
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Nombre</th>
+                    <th>Usuario</th>
+                    <th>Rol</th>
+                    <th>Departamento</th>
+                    <th>Acciones</th>
                 </tr>
-            Next
-        <tbody>
-    </table>
+            </thead>
+            <tbody>
+                @For Each vUsuario In ViewData("Usuarios")
+                    @<tr>
+                        <td>@vUsuario("id_usuario")</td>
+                        <td>@vUsuario("nombre")</td>
+                        <td>@vUsuario("user_name")</td>
+                        <td>@vUsuario("nombre_rol")</td>
+                        <td>@vUsuario("nombre_dpto")</td>
+                        <td>
+                            <a class="btn btn-outline-warning" href="javascript:ConsultarRegistro(@vUsuario("id_usuario"))"><ion-icon name="document"></ion-icon></a>
+                            <a class="btn btn-outline-danger" href="javascript:Confirmar(@vUsuario("id_usuario"))"><ion-icon name="trash"></ion-icon></a>
+                        </td>
+                    </tr>
+                Next
+            <tbody>
+        </table>
+    </div>
 </div>
 
 

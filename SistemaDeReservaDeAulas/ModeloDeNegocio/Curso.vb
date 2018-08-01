@@ -120,6 +120,16 @@ Public Class Curso
         End Try
     End Function
 
+    Public Shared Function RecuperarCursoPorDepartamento(vId_dpto As Integer) As DataTable
+        Try
+            Dim dtCurso As New DataTable
+            dtCurso = gDatos.TraerDataTable("SpConsultarCursoPorDepartamento", vId_dpto)
+            Return dtCurso
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
     Public Function RecuperarCurso(vNroCurso As Integer) As Curso
         Try
             Dim dtCurso As New DataTable

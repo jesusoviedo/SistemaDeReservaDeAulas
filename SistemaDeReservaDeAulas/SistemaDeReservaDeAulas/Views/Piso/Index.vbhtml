@@ -5,32 +5,34 @@ End Code
 
 
 <div class="container">
-    <h3>Piso</h3>
+    <h3>Piso</h3><br />
     <a class="btn btn-outline-primary btn-lg btn-block" href="javascript:Agregar()"><ion-icon name="add"></ion-icon>Nuevo Piso</a>
     <input type="hidden" id="id_piso" />
     <br />
     <br />
-    <table class="table table-hover table-bordered" id="myTable">
-        <thead>
-            <tr>
-                <th>Código</th>
-                <th>Descripción</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            @For Each vPiso In ViewData("Pisos")
-                @<tr>
-                    <td>@vPiso("id_piso")</td>
-                    <td>@vPiso("descripcion")</td>
-                    <td>
-                        <a class="btn btn-outline-warning" href="javascript:ConsultarRegistro(@vPiso("id_piso"))"><ion-icon name="document"></ion-icon></a>
-                        <a class="btn btn-outline-danger" href="javascript:Confirmar(@vPiso("id_piso"))"><ion-icon name="trash"></ion-icon></a>
-                    </td>
+    <div class="table-responsive">
+        <table class="table table-hover table-bordered" id="myTable">
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Descripción</th>
+                    <th>Acciones</th>
                 </tr>
-            Next
-        <tbody>
-    </table>
+            </thead>
+            <tbody>
+                @For Each vPiso In ViewData("Pisos")
+                    @<tr>
+                        <td>@vPiso("id_piso")</td>
+                        <td>@vPiso("descripcion")</td>
+                        <td>
+                            <a class="btn btn-outline-warning" href="javascript:ConsultarRegistro(@vPiso("id_piso"))"><ion-icon name="document"></ion-icon></a>
+                            <a class="btn btn-outline-danger" href="javascript:Confirmar(@vPiso("id_piso"))"><ion-icon name="trash"></ion-icon></a>
+                        </td>
+                    </tr>
+                Next
+            <tbody>
+        </table>
+    </div>
 </div>
 
 
@@ -71,8 +73,8 @@ End Code
 
                 <div class="form">
                     <div class="form-group">
-                        @*<label class="form">Descripción:</label>*@
-                        <input class="form-control" type="text" name="txtDescripcion" id="Descripcion" placeholder="Descripción" required />
+                        <label class="form" for="txtDescripcion">Piso:</label>
+                        <input class="form-control" type="text" name="txtDescripcion" id="Descripcion" placeholder="" required />
                     </div>
                 </div>
             </div>
@@ -103,8 +105,8 @@ End Code
                 <div class="form">
                     <input type="hidden" name="pId_piso" id="pId_piso" required />
                     <div class="form-group">
-                        <label class="form" for="pDescripcion">Descripción:</label>
-                        <input class="form-control" type="text" name="txtDescripcion" id="pDescripcion" placeholder="Descripción" required />
+                        <label class="form" for="pDescripcion">Piso:</label>
+                        <input class="form-control" type="text" name="txtDescripcion" id="pDescripcion" placeholder="" required />
                     </div>
                 </div>
             </div>

@@ -60,7 +60,8 @@ End If
 End If
 
 @If True Then
-    @<Table Class="table table-hover table-bordered" id="reservaSol">
+    @<div Class="table-responsive">
+    <Table Class="table table-hover table-bordered" id="reservaSol">
         <thead>
             <tr>
                 <th> Fecha solicitud</th>
@@ -73,7 +74,7 @@ End If
                 @If Session("rol") = "Profesor" Then
                     @<th> Acciones</th>
                 End If
-                
+
             </tr>
         </thead>
         <tbody>
@@ -87,18 +88,20 @@ End If
                     <td>@vReservaSolicita("nro_curso")</td>
                     <td>@vReservaSolicita("nombre_materia")</td>
 
-                     @If Session("rol") = "Profesor" Then
+                    @If Session("rol") = "Profesor" Then
                         @<td>
-                        <a Class="btn btn-outline-danger" href="javascript:ConfirmarAnulacion(@vReservaSolicita("id_reserva"))">Anular reserva</a>
+                            <a Class="btn btn-outline-danger" href="javascript:ConfirmarAnulacion(@vReservaSolicita("id_reserva"))">Anular reserva</a>
                         </td>
-                     End If
+                    End If
 
                 </tr>
             Next
         <tbody>
     </Table>
+</div>
 
-    @<table class="table table-hover table-bordered" id="reservaApr">
+    @<div Class="table-responsive">
+    <table class="table table-hover table-bordered" id="reservaApr">
         <thead>
             <tr>
                 <th>Fecha solicitud</th>
@@ -124,8 +127,10 @@ End If
             Next
         <tbody>
     </table>
+</div>
 
-    @<table class="table table-hover table-bordered" id="reservaRec">
+    @<div Class="table-responsive">
+    <table class="table table-hover table-bordered" id="reservaRec">
         <thead>
             <tr>
                 <th>Fecha solicitud</th>
@@ -151,10 +156,13 @@ End If
             Next
         <tbody>
     </table>
+</div>
+
 
 
     @If Session("rol") = "Profesor" Then
-    @<table class="table table-hover table-bordered" id="reservaAnu">
+    @<div Class="table-responsive">
+    <table class="table table-hover table-bordered" id="reservaAnu">
         <thead>
             <tr>
                 <th>Fecha solicitud</th>
@@ -180,238 +188,239 @@ End If
             Next
         <tbody>
     </table>
-    End If
+</div>
+End If
 End If
 
 
-@*@If Session("rol") = "Aprovador" Or Session("rol") = "Administrador" Then
+    @*@If Session("rol") = "Aprovador" Or Session("rol") = "Administrador" Then
 
-    @<Table Class="table table-hover table-bordered" id="reservaSol">
-        <thead>
-            <tr>
-                <th> Fecha solicitud</th>
-                <th> Fecha reserva</th>
-                <th> Horario</th>
-                <th> Estado</th>
-                <th> Aula</th>
-                <th> N° Curso</th>
-                <th> Materia</th>
-                <th> Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            @For Each vReservaSolicita In ViewData("ReservasSolicitas")
-                @<tr>
-                    <td>@vReservaSolicita("fecha_solicitud")</td>
-                    <td>@vReservaSolicita("fecha_reserva")</td>
-                    <td>@vReservaSolicita("hora_inicio") - @vReservaSolicita("hora_fin")</td>
-                    <td>@vReservaSolicita("estado_reserva")</td>
-                    <td>@vReservaSolicita("aula")</td>
-                    <td>@vReservaSolicita("nro_curso")</td>
-                    <td>@vReservaSolicita("nombre_materia")</td>
-                    <td>
-                        <a class="btn btn-outline-danger" href="javascript:ConfirmarAnulacion(@vReservaSolicita("id_reserva"))">Anular reserva</a>
-                    </td>
-                </tr>
-            Next
-        <tbody>
-    </Table>
+            @<Table Class="table table-hover table-bordered" id="reservaSol">
+                <thead>
+                    <tr>
+                        <th> Fecha solicitud</th>
+                        <th> Fecha reserva</th>
+                        <th> Horario</th>
+                        <th> Estado</th>
+                        <th> Aula</th>
+                        <th> N° Curso</th>
+                        <th> Materia</th>
+                        <th> Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @For Each vReservaSolicita In ViewData("ReservasSolicitas")
+                        @<tr>
+                            <td>@vReservaSolicita("fecha_solicitud")</td>
+                            <td>@vReservaSolicita("fecha_reserva")</td>
+                            <td>@vReservaSolicita("hora_inicio") - @vReservaSolicita("hora_fin")</td>
+                            <td>@vReservaSolicita("estado_reserva")</td>
+                            <td>@vReservaSolicita("aula")</td>
+                            <td>@vReservaSolicita("nro_curso")</td>
+                            <td>@vReservaSolicita("nombre_materia")</td>
+                            <td>
+                                <a class="btn btn-outline-danger" href="javascript:ConfirmarAnulacion(@vReservaSolicita("id_reserva"))">Anular reserva</a>
+                            </td>
+                        </tr>
+                    Next
+                <tbody>
+            </Table>
 
-    @<table class="table table-hover table-bordered" id="reservaApr">
-        <thead>
-            <tr>
-                <th>Fecha solicitud</th>
-                <th>Fecha reserva</th>
-                <th>Horario</th>
-                <th>Estado</th>
-                <th>Aula</th>
-                <th>N° Curso</th>
-                <th>Materia</th>
-            </tr>
-        </thead>
-        <tbody>
-            @For Each vReservaAprovada In ViewData("ReservasAprovadas")
-                @<tr>
-                    <td>@vReservaAprovada("fecha_solicitud")</td>
-                    <td>@vReservaAprovada("fecha_reserva")</td>
-                    <td>@vReservaAprovada("hora_inicio") - @vReservaAprovada("hora_fin")</td>
-                    <td>@vReservaAprovada("estado_reserva")</td>
-                    <td>@vReservaAprovada("aula")</td>
-                    <td>@vReservaAprovada("nro_curso")</td>
-                    <td>@vReservaAprovada("nombre_materia")</td>
-                </tr>
-            Next
-        <tbody>
-    </table>
+            @<table class="table table-hover table-bordered" id="reservaApr">
+                <thead>
+                    <tr>
+                        <th>Fecha solicitud</th>
+                        <th>Fecha reserva</th>
+                        <th>Horario</th>
+                        <th>Estado</th>
+                        <th>Aula</th>
+                        <th>N° Curso</th>
+                        <th>Materia</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @For Each vReservaAprovada In ViewData("ReservasAprovadas")
+                        @<tr>
+                            <td>@vReservaAprovada("fecha_solicitud")</td>
+                            <td>@vReservaAprovada("fecha_reserva")</td>
+                            <td>@vReservaAprovada("hora_inicio") - @vReservaAprovada("hora_fin")</td>
+                            <td>@vReservaAprovada("estado_reserva")</td>
+                            <td>@vReservaAprovada("aula")</td>
+                            <td>@vReservaAprovada("nro_curso")</td>
+                            <td>@vReservaAprovada("nombre_materia")</td>
+                        </tr>
+                    Next
+                <tbody>
+            </table>
 
-    @<table class="table table-hover table-bordered" id="reservaRec">
-        <thead>
-            <tr>
-                <th>Fecha solicitud</th>
-                <th>Fecha reserva</th>
-                <th>Horario</th>
-                <th>Estado</th>
-                <th>Aula</th>
-                <th>N° Curso</th>
-                <th>Materia</th>
-            </tr>
-        </thead>
-        <tbody>
-            @For Each vReservaRechazada In ViewData("ReservasRechazadas")
-                @<tr>
-                    <td>@vReservaRechazada("fecha_solicitud")</td>
-                    <td>@vReservaRechazada("fecha_reserva")</td>
-                    <td>@vReservaRechazada("hora_inicio") - @vReservaRechazada("hora_fin")</td>
-                    <td>@vReservaRechazada("estado_reserva")</td>
-                    <td>@vReservaRechazada("aula")</td>
-                    <td>@vReservaRechazada("nro_curso")</td>
-                    <td>@vReservaRechazada("nombre_materia")</td>
-                </tr>
-            Next
-        <tbody>
-    </table>
-End If*@
+            @<table class="table table-hover table-bordered" id="reservaRec">
+                <thead>
+                    <tr>
+                        <th>Fecha solicitud</th>
+                        <th>Fecha reserva</th>
+                        <th>Horario</th>
+                        <th>Estado</th>
+                        <th>Aula</th>
+                        <th>N° Curso</th>
+                        <th>Materia</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @For Each vReservaRechazada In ViewData("ReservasRechazadas")
+                        @<tr>
+                            <td>@vReservaRechazada("fecha_solicitud")</td>
+                            <td>@vReservaRechazada("fecha_reserva")</td>
+                            <td>@vReservaRechazada("hora_inicio") - @vReservaRechazada("hora_fin")</td>
+                            <td>@vReservaRechazada("estado_reserva")</td>
+                            <td>@vReservaRechazada("aula")</td>
+                            <td>@vReservaRechazada("nro_curso")</td>
+                            <td>@vReservaRechazada("nombre_materia")</td>
+                        </tr>
+                    Next
+                <tbody>
+            </table>
+        End If*@
 
-<!-- Modal para eliminar -->
-<div class="modal fade" id="modal_conf" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Anular Reserva</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                ¿Desea anular esta Reserva?
-                <input hidden type="text" id="selectId_reserva" />
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-outline-success" onclick="javascript: AnularReserva()">Aceptar</button>
+    <!-- Modal para eliminar -->
+    <div class="modal fade" id="modal_conf" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Anular Reserva</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ¿Desea anular esta Reserva?
+                    <input hidden type="text" id="selectId_reserva" />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-outline-success" onclick="javascript: AnularReserva()">Aceptar</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<script type="text/javascript">
+    <script type="text/javascript">
 
-    $("#btnreservaSol").click(function (i) {
-        $("#reservaSol").show();
-        $("#reservaApr").hide();
-        $("#reservaRec").hide();
-        $("#reservaAnu").hide();
+        $("#btnreservaSol").click(function (i) {
+            $("#reservaSol").show();
+            $("#reservaApr").hide();
+            $("#reservaRec").hide();
+            $("#reservaAnu").hide();
 
-        $(document).ready(function () {
-            $('#reservaSol').DataTable();
-        });
-        $('#reservaApr').parents('div.dataTables_wrapper').first().hide();
-        $('#reservaRec').parents('div.dataTables_wrapper').first().hide();
-        $('#reservaAnu').parents('div.dataTables_wrapper').first().hide();
-        $('#reservaSol').parents('div.dataTables_wrapper').first().show();
-    });
-
-    $("#btnreservaApr").click(function (i) {
-        $("#reservaSol").hide();
-        $("#reservaApr").show();
-        $("#reservaRec").hide();
-        $("#reservaAnu").hide();
-
-        $(document).ready(function () {
-            $('#reservaApr').DataTable();
-        });
-        $('#reservaSol').parents('div.dataTables_wrapper').first().hide();
-        $('#reservaRec').parents('div.dataTables_wrapper').first().hide();
-        $('#reservaAnu').parents('div.dataTables_wrapper').first().hide();
-        $('#reservaApr').parents('div.dataTables_wrapper').first().show();
-    });
-
-    $("#btnreservaRec").click(function (i) {
-        $("#reservaSol").hide();
-        $("#reservaApr").hide();
-        $("#reservaRec").show();
-        $("#reservaAnu").hide();
-
-        $(document).ready(function () {
-            $('#reservaRec').DataTable();
-        });
-        $('#reservaSol').parents('div.dataTables_wrapper').first().hide();
-        $('#reservaApr').parents('div.dataTables_wrapper').first().hide();
-        $('#reservaAnu').parents('div.dataTables_wrapper').first().hide();
-        $('#reservaRec').parents('div.dataTables_wrapper').first().show();
-    });
-
-    $("#btnreservaAnu").click(function (i) {
-        $("#reservaSol").hide();
-        $("#reservaApr").hide();
-        $("#reservaRec").hide();
-        $("#reservaAnu").show();
-
-        $(document).ready(function () {
-            $('#reservaAnu').DataTable();
+            $(document).ready(function () {
+                $('#reservaSol').DataTable();
+            });
+            $('#reservaApr').parents('div.dataTables_wrapper').first().hide();
+            $('#reservaRec').parents('div.dataTables_wrapper').first().hide();
+            $('#reservaAnu').parents('div.dataTables_wrapper').first().hide();
+            $('#reservaSol').parents('div.dataTables_wrapper').first().show();
         });
 
-        $('#reservaSol').parents('div.dataTables_wrapper').first().hide();
-        $('#reservaApr').parents('div.dataTables_wrapper').first().hide();
-        $('#reservaRec').parents('div.dataTables_wrapper').first().hide();
-        $('#reservaAnu').parents('div.dataTables_wrapper').first().show();
-    });
+        $("#btnreservaApr").click(function (i) {
+            $("#reservaSol").hide();
+            $("#reservaApr").show();
+            $("#reservaRec").hide();
+            $("#reservaAnu").hide();
 
-    function ConfirmarAnulacion(id) {
-        $('#selectId_reserva').val(id);
-        $('#modal_conf').modal('show');
-    };
-
-    function AnularReserva() {
-        $.ajax({
-            url: '/Reserva/Anular',
-            data: {
-                id_reserva: $('#selectId_reserva').val()
-            },
-            type: 'POST',
-            dateType: 'JSON',
-            success: function (retorno) {
-                location.reload();
-            },
-            error: function () {
-                alert("se ha producido un error.");
-            }
+            $(document).ready(function () {
+                $('#reservaApr').DataTable();
+            });
+            $('#reservaSol').parents('div.dataTables_wrapper').first().hide();
+            $('#reservaRec').parents('div.dataTables_wrapper').first().hide();
+            $('#reservaAnu').parents('div.dataTables_wrapper').first().hide();
+            $('#reservaApr').parents('div.dataTables_wrapper').first().show();
         });
-    };
 
-    function ConsultarCantidadReservas() {
-        $.ajax({
-            type: "POST",
-            url: '/Reserva/ConsultarCantidadReserva',
-            data: null,
-            dataType:  "JSON",
-            success: function (msg) {
-                var datos = jQuery.parseJSON(msg);
-                console.log(datos);
-                for (i = 0; i < datos.length; i++) {
-                    document.getElementById("reservadoN").innerHTML = datos[i].Aprobado;
-                    document.getElementById("rechazadoN").innerHTML = datos[i].Rechazado;
-                    document.getElementById("pendienteN").innerHTML = datos[i].Pendiente;
+        $("#btnreservaRec").click(function (i) {
+            $("#reservaSol").hide();
+            $("#reservaApr").hide();
+            $("#reservaRec").show();
+            $("#reservaAnu").hide();
 
-                    if (datos[i].Anulado >= 0) {
-                        document.getElementById("anuladoN").innerHTML = datos[i].Anulado;
-                    }
+            $(document).ready(function () {
+                $('#reservaRec').DataTable();
+            });
+            $('#reservaSol').parents('div.dataTables_wrapper').first().hide();
+            $('#reservaApr').parents('div.dataTables_wrapper').first().hide();
+            $('#reservaAnu').parents('div.dataTables_wrapper').first().hide();
+            $('#reservaRec').parents('div.dataTables_wrapper').first().show();
+        });
+
+        $("#btnreservaAnu").click(function (i) {
+            $("#reservaSol").hide();
+            $("#reservaApr").hide();
+            $("#reservaRec").hide();
+            $("#reservaAnu").show();
+
+            $(document).ready(function () {
+                $('#reservaAnu').DataTable();
+            });
+
+            $('#reservaSol').parents('div.dataTables_wrapper').first().hide();
+            $('#reservaApr').parents('div.dataTables_wrapper').first().hide();
+            $('#reservaRec').parents('div.dataTables_wrapper').first().hide();
+            $('#reservaAnu').parents('div.dataTables_wrapper').first().show();
+        });
+
+        function ConfirmarAnulacion(id) {
+            $('#selectId_reserva').val(id);
+            $('#modal_conf').modal('show');
+        };
+
+        function AnularReserva() {
+            $.ajax({
+                url: '/Reserva/Anular',
+                data: {
+                    id_reserva: $('#selectId_reserva').val()
+                },
+                type: 'POST',
+                dateType: 'JSON',
+                success: function (retorno) {
+                    location.reload();
+                },
+                error: function () {
+                    alert("se ha producido un error.");
                 }
+            });
+        };
 
-            },
-            error: function () {
-                console.log("se ha producido un error cargar planilla.");
-            }
-        });
-    }
+        function ConsultarCantidadReservas() {
+            $.ajax({
+                type: "POST",
+                url: '/Reserva/ConsultarCantidadReserva',
+                data: null,
+                dataType: "JSON",
+                success: function (msg) {
+                    var datos = jQuery.parseJSON(msg);
+                    console.log(datos);
+                    for (i = 0; i < datos.length; i++) {
+                        document.getElementById("reservadoN").innerHTML = datos[i].Aprobado;
+                        document.getElementById("rechazadoN").innerHTML = datos[i].Rechazado;
+                        document.getElementById("pendienteN").innerHTML = datos[i].Pendiente;
 
-    window.onload = Function()
-    {
-        $("#reservaSol").hide();
-        $("#reservaApr").hide();
-        $("#reservaRec").hide();
-        $("#reservaAnu").hide();
-        setInterval('ConsultarCantidadReservas()', 1500);
-    }
+                        if (datos[i].Anulado >= 0) {
+                            document.getElementById("anuladoN").innerHTML = datos[i].Anulado;
+                        }
+                    }
 
-</script>
+                },
+                error: function () {
+                    console.log("se ha producido un error cargar planilla.");
+                }
+            });
+        }
+
+        window.onload = Function()
+        {
+            $("#reservaSol").hide();
+            $("#reservaApr").hide();
+            $("#reservaRec").hide();
+            $("#reservaAnu").hide();
+            setInterval('ConsultarCantidadReservas()', 1500);
+        }
+
+    </script>

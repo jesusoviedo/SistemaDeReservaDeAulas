@@ -4,34 +4,38 @@
 End Code
 
 <div class="container">
-    <h3>Departamento</h3>
+    <h3>Departamento</h3><br />
     <a class="btn btn-outline-primary btn-lg btn-block" href="javascript:Agregar()"><ion-icon name="add"></ion-icon>Nuevo Departamento</a>
     <br />
     <br />
     <input type="hidden" id="id_departamento" />
-    <table class="table table-hover table-bordered" id="myTable">
-        <thead>
-            <tr>
-                <th>Código</th>
-                <th>Departamento</th>
-                <th>Facultad</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            @For Each vDepartamento In ViewData("Departamentos")
-                @<tr>
-                    <td>@vDepartamento("id_dpto")</td>
-                    <td>@vDepartamento("nombre_dpto")</td>
-                    <td>@vDepartamento("nombre_facultad")</td>
-                    <td>
-                        <a class="btn btn-outline-warning" href="javascript:ConsultarRegistro(@vDepartamento("id_dpto"))"><ion-icon name="document"></ion-icon></a>
-                        <a class="btn btn-outline-danger" href="javascript:Confirmar(@vDepartamento("id_dpto"))"><ion-icon name="trash"></ion-icon></a>
-                    </td>
+    <div class="table-responsive">
+
+
+        <table class="table table-hover table-bordered" id="myTable">
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Departamento</th>
+                    <th>Facultad</th>
+                    <th>Acciones</th>
                 </tr>
-            Next
-        <tbody>
-    </table>
+            </thead>
+            <tbody>
+                @For Each vDepartamento In ViewData("Departamentos")
+                    @<tr>
+                        <td>@vDepartamento("id_dpto")</td>
+                        <td>@vDepartamento("nombre_dpto")</td>
+                        <td>@vDepartamento("nombre_facultad")</td>
+                        <td>
+                            <a class="btn btn-outline-warning" href="javascript:ConsultarRegistro(@vDepartamento("id_dpto"))"><ion-icon name="document"></ion-icon></a>
+                            <a class="btn btn-outline-danger" href="javascript:Confirmar(@vDepartamento("id_dpto"))"><ion-icon name="trash"></ion-icon></a>
+                        </td>
+                    </tr>
+                Next
+            <tbody>
+        </table>
+    </div>
 </div>
 
 

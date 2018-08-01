@@ -204,4 +204,42 @@ Public Class Usuario
         End Try
     End Sub
 
+    Public Shared Function ConsultarSupervisor(vId_dpto As Integer) As String
+        Try
+            Dim result As String = ""
+            Dim dtUsuario As New DataTable
+            dtUsuario = gDatos.TraerDataTable("SpConsultarSupervisor", vId_dpto)
+
+            For index = 0 To dtUsuario.Rows.Count - 1
+                result = result + dtUsuario.Rows(index).Item("email")
+                If index < dtUsuario.Rows.Count - 1 Then
+                    result = result + ","
+                End If
+            Next
+            Return result
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Shared Function ConsultarProfesorCurso(vId_reserva As Integer) As String
+        Try
+            Dim result As String = ""
+            Dim dtUsuario As New DataTable
+            dtUsuario = gDatos.TraerDataTable("SpConsultarProfesorCurso", vId_reserva)
+
+            For index = 0 To dtUsuario.Rows.Count - 1
+                result = result + dtUsuario.Rows(index).Item("email")
+                If index < dtUsuario.Rows.Count - 1 Then
+                    result = result + ","
+                End If
+            Next
+            Return result
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
 End Class

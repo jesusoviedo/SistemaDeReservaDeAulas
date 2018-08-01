@@ -4,47 +4,48 @@
 End Code
 
 <div class="container">
-    <h3>Curso</h3>
+    <h3>Curso</h3><br />
     <a class="btn btn-outline-primary btn-lg btn-block" href="javascript:Agregar()"><ion-icon name="add"></ion-icon>Nuevo Curso</a>
     <input type="hidden" id="nro_curso" />
     <br />
     <br />
-    <table class="table table-hover table-bordered" id="myTable">
-        <thead>
-            <tr>
-                <th>Nro curso</th>
-                <th>Aula</th>
-                <th>Materia</th>
-                <th>turno</th>
-                <th>Profesor</th>
-                <th>Cant inscriptos</th>
-                <th>Año lectivo</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            @For Each vCurso In ViewData("Cursos")
-                @<tr>
-                    <td>@vCurso("nro_curso")</td>
-                    <td>@vCurso("nro_aula")</td>
-                    <td>@vCurso("nom_materia")</td>
-                    <td>@vCurso("nom_turno")</td>
-                    <td>@vCurso("nombre")</td>
-                    <td>@vCurso("cant_inscriptos")</td>
-                    <td>@vCurso("anho_lectivo")</td>
-                    <td>
-                        <a class="btn btn-outline-warning" href="javascript:ConsultarRegistro(@vCurso("nro_curso"))"><ion-icon name="document" size="large"></ion-icon></a>
-                        <br />
-                        <br />
-                        <a class="btn btn-outline-danger" href="javascript:Confirmar(@vCurso("nro_curso"))"><ion-icon name="trash" size="large"></ion-icon></a>
-                        <br />
-                        <br />
-                        <a class="btn btn-outline-success" href="/DetalleCurso/"><ion-icon name="albums" size="large"></ion-icon></a>
-                    </td>
+    <div class="table-responsive">
+        <table class="table table-hover table-bordered" id="myTable">
+            <thead>
+                <tr>
+                    <th>Nro curso</th>
+                    <th>Aula</th>
+                    <th>Materia</th>
+                    <th>turno</th>
+                    <th>Profesor</th>
+                    <th>Cant inscriptos</th>
+                    <th>Año lectivo</th>
+                    <th>Acciones</th>
                 </tr>
-            Next
-        <tbody>
-    </table>
+            </thead>
+            <tbody>
+                @For Each vCurso In ViewData("Cursos")
+                    @<tr>
+                        <td>@vCurso("nro_curso")</td>
+                        <td>@vCurso("nro_aula")</td>
+                        <td>@vCurso("nom_materia")</td>
+                        <td>@vCurso("nom_turno")</td>
+                        <td>@vCurso("nombre")</td>
+                        <td>@vCurso("cant_inscriptos")</td>
+                        <td>@vCurso("anho_lectivo")</td>
+                        <td>
+                            <div class="btn-group-vertical">
+                                <a class="btn btn-outline-warning" href="javascript:ConsultarRegistro(@vCurso("nro_curso"))"><ion-icon name="document" ></ion-icon></a>
+                                <a class="btn btn-outline-danger" href="javascript:Confirmar(@vCurso("nro_curso"))"><ion-icon name="trash" ></ion-icon></a>
+                                <a class="btn btn-outline-success" href="/DetalleCurso/"><ion-icon name="albums" ></ion-icon></a>
+                            </div>
+                        </td>
+                    </tr>
+                Next
+            <tbody>
+        </table>
+    </div>
+
 </div>
 
 
@@ -124,12 +125,12 @@ End Code
 
                     <div class="form-group">
                         <label class="form">Cantidad de inscriptos:</label>
-                        <input class="form-control" type="text" name="cant_inscriptos" id="cant_inscriptos" placeholder="" required />
+                        <input class="form-control" type="number" name="cant_inscriptos" id="cant_inscriptos" placeholder="" required />
                     </div>
 
                     <div class="form-group">
                         <label class="form">Año lectivo:</label>
-                        <input class="form-control" type="text" name="anho_lectivo" id="anho_lectivo" placeholder="" required />
+                        <input class="form-control" type="number" name="anho_lectivo" id="anho_lectivo" placeholder="" required />
                     </div>
 
                 </div>
@@ -200,12 +201,12 @@ End Code
 
                         <div class="form-group">
                             <label class="form">Cantidad de inscriptos:</label>
-                            <input class="form-control" type="text" name="pcant_inscriptos" id="pcant_inscriptos" placeholder="" required />
+                            <input class="form-control" type="number" name="pcant_inscriptos" id="pcant_inscriptos" placeholder="" required />
                         </div>
 
                         <div class="form-group">
                             <label class="form">Año lectivo:</label>
-                            <input class="form-control" type="text" name="panho_lectivo" id="panho_lectivo" placeholder="" required />
+                            <input class="form-control" type="number" name="panho_lectivo" id="panho_lectivo" placeholder="" required />
                         </div>
 
                     </div>

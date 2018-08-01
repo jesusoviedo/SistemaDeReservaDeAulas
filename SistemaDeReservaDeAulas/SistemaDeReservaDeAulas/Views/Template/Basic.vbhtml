@@ -301,7 +301,11 @@ ga('create', 'UA-30027142-1', 'w3layouts.com');
                                              <i>@Session("nombre")</i>
                                              <br /> 
                                              <ion-icon name="cog"></ion-icon>                                            
-                                             <i>@Session("rol")</i>                                             
+                                             <i>@Session("rol")</i>   
+                                             <br />
+                                             <ion-icon name="business"></ion-icon>
+                                             <i>@Session("nombre_dpto")</i> 
+                                                                                    
                                          </p>                                       
                                      </div>
 
@@ -364,7 +368,6 @@ ga('create', 'UA-30027142-1', 'w3layouts.com');
                 </div>*@
                 <div class="menu">
                     <ul id="menu">
-
                         <li id="ocultar"><a href="#"><i class="fa fa-bars"></i><span></span></a></li>
 
                         <li id="menu-home"><a href="/Home/"><i class="fa fa-home"></i><span>Principal</span></a></li>
@@ -387,17 +390,16 @@ ga('create', 'UA-30027142-1', 'w3layouts.com');
                             <ul>
                                 <li><a href="/Usuario/">Usuario</a></li>
                                 <li><a href="/Persona/">Persona</a></li>
-                                <li><a href="/Rol/">Rol</a></li>
-                                <li><a href="/Permiso/">Permiso</a></li>
                                 <li><a href="/TipoDocumento/">Tipo de Documento</a></li>
+                                <li><a href="/Rol/">Rol</a></li>
+                                <li><a href="/Permiso/">Permiso</a></li>                                
                             </ul>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-windows"></i><span>Curso</span><span class="fa fa-angle-right" style="float: right"></span></a>
                             <ul>
-                                <li><a href="/Aula/">Aula</a></li>
                                 <li><a href="/Curso/">Curso</a></li>
-                                <li><a href="/Materia/">Materia</a></li>
+                                <li><a href="/Aula/">Aula</a></li>
                                 <li><a href="/TipoAula/">Tipo de aula</a></li>
                                 <li><a href="/Turno/">Turno</a></li>
                                 <li><a href="/Dia/">Día</a></li>
@@ -408,7 +410,8 @@ ga('create', 'UA-30027142-1', 'w3layouts.com');
                             <a href="#"><i class="fa fa-university"></i><span>Universidad</span><span class="fa fa-angle-right" style="float: right"></span></a>
                             <ul>
                                 <li><a href="/Facultad/">Facultad</a></li>
-                                <li><a href="/Departamento/">Departamento</a></li>                             
+                                <li><a href="/Departamento/">Departamento</a></li>
+                                <li><a href="/Materia/">Materia</a></li>                             
                             </ul>
                         </li>
                         <li>
@@ -438,7 +441,7 @@ ga('create', 'UA-30027142-1', 'w3layouts.com');
                         <li>
                             <a href="#"><i class="fa fa-cog"></i><span>Usuario</span><span class="fa fa-angle-right" style="float: right"></span></a>
                             <ul>
-                                <li><a href="javascript:Confirmar()">Cambiar contraseña</a></li>
+                                <li><a href="javascript:ConfirmarPass()">Cambiar contraseña</a></li>
                                 <li><a href="/Home/CerrarSesion">Cerrar Sesión</a></li>
                             </ul>
                         </li>
@@ -559,7 +562,7 @@ $("#ocultar").click(function () {
 
             };
 
-            function Confirmar() {
+            function ConfirmarPass() {
                 $('#modal_pass_change').modal('show');
                 
             };

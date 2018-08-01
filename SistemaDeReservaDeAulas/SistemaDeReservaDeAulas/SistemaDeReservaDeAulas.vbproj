@@ -334,6 +334,7 @@
     <Content Include="Views\Home\Login.vbhtml" />
     <Content Include="Views\Template\Basic.vbhtml" />
     <Content Include="Views\Home\Index.vbhtml" />
+    <Content Include="Views\Reserva\IndexMod.vbhtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -8,38 +8,40 @@ End Code
     <input type="hidden" id="id_reserva" />
     <br />
     <br />
-    <table class="table table-hover table-bordered" id="myTable">
-        <thead>
-            <tr>
-                <th>Fecha solicitud</th>
-                <th>Fecha reserva</th>
-                <th>Horario</th>
-                <th>Materia</th>
-                <th>Profesor</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody id="reservas">
-
-            @For Each vReserva In ViewData("ReservasPendientes")
-                @<tr>
-                    <td>@vReserva("fecha_solicitud")</td>
-                    <td>@vReserva("fecha_reserva")</td>
-                    <td>@vReserva("hora_inicio") - @vReserva("hora_fin")</td>
-                    <td>@vReserva("nombre_materia")</td>
-                    <td>@vReserva("nombre") @vReserva("apellido")</td>
-                    <td>
-                        <div class="btn-group-vertical">
-                            <a class="btn btn-outline-info" href="javascript:InfoReserva(@vReserva("id_reserva"))">Ver detalle</a>
-                            <a class="btn btn-outline-success" href="javascript:ConfirmarApro(@vReserva("id_reserva"))">Autorizar</a>
-                            <a class="btn btn-outline-danger" href="javascript:ConfirmarRech(@vReserva("id_reserva"))">Rechazar</a>
-                        </div>
-                    </td>
+    <div class="table-responsive">
+        <table class="table table-hover table-bordered" id="myTable">
+            <thead>
+                <tr>
+                    <th>Fecha solicitud</th>
+                    <th>Fecha reserva</th>
+                    <th>Horario</th>
+                    <th>Materia</th>
+                    <th>Profesor</th>
+                    <th>Acciones</th>
                 </tr>
-            Next
+            </thead>
+            <tbody id="reservas">
 
-        <tbody>
-    </table>
+                @For Each vReserva In ViewData("ReservasPendientes")
+                    @<tr>
+                        <td>@vReserva("fecha_solicitud")</td>
+                        <td>@vReserva("fecha_reserva")</td>
+                        <td>@vReserva("hora_inicio") - @vReserva("hora_fin")</td>
+                        <td>@vReserva("nombre_materia")</td>
+                        <td>@vReserva("nombre") @vReserva("apellido")</td>
+                        <td>
+                            <div class="btn-group-vertical">
+                                <a class="btn btn-outline-info" href="javascript:InfoReserva(@vReserva("id_reserva"))">Ver detalle</a>
+                                <a class="btn btn-outline-success" href="javascript:ConfirmarApro(@vReserva("id_reserva"))">Autorizar</a>
+                                <a class="btn btn-outline-danger" href="javascript:ConfirmarRech(@vReserva("id_reserva"))">Rechazar</a>
+                            </div>
+                        </td>
+                    </tr>
+                Next
+
+            <tbody>
+        </table>
+    </div>
 </div>
 
 <!-- Modal para agregar -->
@@ -85,7 +87,7 @@ End Code
 
                     <div class="form-group">
                         <label class="form">Observación:</label>
-                        <input class="form-control" type="text" name="txtObservacion" id="txtObservacion" placeholder="" required disabled />
+                        <textarea class="form-control" name="txtObservacion" id="txtObservacion" placeholder="" required disabled rows="5"></textarea>
                     </div>
 
                     <label class="form"><b>Detalle de Insumos</b></label>

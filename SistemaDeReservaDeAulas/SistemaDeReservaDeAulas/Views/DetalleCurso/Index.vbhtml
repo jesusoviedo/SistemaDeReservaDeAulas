@@ -22,18 +22,21 @@ End Code
     <br />
     <input type="hidden" id="nro_curso" />
     <input type="hidden" id="id_dia" />
-    <table class="table table-hover table-bordered" id="myTable">
-        <thead>
-            <tr>
-                <th>Curso</th>
-                <th>Materia</th>
-                <th>Dia</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody id="DatosDetalleCurso">
-        <tbody>
-    </table>
+
+    <div class="table-responsive">
+        <table class="table table-hover table-bordered" id="myTable">
+            <thead>
+                <tr>
+                    <th>Curso</th>
+                    <th>Materia</th>
+                    <th>Dia</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="DatosDetalleCurso">
+            <tbody>
+        </table>
+    </div>
 </div>
 
 

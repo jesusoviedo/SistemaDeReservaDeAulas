@@ -5,33 +5,35 @@ End Code
 
 
 <div class="container">
-    <h3>Rol</h3>
+    <h3>Rol</h3><br />
     <a class="btn btn-outline-primary btn-lg btn-block" href="javascript:Agregar()"><ion-icon name="add"></ion-icon>Nuevo Rol</a>
     <input type="hidden" id="id_rol" />
     <br />
     <br />
-    <table class="table table-hover table-bordered" id="myTable">
-        <thead>
-            <tr>
-                <th>Código</th>
-                <th>Descripción</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            @For Each vRol In ViewData("Roles")
-                @<tr>
-                    <td>@vRol("id_rol")</td>
-                    <td>@vRol("nombre_rol")</td>
-                    <td>
-                        <a class="btn btn-outline-warning" href="javascript:ConsultarRegistro('@vRol("id_rol")')"><ion-icon name="document" ></ion-icon></a>
-                        <a class="btn btn-outline-danger" href="javascript:Confirmar('@vRol("id_rol")')"><ion-icon name="trash" ></ion-icon></a>
-                        <a class="btn btn-outline-success" href="/DetalleRol/"><ion-icon name="albums" ></ion-icon></a>
-                    </td>
+    <div class="table-responsive">
+        <table class="table table-hover table-bordered" id="myTable">
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Descripción</th>
+                    <th>Acciones</th>
                 </tr>
-            Next
-        <tbody>
-    </table>
+            </thead>
+            <tbody>
+                @For Each vRol In ViewData("Roles")
+                    @<tr>
+                        <td>@vRol("id_rol")</td>
+                        <td>@vRol("nombre_rol")</td>
+                        <td>
+                                <a class="btn btn-outline-warning" href="javascript:ConsultarRegistro('@vRol("id_rol")')"><ion-icon name="document"></ion-icon></a>
+                                <a class="btn btn-outline-danger" href="javascript:Confirmar('@vRol("id_rol")')"><ion-icon name="trash"></ion-icon></a>
+                                <a class="btn btn-outline-success" href="/DetalleRol/"><ion-icon name="albums"></ion-icon></a>
+                        </td>
+                    </tr>
+                Next
+            <tbody>
+        </table>
+    </div>
 </div>
 
 
@@ -72,14 +74,14 @@ End Code
 
                 <div class="form">
                     <div class="form-group">
-                        <label class="form">Cogido:</label>
-                        <input class="form-control" type="text" name="txtCogido" id="Cogido" placeholder="" required max="5" min="5" />
+                        <label class="form" for="txtCogido">Cogido:</label>
+                        <input class="form-control" type="text" name="txtCogido" id="Cogido" placeholder="" required maxlength="5" />
                     </div>
                 </div>
 
                 <div class="form">
                     <div class="form-group">
-                        <label class="form">Descripción:</label>
+                        <label class="form" for="txtNombreRol">Descripción:</label>
                         <input class="form-control" type="text" name="txtNombreRol" id="NombreRol" placeholder="" required />
                     </div>
                 </div>
@@ -112,7 +114,7 @@ End Code
 
                     <div class="form">
                         <div class="form-group">
-                            <label class="form">Cogido:</label>
+                            <label class="form" for="pId_rol">Cogido:</label>
                             <input class="form-control" type="text" name="pId_rol" id="pId_rol" placeholder="" required disabled />
                         </div>
                     </div>

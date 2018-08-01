@@ -4,34 +4,36 @@
 End Code
 
 <div class="container">
-    <h3>Dia</h3>
+    <h3>Dia</h3><br />
     <a class="btn btn-outline-primary btn-lg btn-block" href="javascript:Agregar()"><ion-icon name="add"></ion-icon>Nuevo Dia</a>
     <input type="hidden" id="id_dia" />
     <br />
     <br />
-    <table class="table table-hover table-bordered" id="myTable">
-        <thead>
-            <tr>
-                <th>Código</th>
-                <th>Descripción</th>
-                <th>Sigla</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            @For Each vDia In ViewData("Dias")
-                @<tr>
-                    <td>@vDia("id_dia")</td>
-                    <td>@vDia("descripcion")</td>
-                    <td>@vDia("cod_dia")</td>
-                    <td>
-                        <a class="btn btn-outline-warning" href="javascript:ConsultarRegistro(@vDia("id_dia"))"><ion-icon name="document"></ion-icon></a>
-                        <a class="btn btn-outline-danger" href="javascript:Confirmar(@vDia("id_dia"))"><ion-icon name="trash"></ion-icon></a>
-                    </td>
+    <div class="table-responsive">
+        <table class="table table-hover table-bordered" id="myTable">
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Descripción</th>
+                    <th>Sigla</th>
+                    <th>Acciones</th>
                 </tr>
-            Next
-        <tbody>
-    </table>
+            </thead>
+            <tbody>
+                @For Each vDia In ViewData("Dias")
+                    @<tr>
+                        <td>@vDia("id_dia")</td>
+                        <td>@vDia("descripcion")</td>
+                        <td>@vDia("cod_dia")</td>
+                        <td>
+                            <a class="btn btn-outline-warning" href="javascript:ConsultarRegistro(@vDia("id_dia"))"><ion-icon name="document"></ion-icon></a>
+                            <a class="btn btn-outline-danger" href="javascript:Confirmar(@vDia("id_dia"))"><ion-icon name="trash"></ion-icon></a>
+                        </td>
+                    </tr>
+                Next
+            <tbody>
+        </table>
+    </div>
 </div>
 
 
@@ -72,13 +74,13 @@ End Code
 
                 <div class="form">
                     <div class="form-group">
-                        @*<label class="form">Descripción:</label>*@
-                        <input class="form-control" type="text" name="txtDescripcion" id="Descripcion" placeholder="Descripción" required />
+                        <label class="form" for="txtDescripcion">Dia:</label>
+                        <input class="form-control" type="text" name="txtDescripcion" id="Descripcion" placeholder="" required />
                     </div>
                     
                     <div class="form-group">
-                        @*<label class="form">Sigla:</label>*@
-                        <input class="form-control" type="text" name="txtCodDia" id="CodDia" placeholder="Sigla" maxlength="1" required />
+                        <label class="form" for="txtCodDia">Sigla:</label>
+                        <input class="form-control" type="text" name="txtCodDia" id="CodDia" placeholder="" maxlength="1" required />
                     </div>
                 </div>
             </div>
@@ -110,13 +112,13 @@ End Code
                     <input type="hidden" name="pId_dia" id="pId_dia" required />
 
                     <div class="form-group">
-                        <label class="form" for="pDescripcion">Descripción:</label>
-                        <input class="form-control" type="text" name="pDescripcion" id="pDescripcion" placeholder="Descripción" required />
+                        <label class="form" for="pDescripcion">Dia:</label>
+                        <input class="form-control" type="text" name="pDescripcion" id="pDescripcion" placeholder="" required />
                     </div>
 
                     <div class="form-group">
                         <label class="form" for="pCod_dia">Sigla:</label>
-                        <input class="form-control" type="text" name="pCod_dia" id="pCod_dia" placeholder="Sigla" maxlength="1" required />
+                        <input class="form-control" type="text" name="pCod_dia" id="pCod_dia" placeholder="" maxlength="1" required />
                     </div>
 
                 </div>

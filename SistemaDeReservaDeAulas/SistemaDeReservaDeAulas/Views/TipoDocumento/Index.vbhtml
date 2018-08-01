@@ -4,32 +4,34 @@
 End Code
 
 <div class="container">
-    <h3>Tipo de Documento</h3>
+    <h3>Tipo de Documento</h3><br />
     <a class="btn btn-outline-primary btn-lg btn-block" href="javascript:Agregar()"><ion-icon name="add"></ion-icon>Nuevo tipo de Documento</a>
     <input type="hidden" id="id_tipo_doc" />
     <br />
     <br />
-    <table class="table table-hover table-bordered" id="myTable">
-        <thead>
-            <tr>
-                <th>Código</th>
-                <th>Descripción</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            @For Each vTipoDocumento In ViewData("TiposDocumentos")
-                @<tr>
-                    <td>@vTipoDocumento("id_tipo_doc")</td>
-                    <td>@vTipoDocumento("descripcion")</td>
-                    <td>
-                        <a class="btn btn-outline-warning" href="javascript:ConsultarRegistro(@vTipoDocumento("id_tipo_doc"))"><ion-icon name="document"></ion-icon></a>
-                        <a class="btn btn-outline-danger" href="javascript:Confirmar(@vTipoDocumento("id_tipo_doc"))"><ion-icon name="trash"></ion-icon></a>
-                    </td>
+    <div class="table-responsive">
+        <table class="table table-hover table-bordered" id="myTable">
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Descripción</th>
+                    <th>Acciones</th>
                 </tr>
-            Next
-        <tbody>
-    </table>
+            </thead>
+            <tbody>
+                @For Each vTipoDocumento In ViewData("TiposDocumentos")
+                    @<tr>
+                        <td>@vTipoDocumento("id_tipo_doc")</td>
+                        <td>@vTipoDocumento("descripcion")</td>
+                        <td>
+                            <a class="btn btn-outline-warning" href="javascript:ConsultarRegistro(@vTipoDocumento("id_tipo_doc"))"><ion-icon name="document"></ion-icon></a>
+                            <a class="btn btn-outline-danger" href="javascript:Confirmar(@vTipoDocumento("id_tipo_doc"))"><ion-icon name="trash"></ion-icon></a>
+                        </td>
+                    </tr>
+                Next
+            <tbody>
+        </table>
+    </div>
 </div>
 
 
@@ -70,8 +72,8 @@ End Code
 
                 <div class="form">
                     <div class="form-group">
-                        @*<label class="form">Descripción:</label>*@
-                        <input class="form-control" type="text" name="txtDescripcion" id="Descripcion" placeholder="Descripción" required />
+                        <label class="form" for="txtDescripcion">Descripción:</label>
+                        <input class="form-control" type="text" name="txtDescripcion" id="Descripcion" placeholder="" required />
                     </div>
                 </div>
             </div>
@@ -103,7 +105,7 @@ End Code
                     <input type="hidden" name="pId_tipo_doc" id="pId_tipo_doc" required />
                     <div class="form-group">
                         <label class="form" for="pDescripcion">Descripción:</label>
-                        <input class="form-control" type="text" name="pDescripcion" id="pDescripcion" placeholder="Descripción" required />
+                        <input class="form-control" type="text" name="pDescripcion" id="pDescripcion" placeholder="" required />
                     </div>
                 </div>
             </div>

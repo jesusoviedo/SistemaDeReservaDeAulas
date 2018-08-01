@@ -4,32 +4,34 @@
 End Code
 
 <div class="container">
-    <h3>Permiso</h3>
+    <h3>Permiso</h3><br />
     <a class="btn btn-outline-primary btn-lg btn-block" href="javascript:Agregar()"><ion-icon name="add"></ion-icon>Nuevo Permiso</a>
     <input type="hidden" id="id_permiso" />
     <br />
     <br />
-    <table class="table table-hover table-bordered" id="myTable">
-        <thead>
-            <tr>
-                <th>Código</th>
-                <th>Descripción</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            @For Each vPermiso In ViewData("Permisos")
-                @<tr>
-                    <td>@vPermiso("id_permiso")</td>
-                    <td>@vPermiso("nombre_permiso")</td>
-                    <td>
-                        <a class="btn btn-outline-warning" href="javascript:ConsultarRegistro(@vPermiso("id_permiso"))"><ion-icon name="document"></ion-icon></a>
-                        <a class="btn btn-outline-danger" href="javascript:Confirmar(@vPermiso("id_permiso"))"><ion-icon name="trash"></ion-icon></a>
-                    </td>
+    <div class="table-responsive">
+        <table class="table table-hover table-bordered" id="myTable">
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Descripción</th>
+                    <th>Acciones</th>
                 </tr>
-            Next
-        <tbody>
-    </table>
+            </thead>
+            <tbody>
+                @For Each vPermiso In ViewData("Permisos")
+                    @<tr>
+                        <td>@vPermiso("id_permiso")</td>
+                        <td>@vPermiso("nombre_permiso")</td>
+                        <td>
+                            <a class="btn btn-outline-warning" href="javascript:ConsultarRegistro(@vPermiso("id_permiso"))"><ion-icon name="document"></ion-icon></a>
+                            <a class="btn btn-outline-danger" href="javascript:Confirmar(@vPermiso("id_permiso"))"><ion-icon name="trash"></ion-icon></a>
+                        </td>
+                    </tr>
+                Next
+            <tbody>
+        </table>
+    </div>
 </div>
 
 
@@ -70,8 +72,8 @@ End Code
 
                 <div class="form">
                     <div class="form-group">
-                        @*<label class="form">Descripción:</label>*@
-                        <input class="form-control" type="text" name="txtNombrePermiso" id="NombrePermiso" placeholder="Descripción" required />
+                        <label class="form" for="txtNombrePermiso">Descripción:</label>
+                        <input class="form-control" type="text" name="txtNombrePermiso" id="NombrePermiso" placeholder="" required />
                     </div>
                 </div>
             </div>
@@ -104,7 +106,7 @@ End Code
 
                     <div class="form-group">
                         <label class="form" for="pNombre_permiso">Descripción:</label>
-                        <input class="form-control" type="text" name="pNombre_permiso" id="pNombre_permiso" placeholder="Descripción" required />
+                        <input class="form-control" type="text" name="pNombre_permiso" id="pNombre_permiso" placeholder="" required />
                     </div>
 
                 </div>

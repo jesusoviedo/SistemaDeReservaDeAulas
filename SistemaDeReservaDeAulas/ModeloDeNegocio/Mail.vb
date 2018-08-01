@@ -5,13 +5,17 @@ Public Class Mail
 
     Private cuerpoMensaje As String
     Private emailDestinatario As String
+    Private emailCC As String
+    Private opt As Boolean
 
-    Private Sub SendMail()
-        Thread.Sleep(3000)
+    Private Sub SendMailA()
         Dim correo As New MailMessage
         Dim smtp As New SmtpClient()
 
         correo.To.Add(emailDestinatario)
+        If opt Then
+            correo.CC.Add(emailCC)
+        End If
         correo.Body = cuerpoMensaje
 
         correo.From = New MailAddress("reservaaula2018@gmail.com", "Sistema de Reserva de Aulas", System.Text.Encoding.UTF8)
@@ -35,31 +39,42 @@ Public Class Mail
         Dim vReserva As New Reserva
         Dim vAula As New Aula
         Dim vUsuario As New Usuario
-        Dim vPersona As New Persona
-
-        Dim vEstado As String
-
+        Dim vEstado As String = ""
         Dim reserva As Reserva
         Dim aula As Aula
         Dim usuario As Usuario
-        Dim persona As Persona
 
         reserva = vReserva.RecuperarReserva(id_reserva)
         aula = vAula.RecuperarAula(reserva.pId_aula)
         usuario = vUsuario.RecuperarUsuario(reserva.pId_usuario)
-        persona = vPersona.RecuperarPersona(usuario.pId_persona)
+        'persona = vPersona.RecuperarPersona(usuario.pId_persona)
+
+        If reserva.pId_estado_reserva = "P" Then
+            vEstado = "Recibida"
+            emailDestinatario = Usuario.ConsultarProfesorCurso(reserva.pId_reserva)
+            emailCC = Usuario.ConsultarSupervisor(usuario.pId_dpto)
+            opt = True
+        End If
 
         If reserva.pId_estado_reserva = "A" Then
             vEstado = "Aprobada"
+            emailDestinatario = Usuario.ConsultarSupervisor(usuario.pId_dpto)
+            emailCC = Usuario.ConsultarProfesorCurso(reserva.pId_reserva)
+            opt = True
         End If
+
         If reserva.pId_estado_reserva = "R" Then
             vEstado = "Rechazada"
+            emailDestinatario = Usuario.ConsultarSupervisor(usuario.pId_dpto)
+            emailCC = Usuario.ConsultarProfesorCurso(reserva.pId_reserva)
+            opt = True
         End If
-        If reserva.pId_estado_reserva = "P" Then
-            vEstado = "Recibida"
-        End If
+
         If reserva.pId_estado_reserva = "X" Then
             vEstado = "Anulada"
+            emailDestinatario = Usuario.ConsultarProfesorCurso(reserva.pId_reserva)
+            emailCC = ""
+            opt = False
         End If
 
         cuerpoMensaje = "<h3>Estimado Usuario</h3>" +
@@ -68,10 +83,8 @@ Public Class Mail
                     reserva.pHora_fin + ") para el aula " + aula.pNro_aula + " fue <b><i>" +
                     vEstado + "</i></b> </p>"
 
-        emailDestinatario = persona.pEmail
 
-
-        Dim SendMailAsync As New Thread(AddressOf SendMail)
+        Dim SendMailAsync As New Thread(AddressOf SendMailA)
         SendMailAsync.Start()
 
     End Sub
@@ -86,8 +99,32 @@ Public Class Mail
                     "<br><br><b><a href=""" + url + """>Ingresar</a></b>"
 
         emailDestinatario = email
-        Dim SendMailAsync As New Thread(AddressOf SendMail)
+        Dim SendMailAsync As New Thread(AddressOf SendMailB)
         SendMailAsync.Start()
+    End Sub
+
+    Private Sub SendMailB()
+        Dim correo As New MailMessage
+        Dim smtp As New SmtpClient()
+
+        correo.To.Add(emailDestinatario)
+        correo.Body = cuerpoMensaje
+
+        correo.From = New MailAddress("reservaaula2018@gmail.com", "Sistema de Reserva de Aulas", System.Text.Encoding.UTF8)
+        correo.SubjectEncoding = System.Text.Encoding.UTF8
+        correo.Subject = "Notificacion de Reserva de Aulas"
+
+        correo.BodyEncoding = System.Text.Encoding.UTF8
+        correo.IsBodyHtml = True
+        correo.Priority = MailPriority.High
+
+        smtp.Credentials = New System.Net.NetworkCredential("reservaaula2018@gmail.com", "45jj.55bhh")
+        smtp.Port = 587
+        smtp.Host = "smtp.gmail.com"
+        smtp.EnableSsl = True
+
+        smtp.Send(correo)
+
     End Sub
 
 End Class

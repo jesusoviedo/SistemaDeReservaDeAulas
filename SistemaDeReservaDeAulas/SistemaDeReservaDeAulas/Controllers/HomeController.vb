@@ -29,9 +29,7 @@ Namespace Controllers
                     dtReservaAnulada = Reserva.ConsultarReservaPorUsuario(Session("id_usuario"), "X")
                     ViewData("ReservasAnuladas") = dtReservaAnulada.AsEnumerable
 
-                End If
-
-                If Session("rol") = "Aprovador" Or Session("rol") = "Administrador" Then
+                Else
 
                     Dim dtReservaSolicitas As New DataTable
                     dtReservaSolicitas = Reserva.ConsultarReservaPorDepartamento(Session("id_dpto"), "P")

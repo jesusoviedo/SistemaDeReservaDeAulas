@@ -17,7 +17,7 @@ Namespace Controllers
                 ViewData("TiposAulas") = dtTipoAula.AsEnumerable
 
                 Dim dtCurso As New DataTable
-                dtCurso = Curso.RecuperarCurso()
+                dtCurso = Curso.RecuperarCursoPorDepartamento(Session("id_dpto"))
                 ViewData("Cursos") = dtCurso.AsEnumerable
 
                 Dim dtInsumo As New DataTable

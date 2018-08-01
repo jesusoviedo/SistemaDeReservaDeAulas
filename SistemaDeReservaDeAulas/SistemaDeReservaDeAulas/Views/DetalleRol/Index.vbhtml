@@ -23,17 +23,19 @@ End Code
     <br />
     <input type="hidden" id="id_rol" />
     <input type="hidden" id="id_permiso" />
-    <table class="table table-hover table-bordered" id="myTable">
-        <thead>
-            <tr>
-                <th>Rol</th>
-                <th>Permiso</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody id="DatosDetalleRol">
-        <tbody>
-    </table>
+    <div class="table-responsive">
+        <table class="table table-hover table-bordered" id="myTable">
+            <thead>
+                <tr>
+                    <th>Rol</th>
+                    <th>Permiso</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="DatosDetalleRol">
+            <tbody>
+        </table>
+    </div>
 </div>
 
 
@@ -176,7 +178,7 @@ End Code
 
                         row += "<tr><td>" + datos[i].nombre_rol +
                                 "</td><td>" + datos[i].nombre_permiso +
-                                "<td> <a class='btn btn-outline-danger' href='javascript:Confirmar(" + datos[i].id_rol + "," + datos[i].id_permiso + ")'><ion-icon name='trash'></ion-icon></a>" +
+                                "<td> <a class='btn btn-outline-danger' href='javascript:Confirmar(\"" + datos[i].nombre_rol + "\"," + datos[i].id_permiso + ")'><ion-icon name='trash'></ion-icon></a>" +
                                 "</td></tr>";
                     }
                     $("#DatosDetalleRol").html(row);

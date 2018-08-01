@@ -8,120 +8,73 @@ End Code
     <br />
 
     <form action="javascript:BuscarAulasDisponibles()">
-
-        @*<div class="form-group">
-            <label class="form" for="txtFecha_reserva">Fecha reserva:</label>
-            <input class="form-control" type="date" name="txtFecha_reserva" id="txtFecha_reserva" placeholder="" required />
-        </div>
-
-        <div class="form-group">
-            <label class="form" for="txtId_tipo_aula">Tipo de Aula:</label>
-            <select class="form-control" type="text" name="txtId_tipo_aula" id="txtId_tipo_aula" placeholder="" required>
-                @For Each row In ViewData("TiposAulas")
-                    @<option value="@row("id_tipo_aula")">@row("descripcion")</option>
-                Next
-            </select>
-        </div>
-
-        <div class="form-group">
-            <label class="form" for="txtNro_curso">Curso:</label>
-            <select class="form-control" type="text" name="txtNro_curso" id="txtNro_curso" placeholder="" required>
-                @For Each row In ViewData("Cursos")
-                    @<option value="@row("nro_curso")">@row("nro_curso")</option>
-                Next
-            </select>
-        </div>
-
-        <div class="form-group">
-            <label class="form" for="txtCantidadAlumno">Cantidad de Alumnos:</label>
-            <input class="form-control" type="number" name="txtCantidadAlumno" id="txtCantidadAlumno" placeholder="" required />
-        </div>
-
-        <div class="form-group">
-            <label class="form" for="txtHora_inicio">Hora inicio:</label>
-            <input class="form-control" type="time" name="txtHora_inicio" id="txtHora_inicio" placeholder="" required />
-        </div>
-
-        <div class="form-group">
-            <label class="form" for="txtHora_fin">Hora fin:</label>
-            <input class="form-control" type="time" name="txtHora_fin" id="txtHora_fin" placeholder="" required />
-        </div>
-
-        <div class="form-group">
-            <input type="submit" class="btn btn-outline-success btn-lg" value="Buscar" " />
-            <input type="reset" class="btn btn-outline-secondary btn-lg" value="Cancalar" />
-        </div>*@
+        <table>
+            @*<thead>
 
 
-        <div class="table-responsive">
+            </thead>*@
+            <tbody>
+                <tr>
+                    <td>
+                        <div style=" width:100%">
+                            <label class="form" for="txtFechaReserva">FechaReserva:</label>
+                            <input class="form-control" type="date" name="txtFecha_reserva" id="txtFecha_reserva" placeholder="" required />
+                        </div>
+                    </td>
+                    <td>
+                        <div style=" width:300px">
+                            <label class="form" for="txtHora_inicio">Hora inicio:</label>
+                            <input class="form-control" type="time" name="txtHora_inicio" id="txtHora_inicio" placeholder="" required />
+                        </div>
+                    </td>
+                    <td>
+                        <div style=" width:300px">
+                            <label class="form" for="txtHora_fin">Hora fin:</label>
+                            <input class="form-control" type="time" name="txtHora_fin" id="txtHora_fin" placeholder="" required />
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div style="margin-top: 0.5rem; width:100% ">
+                            <label class="form" for="txtId_tipo_aula">Tipo de Aula:</label>
+                            <select class="form-control" type="text" name="txtId_tipo_aula" id="txtId_tipo_aula" placeholder="" required>
+                                @For Each row In ViewData("TiposAulas")
+                                    @<option value="@row("id_tipo_aula")">@row("descripcion")</option>
+                                Next
+                            </select>
+                        </div>
+                    </td>
+                    <td>
+                        <div style="margin-top: 0.5rem;  width:300px">
+                            <label class="form" for="txtNro_curso">Curso:</label>
+                            <select class="form-control" type="text" name="txtNro_curso" id="txtNro_curso" placeholder="" required>
+                                @For Each row In ViewData("Cursos")
+                                    @<option value="@row("nro_curso")">@row("nro_curso")</option>
+                                Next
+                            </select>
+                        </div>
+                    </td>
+                    <td>
+                        <div style="margin-top: 0.5rem; width:300px">
+                            <label class="form" for="txtCantidad">Cantidad de Alumnos:</label>
+                            <input type="text" class="form-control" name="txtCantidad" id="txtCantidad" placeholder="" required>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-4">
+                        
+                    </td>
+                    <td class="col-4"></td>
+                    <td class="col-4"><input type="submit" style="margin-bottom: 0.5rem;
+    margin-top: 0.5rem;" class="btn btn-outline-success btn-lg" value="Buscar" " />
+<input type="reset" style="margin-bottom: 0.5rem;
+    margin-top: 0.5rem;" class="btn btn-outline-secondary btn-lg" value="Cancelar" /></td>
+                </tr>
 
-
-            <table>
-                @*<thead>
-
-
-                </thead>*@
-                <tbody>
-                    <tr>
-                        <td>
-                            <div style="width:100%">
-                                <label class="form col-sm-12" for="txtFechaReserva">FechaReserva:</label>
-                                <input class="form-control col-sm-12" type="date" name="txtFecha_reserva" id="txtFecha_reserva" placeholder="" required />
-                            </div>
-                        </td>
-                        <td>
-                            <div style="width:300px">
-                                <label class="form col-sm-12" for="txtHora_inicio">Hora inicio:</label>
-                                <input class="form-control col-sm-12" type="time" name="txtHora_inicio" id="txtHora_inicio" placeholder="" required />
-                            </div>
-                        </td>
-                        <td>
-                            <div style="width:300px">
-                                <label class="form col-sm-12" for="txtHora_fin">Hora fin:</label>
-                                <input class="form-control col-sm-12" type="time" name="txtHora_fin" id="txtHora_fin" placeholder="" required />
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div style="margin-top: 0.5rem; width:100% ">
-                                <label class="form col-sm-12" for="txtId_tipo_aula">Tipo de Aula:</label>
-                                <select class="form-control col-sm-12" type="text" name="txtId_tipo_aula" id="txtId_tipo_aula" placeholder="" required>
-                                    @For Each row In ViewData("TiposAulas")
-                                        @<option value="@row("id_tipo_aula")">@row("descripcion")</option>
-                                    Next
-                                </select>
-                            </div>
-                        </td>
-                        <td>
-                            <div style="margin-top: 0.5rem;  width:300px">
-                                <label class="form col-sm-12" for="txtNro_curso">Curso - Materia:</label>
-                                <select class="form-control col-sm-12" type="text" name="txtNro_curso" id="txtNro_curso" placeholder="" required>
-                                    @For Each row In ViewData("Cursos")
-                                        @<option value="@row("nro_curso")">@row("nro_curso") - @row("nom_materia")</option>
-                                    Next
-                                </select>
-                            </div>
-                        </td>
-                        <td>
-                            <div style="margin-top: 0.5rem; width:300px">
-                                <label class="form col-sm-12" for="txtCantidadAlumno">Cantidad de Alumnos:</label>
-                                <input type="number" class="form-control col-sm-12" name="txtCantidadAlumno" id="txtCantidadAlumno" placeholder="" required>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-4"></td>
-                        <td class="col-4"></td>
-                        <td class="col-4">
-                            <input type="submit" style="margin-bottom: 0.5rem; margin-top: 0.5rem;" class="btn btn-outline-success btn-lg" value="Buscar" />
-                            <input type="reset" style="margin-bottom: 0.5rem; margin-top: 0.5rem;" class="btn btn-outline-secondary btn-lg" value="Cancelar" />
-                        </td>
-                    </tr>
-
-                <tbody>
-            </table>
-        </div>
+            <tbody>
+        </table>
 
     </form>
 

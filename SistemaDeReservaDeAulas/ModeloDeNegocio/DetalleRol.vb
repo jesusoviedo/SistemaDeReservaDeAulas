@@ -1,14 +1,14 @@
 ﻿Imports ModeloDeNegocio.Util
 
 Public Class DetalleRol
-    Private id_rol As Integer
+    Private id_rol As String
     Private id_permiso As Integer
 
-    Public Property pId_rol As Integer
+    Public Property pId_rol As String
         Get
             Return id_rol
         End Get
-        Set(value As Integer)
+        Set(value As String)
             id_rol = value
         End Set
     End Property
@@ -31,13 +31,13 @@ Public Class DetalleRol
         End Try
     End Sub
 
-    Public Sub ActualizarDetalleRol()
-        Try
-            gDatos.Ejecutar("SpActualizarDetalleRol", Me.id_rol, Me.id_permiso)
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
+    'Public Sub ActualizarDetalleRol()
+    '    Try
+    '        gDatos.Ejecutar("SpActualizarDetalleRol", Me.id_rol, Me.id_permiso)
+    '    Catch ex As Exception
+    '        Throw ex
+    '    End Try
+    'End Sub
 
     Public Sub EliminarDetalleRol()
         Try
@@ -47,7 +47,7 @@ Public Class DetalleRol
         End Try
     End Sub
 
-    Public Shared Function RecuperarDetalleRol(vId_rol As Integer) As DataTable
+    Public Shared Function RecuperarDetalleRol(vId_rol As String) As DataTable
         Try
             Dim dtDetalleRol As New DataTable
             dtDetalleRol = gDatos.TraerDataTable("SpConsultarDetalleRol", vId_rol)

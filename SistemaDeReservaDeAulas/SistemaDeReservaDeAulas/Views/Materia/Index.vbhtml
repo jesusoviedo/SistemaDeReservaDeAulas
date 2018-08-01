@@ -4,34 +4,36 @@
 End Code
 
 <div class="container">
-    <h3>Materia</h3>
+    <h3>Materia</h3><br />
     <a class="btn btn-outline-primary btn-lg btn-block" href="javascript:Agregar()"><ion-icon name="add"></ion-icon>Nueva Materia</a>
     <br />
     <br />
     <input type="hidden" id="id_materia" />
-    <table class="table table-hover table-bordered" id="myTable">
-        <thead>
-            <tr>
-                <th>Código</th>
-                <th>Materia</th>
-                <th>Departamento</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            @For Each vMateria In ViewData("Materias")
-                @<tr>
-                    <td>@vMateria("id_materia")</td>
-                    <td>@vMateria("descripcion")</td>
-                    <td>@vMateria("nombre_dpto")</td>
-                    <td>
-                        <a class="btn btn-outline-warning" href="javascript:ConsultarRegistro(@vMateria("id_materia"))"><ion-icon name="document"></ion-icon></a>
-                        <a class="btn btn-outline-danger" href="javascript:Confirmar(@vMateria("id_materia"))"><ion-icon name="trash"></ion-icon></a>
-                    </td>
+    <div class="table-responsive">
+        <table class="table table-hover table-bordered" id="myTable">
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Materia</th>
+                    <th>Departamento</th>
+                    <th>Acciones</th>
                 </tr>
-            Next
-        <tbody>
-    </table>
+            </thead>
+            <tbody>
+                @For Each vMateria In ViewData("Materias")
+                    @<tr>
+                        <td>@vMateria("id_materia")</td>
+                        <td>@vMateria("descripcion")</td>
+                        <td>@vMateria("nombre_dpto")</td>
+                        <td>
+                            <a class="btn btn-outline-warning" href="javascript:ConsultarRegistro(@vMateria("id_materia"))"><ion-icon name="document"></ion-icon></a>
+                            <a class="btn btn-outline-danger" href="javascript:Confirmar(@vMateria("id_materia"))"><ion-icon name="trash"></ion-icon></a>
+                        </td>
+                    </tr>
+                Next
+            <tbody>
+        </table>
+    </div>
 </div>
 
 

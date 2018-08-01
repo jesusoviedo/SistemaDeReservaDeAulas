@@ -4,41 +4,42 @@
 End Code
 
 <div class="container">
-    <h3>Persona</h3>
-    <br />
+    <h3>Persona</h3><br />
     <a class="btn btn-outline-primary btn-lg btn-block" href="javascript:Agregar()"><ion-icon name="add"></ion-icon>Nueva Persona</a>
     <input type="hidden" id="id_persona" />
     <br />
     <br />
-    <table class="table table-hover table-bordered" id="myTable">
-        <thead>
-            <tr>
-                <th>Código</th>
-                <th>Documento</th>
-                <th>Nombre y Apellido</th>
-                <th>Fecha nacimiento</th>
-                <th>Email</th>
-                <th>Profesor</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            @For Each vPersona In ViewData("Personas")
-                @<tr>
-                    <td>@vPersona("id_persona")</td>
-                    <td>@vPersona("documento")</td>
-                    <td>@vPersona("nombre") @vPersona("apellido")</td>
-                    <td>@vPersona("fecha_naci")</td>
-                    <td>@vPersona("email")</td>
-                     <td>@vPersona("profesorSN")</td>
-                    <td>
-                        <a class="btn btn-outline-warning" href="javascript:ConsultarRegistro(@vPersona("id_persona"))"><ion-icon name="document"></ion-icon></a>
-                        <a class="btn btn-outline-danger" href="javascript:Confirmar(@vPersona("id_persona"))"><ion-icon name="trash"></ion-icon></a>
-                    </td>
+    <div class="table-responsive">
+        <table class="table table-hover table-bordered" id="myTable">
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Documento</th>
+                    <th>Nombre y Apellido</th>
+                    <th>Fecha nacimiento</th>
+                    <th>Email</th>
+                    <th>Profesor</th>
+                    <th>Acciones</th>
                 </tr>
-            Next
-        <tbody>
-    </table>
+            </thead>
+            <tbody>
+                @For Each vPersona In ViewData("Personas")
+                    @<tr>
+                        <td>@vPersona("id_persona")</td>
+                        <td>@vPersona("documento")</td>
+                        <td>@vPersona("nombre") @vPersona("apellido")</td>
+                        <td>@vPersona("fecha_naci")</td>
+                        <td>@vPersona("email")</td>
+                        <td>@vPersona("profesorSN")</td>
+                        <td>
+                            <a class="btn btn-outline-warning" href="javascript:ConsultarRegistro(@vPersona("id_persona"))"><ion-icon name="document"></ion-icon></a>
+                            <a class="btn btn-outline-danger" href="javascript:Confirmar(@vPersona("id_persona"))"><ion-icon name="trash"></ion-icon></a>
+                        </td>
+                    </tr>
+                Next
+            <tbody>
+        </table>
+    </div>
 </div>
 
 

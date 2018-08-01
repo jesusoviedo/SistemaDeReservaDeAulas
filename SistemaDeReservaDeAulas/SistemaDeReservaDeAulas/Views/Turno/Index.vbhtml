@@ -4,36 +4,38 @@
 End Code
 
 <div class="container">
-    <h3>Turno</h3>
+    <h3>Turno</h3><br />
     <a class="btn btn-outline-primary btn-lg btn-block" href="javascript:Agregar()"><ion-icon name="add"></ion-icon>Nuevo Turno</a>
     <input type="hidden" id="id_turno" />
     <br />
     <br />
-    <table class="table table-hover table-bordered" id="myTable">
-        <thead>
-            <tr>
-                <th>Código</th>
-                <th>Descripción</th>
-                <th>Hora inicio</th>
-                <th>Hora fin</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            @For Each vTurno In ViewData("Turnos")
-                @<tr>
-                    <td>@vTurno("id_turno")</td>
-                    <td>@vTurno("descripcion")</td>
-                    <td>@vTurno("hora_inicio")</td>
-                    <td>@vTurno("hora_fin")</td>
-                    <td>
-                        <a class="btn btn-outline-warning" href="javascript:ConsultarRegistro(@vTurno("id_turno"))"><ion-icon name="document"></ion-icon></a>
-                        <a class="btn btn-outline-danger" href="javascript:Confirmar(@vTurno("id_turno"))"><ion-icon name="trash"></ion-icon></a>
-                    </td>
+    <div class="table-responsive">
+        <table class="table table-hover table-bordered" id="myTable">
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Descripción</th>
+                    <th>Hora inicio</th>
+                    <th>Hora fin</th>
+                    <th>Acciones</th>
                 </tr>
-            Next
-        <tbody>
-    </table>
+            </thead>
+            <tbody>
+                @For Each vTurno In ViewData("Turnos")
+                    @<tr>
+                        <td>@vTurno("id_turno")</td>
+                        <td>@vTurno("descripcion")</td>
+                        <td>@vTurno("hora_inicio")</td>
+                        <td>@vTurno("hora_fin")</td>
+                        <td>
+                            <a class="btn btn-outline-warning" href="javascript:ConsultarRegistro(@vTurno("id_turno"))"><ion-icon name="document"></ion-icon></a>
+                            <a class="btn btn-outline-danger" href="javascript:Confirmar(@vTurno("id_turno"))"><ion-icon name="trash"></ion-icon></a>
+                        </td>
+                    </tr>
+                Next
+            <tbody>
+        </table>
+    </div>
 </div>
 
 
@@ -74,18 +76,18 @@ End Code
 
                 <div class="form">
                     <div class="form-group">
-                        @*<label class="form">Descripción:</label>*@
-                        <input class="form-control" type="text" name="txtDescripcion" id="Descripcion" placeholder="Descripción" required />
+                        <label class="form" for="txtDescripcion">Turno:</label>
+                        <input class="form-control" type="text" name="txtDescripcion" id="Descripcion" placeholder="" required />
                     </div>
 
                     <div class="form-group">
-                        @*<label class="form">Hora inicio:</label>*@
-                        <input class="form-control" type="time" name="txtHora_inicio" id="HoraInicio" placeholder="Hora inicio" required />
+                        <label class="form" for="txtHora_inicio">Hora inicio:</label>
+                        <input class="form-control" type="time" name="txtHora_inicio" id="HoraInicio" placeholder="" required />
                     </div>
 
                     <div class="form-group">
-                        @*<label class="form">Hora fin:</label>*@
-                        <input class="form-control" type="time" name="txtHora_fin" id="HoraFin" placeholder="Hora fin" required />
+                        <label class="form" for="txtHora_fin">Hora fin:</label>
+                        <input class="form-control" type="time" name="txtHora_fin" id="HoraFin" placeholder="" required />
                     </div>
                 </div>
             </div>
@@ -117,18 +119,18 @@ End Code
                     <input type="hidden" name="pId_turno" id="pId_turno" required />
                     
                     <div class="form-group">
-                        <label class="form" for="pDescripcion">Descripción:</label>
-                        <input class="form-control" type="text" name="pDescripcion" id="pDescripcion" placeholder="Descripción" required />
+                        <label class="form" for="pDescripcion">Turno:</label>
+                        <input class="form-control" type="text" name="pDescripcion" id="pDescripcion" placeholder="" required />
                     </div>
 
                     <div class="form-group">
                         <label class="form">Hora inicio:</label>
-                        <input class="form-control" type="time" name="pHora_inicio" id="pHora_inicio" placeholder="Hora inicio" required />
+                        <input class="form-control" type="time" name="pHora_inicio" id="pHora_inicio" placeholder="" required />
                     </div>
 
                     <div class="form-group">
                         <label class="form">Hora fin:</label>
-                        <input class="form-control" type="time" name="pHora_fin" id="pHora_fin" placeholder="Hora fin" required />
+                        <input class="form-control" type="time" name="pHora_fin" id="pHora_fin" placeholder="" required />
                     </div>
 
                 </div>

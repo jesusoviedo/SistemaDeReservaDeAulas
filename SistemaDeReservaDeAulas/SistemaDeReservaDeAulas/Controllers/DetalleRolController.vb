@@ -26,7 +26,7 @@ Namespace Controllers
         End Function
 
         <HttpPost()>
-        Function Create(id_rol As Integer, id_permiso As Integer) As JsonResult
+        Function Create(id_rol As String, id_permiso As Integer) As JsonResult
 
             If Session("user") Is Nothing Then
                 Return Json("")
@@ -43,7 +43,7 @@ Namespace Controllers
         End Function
 
         <HttpPost()>
-        Function Consult(id As Integer) As JsonResult
+        Function Consult(id As String) As JsonResult
 
             If Session("user") Is Nothing Then
                 Return Json("")
@@ -56,7 +56,7 @@ Namespace Controllers
         End Function
 
         <HttpPost()>
-        Function Delete(id_rol As Integer, id_permiso As Integer) As JsonResult
+        Function Delete(id_rol As String, id_permiso As Integer) As JsonResult
 
             If Session("user") Is Nothing Then
                 Return Json("")
